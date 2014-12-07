@@ -10,9 +10,12 @@ LIBS = -L/usr/lib/ -lSDL2 -lSDL2_image
 SOURCES += \
     window.cpp \
     vector.cpp \
-    texture.cpp
+    texture.cpp \
+    renderer.cpp \
+    main.cpp
 
 HEADERS += \
     window.h \
     vector.h \
-    texture.h
+    texture.h \
+    renderer.h
