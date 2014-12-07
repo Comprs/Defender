@@ -13,11 +13,13 @@ SOURCES += \
     texture.cpp \
     renderer.cpp \
     main.cpp \
-    keyboardmanager.cpp
+    keyboardmanager.cpp \
+    clock.cpp
 
 HEADERS += \
     window.h \
     vector.h \
     texture.h \
     renderer.h \
-    keyboardmanager.h
+    keyboardmanager.h \
+    clock.h
