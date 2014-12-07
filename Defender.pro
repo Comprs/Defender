@@ -12,10 +12,12 @@ SOURCES += \
     vector.cpp \
     texture.cpp \
     renderer.cpp \
-    main.cpp
+    main.cpp \
+    keyboardmanager.cpp
 
 HEADERS += \
     window.h \
     vector.h \
     texture.h \
-    renderer.h
+    renderer.h \
+    keyboardmanager.h
