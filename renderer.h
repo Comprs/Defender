@@ -22,6 +22,7 @@ public:
     Renderer& setFlip(const SDL_RendererFlip newFlip);
 
     Renderer& setPosition(const Defender::Vector2D& position);
+    Renderer& setPosition(const int x, const int y);
 
 private:
     SDL_Renderer* sdlRenderer;

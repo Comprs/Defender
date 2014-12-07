@@ -64,3 +64,10 @@ Defender::Renderer& Defender::Renderer::setPosition(const Defender::Vector2D
     destRect.y = position.y();
     return *this;
 }
+
+Defender::Renderer& Defender::Renderer::setPosition(const int x, const int y)
+{
+    destRect.x = x;
+    destRect.y = y;
+    return *this;
+}
