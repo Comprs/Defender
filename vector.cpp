@@ -141,7 +141,7 @@ double Defender::Vector<dim>::magnitude() const
 namespace Defender
 {
 template <>
-double Defender::Vector<2>::direction() const
+inline double Defender::Vector<2>::direction() const
 {
     return std::atan(y() / x());
 }
