@@ -8,9 +8,9 @@ QMAKE_CXXFLAGS += -std=c++14
 LIBS = -L/usr/lib/ -lSDL2 -lSDL2_image
 
 SOURCES += \
-    window.cpp
+    window.cpp \
+    vector.cpp
 
 HEADERS += \
-    window.h
-
-
+    window.h \
+    vector.h
