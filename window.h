@@ -17,8 +17,16 @@ public:
     Window(Defender::Window&& other);
     Defender::Window& operator = (Defender::Window&& other);
 
+    void close();
+    const bool& isOpen();
+
+    void eventLoop();
+
     SDL_Window* sdlWindow = nullptr;
     SDL_Renderer* sdlRenderer = nullptr;
+
+private:
+    bool open = true;
 };
 }
 

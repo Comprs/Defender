@@ -32,8 +32,6 @@ Defender::Window::~Window()
 
 Defender::Window::Window(Defender::Window&& other)
 {
-    std::cout << "Call move constructor" << std::endl;
-
     sdlWindow = other.sdlWindow;
     other.sdlWindow = nullptr;
 
@@ -50,4 +48,27 @@ Defender::Window& Defender::Window::operator = (Defender::Window&& other)
     other.sdlRenderer = nullptr;
 
     return *this;
+}
+
+void Defender::Window::close()
+{
+    open = false;
+}
+
+const bool& Defender::Window::isOpen()
+{
+    return open;
+}
+
+void Defender::Window::eventLoop()
+{
+    SDL_Event e;
+    while (SDL_PollEvent(&e))
+    {
+        switch(e.type)
+        {
+        case (SDL_QUIT):
+            close();
+        }
+    }
 }
