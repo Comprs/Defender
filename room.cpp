@@ -2,6 +2,11 @@
 
 #include <algorithm>
 
+Defender::Room::Room(Game *newGame)
+{
+    game = newGame;
+}
+
 void Defender::Room::update(const double time)
 {
     for (std::shared_ptr<Entity> e : entities)

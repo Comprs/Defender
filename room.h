@@ -4,13 +4,17 @@
 #include <string>
 #include "entity.h"
 #include "textureregistry.h"
+#include "game.h"
 
 namespace Defender
 {
+class Game;
 class Entity;
 class Room
 {
 public:
+    Room(Game* newGame);
+
     virtual void update(const double time);
     virtual void draw();
 
@@ -24,6 +28,7 @@ public:
     }
 
 protected:
+    Game* game;
     std::vector<std::shared_ptr<Entity>> entities;
 };
 }
