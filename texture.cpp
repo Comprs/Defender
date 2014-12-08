@@ -17,10 +17,7 @@ Defender::Texture::Texture(SDL_Renderer* newSdlRenderer, const int width,
         throw std::runtime_error(SDL_GetError());
     }
 
-    sdlRect.x = 0;
-    sdlRect.y = 0;
-    sdlRect.w = width;
-    sdlRect.h = height;
+    sdlRect = {0, 0, width, height};
 }
 
 Defender::Texture::Texture(SDL_Renderer *newSdlRenderer,
@@ -67,4 +64,9 @@ Defender::Texture& Defender::Texture::operator = (Texture&& other)
 
     sdlRect = std::move(other.sdlRect);
     return *this;
+}
+
+const SDL_Rect& Defender::Texture::getRect() const
+{
+    return sdlRect;
 }

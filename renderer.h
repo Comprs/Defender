@@ -7,6 +7,7 @@
 
 namespace Defender
 {
+class Texture;
 class Renderer
 {
 public:

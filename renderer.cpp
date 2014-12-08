@@ -10,8 +10,7 @@ Defender::Renderer::Renderer(Defender::Texture &texture)
 
     angle = 0;
 
-    centre.x = destRect.x / 2;
-    centre.y = destRect.y / 2;
+    centre = {destRect.x / 2, destRect.y / 2};
 
     flip = SDL_FLIP_NONE;
 }
