@@ -3,9 +3,10 @@
 #include "renderer.h"
 
 Defender::Entity::Entity(std::vector<std::shared_ptr<Entity>>* newEntities,
-                         std::shared_ptr<Texture> newTexture)
+                         Room* newRoom, std::shared_ptr<Texture> newTexture)
 {
     entities = newEntities;
+    room = newRoom;
     texture = newTexture;
 }
 
@@ -43,6 +44,11 @@ void Defender::Entity::kill()
 bool Defender::Entity::isSame(const std::shared_ptr<Entity> &e) const
 {
     return (&(*e) == this);
+}
+
+bool Defender::Entity::isDead() const
+{
+    return dead;
 }
 
 void Defender::Entity::interact(std::shared_ptr<Entity>& e)

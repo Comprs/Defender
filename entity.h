@@ -5,6 +5,7 @@
 #include <vector>
 #include "vector.h"
 #include "texture.h"
+#include "room.h"
 
 template<typename T>
 inline void __unused(T t)
@@ -14,10 +15,12 @@ inline void __unused(T t)
 
 namespace Defender
 {
+class Room;
 class Entity
 {
 public:
     Entity(std::vector<std::shared_ptr<Entity>>* newEntities,
+           Defender::Room* newRoom,
            std::shared_ptr<Defender::Texture> newTexture);
     virtual void update(const double time);
     virtual void draw();
@@ -35,6 +38,7 @@ protected:
     double lifeTime = -1.0;
 
     std::vector<std::shared_ptr<Entity>>* entities;
+    Defender::Room* room;
 
     bool isSame(const std::shared_ptr<Entity>& e) const;
     virtual void interact(std::shared_ptr<Entity>& e);
