@@ -16,7 +16,6 @@ namespace Defender
 {
 class Entity
 {
-    //friend bool Entity::intersect(const Entity &e) const;
 public:
     Entity(std::vector<std::shared_ptr<Entity>>* newEntities,
            Defender::Texture* newTexture);
@@ -37,7 +36,7 @@ protected:
 
     std::vector<std::shared_ptr<Entity>>* entities;
 
-    bool isSame(std::shared_ptr<Entity>& e) const;
+    bool isSame(const std::shared_ptr<Entity>& e) const;
     virtual void interact(std::shared_ptr<Entity>& e);
     virtual void onKill() {}
 

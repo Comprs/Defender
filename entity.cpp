@@ -40,7 +40,7 @@ void Defender::Entity::kill()
     dead = true;
 }
 
-void Defender::Entity::isSame(std::shared_ptr<Entity> &e) const
+bool Defender::Entity::isSame(const std::shared_ptr<Entity> &e) const
 {
     return (&(*e) == this);
 }
