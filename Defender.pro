@@ -15,7 +15,9 @@ SOURCES += \
     main.cpp \
     keyboardmanager.cpp \
     clock.cpp \
-    entity.cpp
+    entity.cpp \
+    room.cpp \
+    textureregistry.cpp
 
 HEADERS += \
     window.h \
@@ -24,4 +26,6 @@ HEADERS += \
     renderer.h \
     keyboardmanager.h \
     clock.h \
-    entity.h
+    entity.h \
+    room.h \
+    textureregistry.h

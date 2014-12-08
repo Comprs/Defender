@@ -3,7 +3,7 @@
 #include "renderer.h"
 
 Defender::Entity::Entity(std::vector<std::shared_ptr<Entity>>* newEntities,
-                         Defender::Texture* newTexture)
+                         std::shared_ptr<Texture> newTexture)
 {
     entities = newEntities;
     texture = newTexture;

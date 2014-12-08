@@ -18,7 +18,7 @@ class Entity
 {
 public:
     Entity(std::vector<std::shared_ptr<Entity>>* newEntities,
-           Defender::Texture* newTexture);
+           std::shared_ptr<Defender::Texture> newTexture);
     virtual void update(const double time);
     virtual void draw();
     bool intersect(const Entity& e) const;
@@ -26,7 +26,7 @@ public:
     bool isDead() const;
 
 protected:
-    Defender::Texture* texture;
+    std::shared_ptr<Defender::Texture> texture;
 
     Defender::Vector2D position;
     Defender::Vector2D velocity;
