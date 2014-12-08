@@ -14,7 +14,8 @@ SOURCES += \
     renderer.cpp \
     main.cpp \
     keyboardmanager.cpp \
-    clock.cpp
+    clock.cpp \
+    entity.cpp
 
 HEADERS += \
     window.h \
@@ -22,4 +23,5 @@ HEADERS += \
     texture.h \
     renderer.h \
     keyboardmanager.h \
-    clock.h
+    clock.h \
+    entity.h
