@@ -2,11 +2,6 @@
 
 #include <algorithm>
 
-Defender::Room::Room()
-{
-    addEntity<Defender::Entity>("alien1.png");
-}
-
 void Defender::Room::update(const double time)
 {
     for (std::shared_ptr<Entity> e : entities)

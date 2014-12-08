@@ -11,8 +11,6 @@ class Entity;
 class Room
 {
 public:
-    Room();
-
     virtual void update(const double time);
     virtual void draw();
 
