@@ -55,7 +55,7 @@ void Defender::Window::close()
     open = false;
 }
 
-const bool& Defender::Window::isOpen()
+bool Defender::Window::isOpen()
 {
     return open;
 }

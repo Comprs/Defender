@@ -18,7 +18,7 @@ public:
     Defender::Window& operator = (Defender::Window&& other);
 
     void close();
-    const bool& isOpen();
+    bool isOpen();
 
     void eventLoop();
 
