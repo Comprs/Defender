@@ -10,17 +10,6 @@ Defender::Game::Game()
     present();
 }
 
-void Defender::Game::pushNewRoom(std::shared_ptr<Room> newRoom)
-{
-    rooms.push_back(newRoom);
-}
-
-void Defender::Game::replaceNewRoom(std::shared_ptr<Room> newRoom)
-{
-    rooms.erase(rooms.begin(), rooms.end());
-    pushNewRoom(newRoom);
-}
-
 void Defender::Game::killTopRoom()
 {
     rooms.pop_back();
@@ -74,6 +63,7 @@ void Defender::Game::begin()
 
         clear();
 
+        //TODO: replace with exception
         if (getActiveRoom() != nullptr)
         {
             update();

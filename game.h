@@ -9,6 +9,7 @@
 
 namespace Defender
 {
+class Room;
 class Game
 {
 public:
@@ -16,8 +17,19 @@ public:
 
     void begin();
 
-    void pushNewRoom(std::shared_ptr<Room> newRoom);
-    void replaceNewRoom(std::shared_ptr<Room> newRoom);
+    template<typename T, typename... Args>
+    void pushNewRoom(Args... args)
+    {
+        rooms.push_back(std::make_shared<T>(this, args...));
+    }
+
+    template<typename T, typename... Args>
+    void replaceNewRoom(Args... args)
+    {
+        rooms.erase(rooms.begin(), rooms.end());
+        pushNewRoom<T>(args...);
+    }
+
     void killTopRoom();
 
 private:
