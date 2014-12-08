@@ -17,7 +17,8 @@ SOURCES += \
     clock.cpp \
     entity.cpp \
     room.cpp \
-    textureregistry.cpp
+    textureregistry.cpp \
+    game.cpp
 
 HEADERS += \
     window.h \
@@ -28,4 +29,5 @@ HEADERS += \
     clock.h \
     entity.h \
     room.h \
-    textureregistry.h
+    textureregistry.h \
+    game.h
