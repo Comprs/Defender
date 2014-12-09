@@ -1,5 +1,6 @@
 #include "game.h"
 
+#include <stdexcept>
 #include "textureregistry.h"
 #include "keyboardmanager.h"
 
@@ -63,12 +64,12 @@ void Defender::Game::begin()
 
         clear();
 
-        //TODO: replace with exception
-        if (getActiveRoom() != nullptr)
+        if (getActiveRoom() == nullptr)
         {
-            update();
-            draw();
+            throw std::runtime_error("No active room");
         }
+        update();
+        draw();
 
         present();
         clock.tick(60);
