@@ -13,12 +13,20 @@ Defender::Renderer::Renderer(Defender::Texture &texture)
     centre = {destRect.x / 2, destRect.y / 2};
 
     flip = SDL_FLIP_NONE;
+
+    offsets = {Vector2D()};
 }
 
 void Defender::Renderer::commit()
 {
-    SDL_RenderCopyEx(sdlRenderer, sdlTexture, &srcRect, &destRect, angle,
-                     &centre, flip);
+    for (Vector2D v : offsets)
+    {
+        SDL_Rect finalDestRect = destRect;
+        finalDestRect.x += v.x();
+        finalDestRect.y += v.y();
+        SDL_RenderCopyEx(sdlRenderer, sdlTexture, &srcRect, &finalDestRect,
+                         angle, &centre, flip);
+    }
 }
 
 void Defender::Renderer::operator () ()
@@ -69,4 +77,15 @@ Defender::Renderer& Defender::Renderer::setPosition(const int x, const int y)
     destRect.x = x;
     destRect.y = y;
     return *this;
+}
+
+Defender::Renderer& Defender::Renderer::addOffset(const Vector2D &offset)
+{
+    offsets.push_back(offset);
+    return *this;
+}
+
+Defender::Renderer& Defender::Renderer::addOffset(const int x, const int y)
+{
+    return addOffset(Vector2D(x, y));
 }

@@ -1,6 +1,7 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
+#include <vector>
 #include <SDL2/SDL.h>
 #include "texture.h"
 #include "vector.h"
@@ -21,9 +22,11 @@ public:
     Renderer& setAngle(const double newAngle);
     Renderer& setCentre(const SDL_Point& newCentre);
     Renderer& setFlip(const SDL_RendererFlip newFlip);
+    Renderer& addOffset(const Vector2D& offset);
 
     Renderer& setPosition(const Defender::Vector2D& position);
     Renderer& setPosition(const int x, const int y);
+    Renderer& addOffset(const int x, const int y);
 
 private:
     SDL_Renderer* sdlRenderer;
@@ -33,6 +36,8 @@ private:
     double angle;
     SDL_Point centre;
     SDL_RendererFlip flip;
+
+    std::vector<Vector2D> offsets;
 };
 }
 
