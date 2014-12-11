@@ -38,6 +38,7 @@ void Defender::MainGameRoom::updateEntity(const double time,
     Room::updateEntity(time, e);
     if (typeid(*e) == typeid(Player))
     {
-        cameraPos = e->getPosition();
+        cameraPos.x() = e->getPosition().x() - Defender::windowWidth / 2
+                + TextureRegistry::getTexture("player.png")->getRect().w / 2;
     }
 }
