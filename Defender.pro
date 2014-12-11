@@ -18,7 +18,9 @@ SOURCES += \
     entity.cpp \
     room.cpp \
     textureregistry.cpp \
-    game.cpp
+    game.cpp \
+    maingameroom.cpp \
+    player.cpp
 
 HEADERS += \
     window.h \
@@ -30,4 +32,7 @@ HEADERS += \
     entity.h \
     room.h \
     textureregistry.h \
-    game.h
+    game.h \
+    maingameroom.h \
+    player.h \
+    globals.h
