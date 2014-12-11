@@ -20,6 +20,15 @@ void Defender::Entity::update(const double time)
     position += velocity * time + 0.5 * time * time * acceleration;
     velocity += acceleration * time;
 
+    while (position.x() >= 512)
+    {
+        position.x() -= 512;
+    }
+    while (position.x() < 0)
+    {
+        position.x() += 512;
+    }
+
     if (lifeTime > 0)
     {
         lifeTime -= time;
@@ -32,7 +41,11 @@ void Defender::Entity::update(const double time)
 
 void Defender::Entity::draw()
 {
-    Defender::Renderer(*texture).setPosition(position).commit();
+    SDL_RendererFlip flip;
+    if (facingRight)  { flip = SDL_FLIP_NONE; }
+    else { flip = SDL_FLIP_HORIZONTAL; }
+    Defender::Renderer(*texture).setPosition(position).setFlip(flip)
+            .addOffset(512, 0).addOffset(-512, 0).commit();
 }
 
 void Defender::Entity::kill()
@@ -67,4 +80,9 @@ bool Defender::Entity::intersect(const Entity& e) const
     r2.y = e.position.y();
 
     return SDL_HasIntersection(&r1, &r2);
+}
+
+const Defender::Vector2D& Defender::Entity::getPosition() const
+{
+    return position;
 }

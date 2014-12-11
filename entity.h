@@ -34,6 +34,7 @@ public:
     bool intersect(const Entity& e) const;
     void kill();
     bool isDead() const;
+    const Vector2D& getPosition() const;
 
 protected:
     std::shared_ptr<Defender::Texture> texture;
@@ -43,6 +44,7 @@ protected:
     Defender::Vector2D acceleration;
 
     double lifeTime = -1.0;
+    bool facingRight = true;
 
     std::vector<std::shared_ptr<Entity>>* entities;
     Defender::Room* room;
