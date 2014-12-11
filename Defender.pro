@@ -20,7 +20,9 @@ SOURCES += \
     textureregistry.cpp \
     game.cpp \
     maingameroom.cpp \
-    player.cpp
+    player.cpp \
+    playerprojectile.cpp \
+    camera.cpp
 
 HEADERS += \
     window.h \
@@ -35,4 +37,6 @@ HEADERS += \
     game.h \
     maingameroom.h \
     player.h \
-    globals.h
+    globals.h \
+    playerprojectile.h \
+    camera.h

@@ -8,6 +8,10 @@ Defender::Entity::Entity(std::vector<std::shared_ptr<Entity>>* newEntities,
     entities = newEntities;
     room = newRoom;
     texture = newTexture;
+
+    position = Vector2D();
+    velocity = Vector2D();
+    acceleration = Vector2D();
 }
 
 void Defender::Entity::update(const double time, std::shared_ptr<Entity> self)

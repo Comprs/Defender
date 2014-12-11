@@ -15,6 +15,7 @@ void Defender::Room::update(const double time)
 {
     for (std::shared_ptr<Entity> e : entities)
     {
+        if (e == nullptr) { continue; }
         e->update(time, e);
     }
 

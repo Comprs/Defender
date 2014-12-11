@@ -1,6 +1,7 @@
 #include "player.h"
 
 #include "keyboardmanager.h"
+#include "playerprojectile.h"
 
 void Defender::Player::update(const double time, std::shared_ptr<Entity> self)
 {
@@ -73,5 +74,25 @@ void Defender::Player::update(const double time, std::shared_ptr<Entity> self)
     else
     {
         velocity.y() = 0;
+    }
+
+    if (KeyboardManager::wasPressed(SDL_SCANCODE_RETURN))
+    {
+        Vector2D startPosition = position;
+        if (facingRight)
+        {
+            startPosition.x() += texture->getRect().w;
+        }
+        else
+        {
+            startPosition.x() -= TextureRegistry::getTexture("shot.png")->
+                    getRect().w;
+        }
+
+        startPosition.y() += (texture->getRect().h -
+                TextureRegistry::getTexture("shot.png")->getRect().h) / 2;
+
+        room->addEntity<PlayerProjectile>("shot.png", startPosition,
+                                          facingRight);
     }
 }
