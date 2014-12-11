@@ -20,13 +20,13 @@ void Defender::Entity::update(const double time)
     position += velocity * time + 0.5 * time * time * acceleration;
     velocity += acceleration * time;
 
-    while (position.x() >= 512)
+    while (position.x() >= room->width)
     {
-        position.x() -= 512;
+        position.x() -= room->width;
     }
     while (position.x() < 0)
     {
-        position.x() += 512;
+        position.x() += room->width;
     }
 
     if (lifeTime > 0)
@@ -45,7 +45,7 @@ void Defender::Entity::draw()
     if (facingRight)  { flip = SDL_FLIP_NONE; }
     else { flip = SDL_FLIP_HORIZONTAL; }
     Defender::Renderer(*texture).setPosition(position).setFlip(flip)
-            .addOffset(512, 0).addOffset(-512, 0).commit();
+            .addOffset(room->width, 0).addOffset(-room->width, 0).commit();
 }
 
 void Defender::Entity::kill()

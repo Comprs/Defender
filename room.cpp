@@ -2,10 +2,14 @@
 
 #include <algorithm>
 
-Defender::Room::Room(Game *newGame)
+Defender::Room::Room(Game *newGame, int newWidth, int newHeight) :
+    width(newWidth), height(newHeight)
 {
     game = newGame;
 }
+
+Defender::Room::Room(Game *newGame) :
+    Defender::Room::Room(newGame, 512, 512) {}
 
 void Defender::Room::update(const double time)
 {

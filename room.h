@@ -14,6 +14,10 @@ class Room
 {
 public:
     Room(Game* newGame);
+    Room(Game *newGame, int newWidth, int newHeight);
+
+    const int width;
+    const int height;
 
     virtual void update(const double time);
     virtual void draw();
