@@ -70,3 +70,8 @@ const SDL_Rect& Defender::Texture::getRect() const
 {
     return sdlRect;
 }
+
+void Defender::Texture::setRenderTarget()
+{
+    SDL_SetRenderTarget(sdlRenderer, sdlTexture);
+}

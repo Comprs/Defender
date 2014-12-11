@@ -24,6 +24,7 @@ public:
     Texture& operator = (Texture&& other);
 
     const SDL_Rect& getRect() const;
+    void setRenderTarget();
 
 private:
     SDL_Texture* sdlTexture = nullptr;

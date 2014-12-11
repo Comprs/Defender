@@ -9,6 +9,8 @@ class MainGameRoom : public Room
 {
 public:
     MainGameRoom(Game* newGame);
+
+    void draw() override;
 };
 }
 

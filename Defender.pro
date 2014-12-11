@@ -21,8 +21,7 @@ SOURCES += \
     game.cpp \
     maingameroom.cpp \
     player.cpp \
-    playerprojectile.cpp \
-    camera.cpp
+    playerprojectile.cpp
 
 HEADERS += \
     window.h \
@@ -38,5 +37,4 @@ HEADERS += \
     maingameroom.h \
     player.h \
     globals.h \
-    playerprojectile.h \
-    camera.h
+    playerprojectile.h

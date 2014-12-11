@@ -32,6 +32,8 @@ public:
 
     void killTopRoom();
 
+    SDL_Renderer* getRenderer() const;
+
 private:
     Window window;
     Clock clock;

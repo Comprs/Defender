@@ -75,3 +75,8 @@ void Defender::Game::begin()
         clock.tick(60);
     }
 }
+
+SDL_Renderer* Defender::Game::getRenderer() const
+{
+    return window.sdlRenderer;
+}
