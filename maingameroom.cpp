@@ -1,5 +1,6 @@
 #include "maingameroom.h"
 
+#include <typeinfo>
 #include "globals.h"
 #include "player.h"
 
@@ -27,5 +28,16 @@ void Defender::MainGameRoom::draw()
 
     SDL_SetRenderTarget(game->getRenderer(), nullptr);
 
-    Renderer(target).addOffset(width, 0).addOffset(-width, 0).commit();
+    Renderer(target).addOffset(width, 0).addOffset(-width, 0)
+            .setPosition(-cameraPos).commit();
+}
+
+void Defender::MainGameRoom::updateEntity(const double time,
+                                          std::shared_ptr<Entity> e)
+{
+    Room::updateEntity(time, e);
+    if (typeid(*e) == typeid(Player))
+    {
+        cameraPos = e->getPosition();
+    }
 }
