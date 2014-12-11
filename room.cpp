@@ -16,13 +16,18 @@ void Defender::Room::update(const double time)
     for (std::shared_ptr<Entity> e : entities)
     {
         if (e == nullptr) { continue; }
-        e->update(time, e);
+        updateEntity(time, e);
     }
 
     auto newEnd = std::remove_if(entities.begin(), entities.end(),
                                  [](auto e){return e->isDead();});
 
     entities.erase(newEnd, entities.end());
+}
+
+void Defender::Room::updateEntity(const double time, std::shared_ptr<Entity> e)
+{
+    e->update(time, e);
 }
 
 void Defender::Room::draw()

@@ -34,6 +34,8 @@ public:
 protected:
     Game* game;
     std::vector<std::shared_ptr<Entity>> entities;
+
+    virtual void updateEntity(const double time, std::shared_ptr<Entity> e);
 };
 }
 
