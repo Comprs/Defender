@@ -15,7 +15,7 @@ void Defender::Room::update(const double time)
 {
     for (std::shared_ptr<Entity> e : entities)
     {
-        e->update(time);
+        e->update(time, e);
     }
 
     auto newEnd = std::remove_if(entities.begin(), entities.end(),

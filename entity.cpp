@@ -10,8 +10,9 @@ Defender::Entity::Entity(std::vector<std::shared_ptr<Entity>>* newEntities,
     texture = newTexture;
 }
 
-void Defender::Entity::update(const double time)
+void Defender::Entity::update(const double time, std::shared_ptr<Entity> self)
 {
+    __unused(self);
     for (std::shared_ptr<Entity> e : *entities)
     {
         interact(e);
@@ -27,6 +28,15 @@ void Defender::Entity::update(const double time)
     while (position.x() < 0)
     {
         position.x() += room->width;
+    }
+
+    if (position.y() < 0)
+    {
+        position.y() = 0;
+    }
+    else if (position.y() > room->height - texture->getRect().h)
+    {
+        position.y() = room->height - texture->getRect().h;
     }
 
     if (lifeTime > 0)

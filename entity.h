@@ -7,7 +7,7 @@
 #include "texture.h"
 #include "room.h"
 
-/*template<typename T>
+template<typename T>
 inline void __unused(T t)
 {
     (void)t;
@@ -18,7 +18,7 @@ inline void __unused(T t, Args... args)
 {
     __unused(t);
     __unused(args...);
-}*/
+}
 
 namespace Defender
 {
@@ -29,7 +29,7 @@ public:
     Entity(std::vector<std::shared_ptr<Entity>>* newEntities,
            Defender::Room* newRoom,
            std::shared_ptr<Defender::Texture> newTexture);
-    virtual void update(const double time);
+    virtual void update(const double time, std::shared_ptr<Entity> self);
     virtual void draw();
     bool intersect(const Entity& e) const;
     void kill();
