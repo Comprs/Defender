@@ -17,5 +17,5 @@ void Defender::MainGameRoom::draw()
 
     SDL_SetRenderTarget(game->getRenderer(), nullptr);
 
-    Renderer(target).commit();
+    Renderer(target).addOffset(width, 0).addOffset(-width, 0).commit();
 }
