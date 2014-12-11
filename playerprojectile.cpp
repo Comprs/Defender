@@ -1,5 +1,7 @@
 #include "playerprojectile.h"
 
+#include "globals.h"
+
 Defender::PlayerProjectile::
     PlayerProjectile(std::vector<std::shared_ptr<Entity> > *newEntities,
                      Defender::Room *newRoom,
@@ -9,8 +11,8 @@ Defender::PlayerProjectile::
 {
     position = startPosition;
     facingRight = startOrientation;
-    lifeTime = 0.5;
+    lifeTime = 0.2;
 
-    if (facingRight) { velocity = Vector2D(2000, 0); }
-    else { velocity = Vector2D(-2000, 0); }
+    if (facingRight) { velocity = Vector2D(shotSpeed, 0); }
+    else { velocity = Vector2D(-shotSpeed, 0); }
 }
