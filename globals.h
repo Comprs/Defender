@@ -3,15 +3,18 @@
 
 namespace Defender {
 
-const int worldUnitWidth = 2;
+const int worldUnitWidth = 4;
 const int unitWidth = 1024;
 
-const int windowHeight = 512;
-constexpr int windowWidth = windowHeight * 16 / 9;
-
-constexpr int worldHeight = windowHeight;
+const int worldHeight = 512;
 constexpr int worldWidth = unitWidth * worldUnitWidth;
 
+constexpr int radarHeight = worldHeight / 3.5;
+
+constexpr int windowHeight = radarHeight + worldHeight;
+constexpr int windowWidth = windowHeight * 16/9;
+
+constexpr int radarWidth = windowWidth;
 }
 
 #endif // GLOBALS_H

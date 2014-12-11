@@ -5,7 +5,7 @@
 #include "player.h"
 
 Defender::MainGameRoom::MainGameRoom(Game *newGame) :
-    Room(newGame, Defender::worldWidth, Defender::windowHeight)
+    Room(newGame, Defender::worldWidth, Defender::worldHeight)
 {
     addEntity<Player>("player.png");
 }
@@ -29,7 +29,10 @@ void Defender::MainGameRoom::draw()
     SDL_SetRenderTarget(game->getRenderer(), nullptr);
 
     Renderer(target).addOffset(width, 0).addOffset(-width, 0)
-            .setPosition(-cameraPos).commit();
+            .setPosition(-cameraPos + Vector2D(0, radarHeight)).commit();
+
+    SDL_Rect destRect = {0, 0, radarWidth, radarHeight};
+    Renderer(target).setDestRect(destRect).commit();
 }
 
 void Defender::MainGameRoom::updateEntity(const double time,
