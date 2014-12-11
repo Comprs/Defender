@@ -1,14 +1,14 @@
 #include "window.h"
 
 #include <stdexcept>
-#include <iostream>
+#include "globals.h"
 
 Defender::Window::Window()
 {
     sdlWindow = SDL_CreateWindow("Defender",
                                  SDL_WINDOWPOS_UNDEFINED,
                                  SDL_WINDOWPOS_UNDEFINED,
-                                 512, 512, SDL_WINDOW_SHOWN);
+                                 windowWidth, windowHeight, SDL_WINDOW_SHOWN);
     if (sdlWindow == nullptr)
     {
         throw std::runtime_error(SDL_GetError());
