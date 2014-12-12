@@ -15,6 +15,7 @@ public:
 
 private:
     Vector2D cameraPos;
+    Vector2D radarPos;
 };
 }
 

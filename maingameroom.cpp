@@ -31,8 +31,9 @@ void Defender::MainGameRoom::draw()
     Renderer(target).addOffset(width, 0).addOffset(-width, 0)
             .setPosition(-cameraPos + Vector2D(0, radarHeight)).commit();
 
-    SDL_Rect destRect = {0, 0, radarWidth, radarHeight};
-    Renderer(target).setDestRect(destRect).commit();
+    SDL_Rect destRect = {int(-radarPos.x()), 0, radarWidth, radarHeight};
+    Renderer(target).addOffset(-radarWidth, 0).addOffset(radarWidth, 0)
+            .setDestRect(destRect).commit();
 }
 
 void Defender::MainGameRoom::updateEntity(const double time,
@@ -43,5 +44,8 @@ void Defender::MainGameRoom::updateEntity(const double time,
     {
         cameraPos.x() = e->getPosition().x() - Defender::windowWidth / 2
                 + TextureRegistry::getTexture("player.png")->getRect().w / 2;
+
+        radarPos.x() = e->getPosition().x() / worldWidth * windowWidth
+                - radarWidth / 2;
     }
 }
