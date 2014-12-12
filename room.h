@@ -26,7 +26,7 @@ public:
     void addEntity(const std::string& textureName, Args... args)
     {
         entities.push_back(std::make_shared<T>
-                           (&entities, this,
+                           (entities, *this,
                             TextureRegistry::getTexture(textureName),
                             args...));
     }

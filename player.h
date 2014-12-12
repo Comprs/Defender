@@ -8,8 +8,8 @@ namespace Defender
 class Player : public Entity
 {
 public:
-    Player(std::vector<std::shared_ptr<Entity>>* newEntities,
-           Defender::Room* newRoom,
+    Player(std::vector<std::shared_ptr<Entity>>& newEntities,
+           Defender::Room& newRoom,
            std::shared_ptr<Defender::Texture> newTexture) :
         Entity(newEntities, newRoom, newTexture) {}
 

@@ -26,8 +26,8 @@ class Room;
 class Entity
 {
 public:
-    Entity(std::vector<std::shared_ptr<Entity>>* newEntities,
-           Defender::Room* newRoom,
+    Entity(std::vector<std::shared_ptr<Entity>>& newEntities,
+           Defender::Room& newRoom,
            std::shared_ptr<Defender::Texture> newTexture);
     virtual void update(const double time, std::shared_ptr<Entity> self);
     virtual void draw();
@@ -46,8 +46,8 @@ protected:
     double lifeTime = -1.0;
     bool facingRight = true;
 
-    std::vector<std::shared_ptr<Entity>>* entities;
-    Defender::Room* room;
+    std::vector<std::shared_ptr<Entity>>& entities;
+    Defender::Room& room;
 
     bool isSame(const std::shared_ptr<Entity>& e) const;
     virtual void interact(std::shared_ptr<Entity>& e);

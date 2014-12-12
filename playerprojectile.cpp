@@ -3,8 +3,8 @@
 #include "globals.h"
 
 Defender::PlayerProjectile::
-    PlayerProjectile(std::vector<std::shared_ptr<Entity> > *newEntities,
-                     Defender::Room *newRoom,
+    PlayerProjectile(std::vector<std::shared_ptr<Entity> >& newEntities,
+                     Room& newRoom,
                      std::shared_ptr<Defender::Texture> newTexture,
                      Vector2D startPosition, bool startOrientation) :
   Defender::Entity(newEntities, newRoom, newTexture)

@@ -105,7 +105,7 @@ void Defender::Player::update(const double time, std::shared_ptr<Entity> self)
         startPosition.y() += (texture->getRect().h -
                 TextureRegistry::getTexture("shot.png")->getRect().h) / 2;
 
-        room->addEntity<PlayerProjectile>("shot.png", startPosition,
+        room.addEntity<PlayerProjectile>("shot.png", startPosition,
                                           facingRight);
     }
 }

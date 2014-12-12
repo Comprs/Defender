@@ -2,11 +2,10 @@
 
 #include "renderer.h"
 
-Defender::Entity::Entity(std::vector<std::shared_ptr<Entity>>* newEntities,
-                         Room* newRoom, std::shared_ptr<Texture> newTexture)
+Defender::Entity::Entity(std::vector<std::shared_ptr<Entity>>& newEntities,
+                         Room& newRoom, std::shared_ptr<Texture> newTexture) :
+    entities(newEntities), room(newRoom)
 {
-    entities = newEntities;
-    room = newRoom;
     texture = newTexture;
 
     position = Vector2D();
@@ -17,7 +16,7 @@ Defender::Entity::Entity(std::vector<std::shared_ptr<Entity>>* newEntities,
 void Defender::Entity::update(const double time, std::shared_ptr<Entity> self)
 {
     __unused(self);
-    for (std::shared_ptr<Entity> e : *entities)
+    for (std::shared_ptr<Entity> e : entities)
     {
         interact(e);
     }
@@ -25,22 +24,22 @@ void Defender::Entity::update(const double time, std::shared_ptr<Entity> self)
     position += velocity * time + 0.5 * time * time * acceleration;
     velocity += acceleration * time;
 
-    while (position.x() >= room->width)
+    while (position.x() >= room.width)
     {
-        position.x() -= room->width;
+        position.x() -= room.width;
     }
     while (position.x() < 0)
     {
-        position.x() += room->width;
+        position.x() += room.width;
     }
 
     if (position.y() < 0)
     {
         position.y() = 0;
     }
-    else if (position.y() > room->height - texture->getRect().h)
+    else if (position.y() > room.height - texture->getRect().h)
     {
-        position.y() = room->height - texture->getRect().h;
+        position.y() = room.height - texture->getRect().h;
     }
 
     if (lifeTime > 0)
@@ -59,7 +58,7 @@ void Defender::Entity::draw()
     if (facingRight)  { flip = SDL_FLIP_NONE; }
     else { flip = SDL_FLIP_HORIZONTAL; }
     Defender::Renderer(*texture).setPosition(position).setFlip(flip)
-            .addOffset(room->width, 0).addOffset(-room->width, 0).commit();
+            .addOffset(room.width, 0).addOffset(-room.width, 0).commit();
 }
 
 void Defender::Entity::kill()
