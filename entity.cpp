@@ -84,13 +84,8 @@ void Defender::Entity::interact(std::shared_ptr<Entity>& e)
 
 bool Defender::Entity::intersect(const Entity& e) const
 {
-    SDL_Rect r1 = texture->getRect();
-    r1.x = position.x();
-    r1.y = position.y();
-
-    SDL_Rect r2 = e.texture->getRect();
-    r2.x = e.position.x();
-    r2.y = e.position.y();
+    SDL_Rect r1 = getBoundingBox();
+    SDL_Rect r2 = e.getBoundingBox();
 
     return SDL_HasIntersection(&r1, &r2);
 }
@@ -98,4 +93,12 @@ bool Defender::Entity::intersect(const Entity& e) const
 const Defender::Vector2D& Defender::Entity::getPosition() const
 {
     return position;
+}
+
+SDL_Rect Defender::Entity::getBoundingBox() const
+{
+    SDL_Rect r = texture->getRect();
+    r.x = position.x();
+    r.y = position.y();
+    return r;
 }

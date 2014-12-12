@@ -35,6 +35,7 @@ public:
     void kill();
     bool isDead() const;
     const Vector2D& getPosition() const;
+    virtual SDL_Rect getBoundingBox() const;
 
 protected:
     std::shared_ptr<Defender::Texture> texture;
