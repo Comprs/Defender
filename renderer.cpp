@@ -1,5 +1,7 @@
 #include "renderer.h"
 
+#include "textureregistry.h"
+
 Defender::Renderer::Renderer(Defender::Texture &texture)
 {
     sdlRenderer = texture.sdlRenderer;
@@ -16,6 +18,9 @@ Defender::Renderer::Renderer(Defender::Texture &texture)
 
     offsets = {Vector2D()};
 }
+
+Defender::Renderer::Renderer(const std::string &textureName) :
+    Renderer(*TextureRegistry::getTexture(textureName)) {}
 
 void Defender::Renderer::commit()
 {

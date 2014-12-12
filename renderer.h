@@ -13,6 +13,7 @@ class Renderer
 {
 public:
     Renderer(Defender::Texture& texture);
+    Renderer(const std::string& textureName);
 
     void commit();
     void operator () ();
