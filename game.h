@@ -20,7 +20,7 @@ public:
     template<typename T, typename... Args>
     void pushNewRoom(Args... args)
     {
-        rooms.push_back(std::make_shared<T>(this, args...));
+        rooms.push_back(std::make_shared<T>(*this, args...));
     }
 
     template<typename T, typename... Args>

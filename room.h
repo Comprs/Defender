@@ -13,8 +13,8 @@ class Entity;
 class Room
 {
 public:
-    Room(Game* newGame);
-    Room(Game *newGame, int newWidth, int newHeight);
+    Room(Game& newGame);
+    Room(Game& newGame, int newWidth, int newHeight);
 
     const int width;
     const int height;
@@ -32,7 +32,7 @@ public:
     }
 
 protected:
-    Game* game;
+    Game& game;
     std::vector<std::shared_ptr<Entity>> entities;
 
     virtual void updateEntity(const double time, std::shared_ptr<Entity> e);

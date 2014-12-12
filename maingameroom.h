@@ -8,7 +8,7 @@ namespace Defender
 class MainGameRoom : public Room
 {
 public:
-    MainGameRoom(Game* newGame);
+    MainGameRoom(Game& newGame);
 
     void updateEntity(const double time, std::shared_ptr<Entity> e) override;
     void draw() override;

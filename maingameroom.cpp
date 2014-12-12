@@ -4,7 +4,7 @@
 #include "globals.h"
 #include "player.h"
 
-Defender::MainGameRoom::MainGameRoom(Game *newGame) :
+Defender::MainGameRoom::MainGameRoom(Game &newGame) :
     Room(newGame, Defender::worldWidth, Defender::worldHeight)
 {
     addEntity<Player>("player.png");
@@ -12,9 +12,9 @@ Defender::MainGameRoom::MainGameRoom(Game *newGame) :
 
 void Defender::MainGameRoom::draw()
 {
-    Texture target  = Texture(game->getRenderer(), width, height);
+    Texture target  = Texture(game.getRenderer(), width, height);
     target.setRenderTarget();
-    SDL_RenderClear(game->getRenderer());
+    SDL_RenderClear(game.getRenderer());
 
     Renderer r = Renderer(*TextureRegistry::getTexture("background.png"));
     for (int i = 0; i < width;
@@ -26,7 +26,7 @@ void Defender::MainGameRoom::draw()
 
     Room::draw();
 
-    SDL_SetRenderTarget(game->getRenderer(), nullptr);
+    SDL_SetRenderTarget(game.getRenderer(), nullptr);
 
     Renderer(target).addOffset(width, 0).addOffset(-width, 0)
             .setPosition(-cameraPos + Vector2D(0, radarHeight)).commit();
