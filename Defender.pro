@@ -23,7 +23,8 @@ SOURCES += \
     player.cpp \
     playerprojectile.cpp \
     alien.cpp \
-    man.cpp
+    man.cpp \
+    mainmenu.cpp
 
 HEADERS += \
     window.h \
@@ -41,4 +42,5 @@ HEADERS += \
     globals.h \
     playerprojectile.h \
     alien.h \
-    man.h
+    man.h \
+    mainmenu.h
