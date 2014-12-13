@@ -17,14 +17,16 @@ SOURCES += \
     clock.cpp \
     entity.cpp \
     room.cpp \
-    textureregistry.cpp \
     game.cpp \
     maingameroom.cpp \
     player.cpp \
     playerprojectile.cpp \
     alien.cpp \
     man.cpp \
-    mainmenu.cpp
+    mainmenu.cpp \
+    ttffont.cpp \
+    textureregistry.cpp \
+    fontregistry.cpp
 
 HEADERS += \
     window.h \
@@ -35,7 +37,6 @@ HEADERS += \
     clock.h \
     entity.h \
     room.h \
-    textureregistry.h \
     game.h \
     maingameroom.h \
     player.h \
@@ -43,4 +44,7 @@ HEADERS += \
     playerprojectile.h \
     alien.h \
     man.h \
-    mainmenu.h
+    mainmenu.h \
+    ttffont.h \
+    textureregistry.h \
+    fontregistry.h

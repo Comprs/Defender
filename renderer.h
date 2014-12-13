@@ -4,16 +4,23 @@
 #include <vector>
 #include <SDL2/SDL.h>
 #include "texture.h"
+#include "ttffont.h"
 #include "vector.h"
 
 namespace Defender
 {
 class Texture;
+class TTFFont;
 class Renderer
 {
 public:
     Renderer(Defender::Texture& texture);
     Renderer(const std::string& textureName);
+
+    Renderer(TTFFont& font, SDL_Renderer* newSdlRenderer,
+             const std::string& text);
+    Renderer(const std::string &fontName, SDL_Renderer* sdlRenderer,
+             const std::string& text);
 
     void commit();
     void operator () ();

@@ -1,6 +1,7 @@
 #include "renderer.h"
 
 #include "textureregistry.h"
+#include "fontregistry.h"
 
 Defender::Renderer::Renderer(Defender::Texture &texture)
 {
@@ -21,6 +22,39 @@ Defender::Renderer::Renderer(Defender::Texture &texture)
 
 Defender::Renderer::Renderer(const std::string &textureName) :
     Renderer(*TextureRegistry::getTexture(textureName)) {}
+
+Defender::Renderer::Renderer(TTFFont &font, SDL_Renderer *newSdlRenderer,
+                             const std::string &text)
+{
+    sdlRenderer = newSdlRenderer;
+
+    SDL_Surface* tempsurface = TTF_RenderUTF8_Blended(font.sdlFont,
+                                                      text.c_str(),
+                                                      {255, 255, 255, 255});
+
+    sdlTexture = SDL_CreateTextureFromSurface(sdlRenderer, tempsurface);
+
+    SDL_FreeSurface(tempsurface);
+    tempsurface = nullptr;
+
+    srcRect = {0, 0, 0, 0};
+    SDL_QueryTexture(sdlTexture, nullptr, nullptr, &srcRect.w, &srcRect.h);
+
+    destRect = srcRect;
+
+    angle = 0;
+
+    centre = {destRect.x / 2, destRect.y / 2};
+
+    flip = SDL_FLIP_NONE;
+
+    offsets = {Vector2D()};
+}
+
+Defender::Renderer::Renderer(const std::string &fontName,
+                             SDL_Renderer *sdlRenderer,
+                             const std::string &text) :
+    Renderer(*FontRegistry::getFont(fontName), sdlRenderer, text) {}
 
 void Defender::Renderer::commit()
 {
