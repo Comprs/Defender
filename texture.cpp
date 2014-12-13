@@ -37,6 +37,16 @@ Defender::Texture::Texture(SDL_Renderer *newSdlRenderer,
     SDL_QueryTexture(sdlTexture, nullptr, nullptr, &sdlRect.w, &sdlRect.h);
 }
 
+Defender::Texture::Texture(SDL_Renderer *newSdlRenderer,
+                           SDL_Texture *newSdlTexture)
+{
+    sdlRenderer = newSdlRenderer;
+    sdlTexture = newSdlTexture;
+
+    sdlRect = {0, 0, 0, 0};
+    SDL_QueryTexture(sdlTexture, nullptr, nullptr, &sdlRect.w, &sdlRect.h);
+}
+
 Defender::Texture::~Texture()
 {
     SDL_DestroyTexture(sdlTexture);

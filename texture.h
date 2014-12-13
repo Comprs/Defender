@@ -27,6 +27,7 @@ public:
     void setRenderTarget();
 
 private:
+    Texture(SDL_Renderer *newSdlRenderer, SDL_Texture* newSdlTexture);
     SDL_Texture* sdlTexture = nullptr;
     SDL_Renderer* sdlRenderer = nullptr;
     SDL_Rect sdlRect;
