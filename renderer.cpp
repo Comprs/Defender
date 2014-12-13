@@ -33,6 +33,7 @@ Defender::Renderer::Renderer(TTFFont &font, SDL_Renderer *newSdlRenderer,
                                                       {255, 255, 255, 255});
 
     sdlTexture = SDL_CreateTextureFromSurface(sdlRenderer, tempsurface);
+    destroyTexture = true;
 
     SDL_FreeSurface(tempsurface);
     tempsurface = nullptr;
@@ -56,7 +57,47 @@ Defender::Renderer::Renderer(const std::string &fontName,
                              const std::string &text) :
     Renderer(*FontRegistry::getFont(fontName), sdlRenderer, text) {}
 
-void Defender::Renderer::commit()
+Defender::Renderer::Renderer(Renderer&& other)
+{
+    sdlRenderer = other.sdlRenderer;
+    other.sdlRenderer = nullptr;
+
+    sdlTexture = other.sdlTexture;
+    other.sdlTexture = nullptr;
+
+    srcRect = std::move(other.srcRect);
+    destRect = std::move(other.destRect);
+    angle = std::move(other.angle);
+    centre = std::move(other.centre);
+    flip = std::move(other.flip);
+
+    offsets = std::move(other.offsets);
+
+    destroyTexture = std::move(other.destroyTexture);
+}
+
+Defender::Renderer& Defender::Renderer::operator = (Renderer&& other)
+{
+    sdlRenderer = other.sdlRenderer;
+    other.sdlRenderer = nullptr;
+
+    sdlTexture = other.sdlTexture;
+    other.sdlTexture = nullptr;
+
+    srcRect = std::move(other.srcRect);
+    destRect = std::move(other.destRect);
+    angle = std::move(other.angle);
+    centre = std::move(other.centre);
+    flip = std::move(other.flip);
+
+    offsets = std::move(other.offsets);
+
+    destroyTexture = std::move(other.destroyTexture);
+
+    return *this;
+}
+
+Defender::Renderer& Defender::Renderer::commit()
 {
     for (Vector2D v : offsets)
     {
@@ -66,11 +107,20 @@ void Defender::Renderer::commit()
         SDL_RenderCopyEx(sdlRenderer, sdlTexture, &srcRect, &finalDestRect,
                          angle, &centre, flip);
     }
+    return *this;
 }
 
-void Defender::Renderer::operator () ()
+Defender::Renderer::~Renderer()
 {
-    commit();
+    if (destroyTexture)
+    {
+        SDL_DestroyTexture(sdlTexture);
+    }
+}
+
+Defender::Renderer& Defender::Renderer::operator () ()
+{
+    return commit();
 }
 
 Defender::Renderer& Defender::Renderer::setSrcRect(const SDL_Rect &newSrcRect)
@@ -127,4 +177,10 @@ Defender::Renderer& Defender::Renderer::addOffset(const Vector2D &offset)
 Defender::Renderer& Defender::Renderer::addOffset(const int x, const int y)
 {
     return addOffset(Vector2D(x, y));
+}
+
+Defender::Texture Defender::Renderer::getTexture()
+{
+    destroyTexture = false;
+    return Texture(sdlRenderer, sdlTexture);
 }

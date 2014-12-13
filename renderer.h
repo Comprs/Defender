@@ -2,6 +2,7 @@
 #define RENDERER_H
 
 #include <vector>
+#include <memory>
 #include <SDL2/SDL.h>
 #include "texture.h"
 #include "ttffont.h"
@@ -22,8 +23,16 @@ public:
     Renderer(const std::string &fontName, SDL_Renderer* sdlRenderer,
              const std::string& text);
 
-    void commit();
-    void operator () ();
+    Renderer(const Renderer& other) = delete;
+    Renderer& operator = (const Renderer& other) = delete;
+
+    Renderer(Renderer&& other);
+    Renderer& operator = (Renderer&& other);
+
+    ~Renderer();
+
+    Renderer& commit();
+    Renderer& operator () ();
 
     Renderer& setSrcRect(const SDL_Rect& newSrcRect);
     Renderer& setDestRect(const SDL_Rect& newDestRect);
@@ -36,6 +45,8 @@ public:
     Renderer& setPosition(const int x, const int y);
     Renderer& addOffset(const int x, const int y);
 
+    Texture getTexture();
+
 private:
     SDL_Renderer* sdlRenderer;
     SDL_Texture* sdlTexture;
@@ -46,6 +57,8 @@ private:
     SDL_RendererFlip flip;
 
     std::vector<Vector2D> offsets;
+
+    bool destroyTexture = false;
 };
 }
 
