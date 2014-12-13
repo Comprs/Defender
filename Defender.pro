@@ -5,7 +5,7 @@ CONFIG -= qt
 
 QMAKE_CXXFLAGS += -std=c++14
 
-LIBS = -L/usr/lib/ -lSDL2 -lSDL2_image
+LIBS = -L/usr/lib/ -lSDL2 -lSDL2_image -lSDL2_ttf
 
 SOURCES += \
     window.cpp \
