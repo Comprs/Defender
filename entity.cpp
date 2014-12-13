@@ -1,12 +1,21 @@
 #include "entity.h"
 
+#include <chrono>
 #include "renderer.h"
+
+std::default_random_engine Defender::Entity::engine;
+
+std::uniform_real_distribution<double> Defender::Entity::distribution =
+        std::uniform_real_distribution<double>(0.0, Defender::worldWidth);
 
 Defender::Entity::Entity(std::vector<std::shared_ptr<Entity>>& newEntities,
                          Room& newRoom, std::shared_ptr<Texture> newTexture) :
     entities(newEntities), room(newRoom)
 {
     texture = newTexture;
+
+    engine.seed(std::chrono::high_resolution_clock::now().time_since_epoch()
+                .count());
 
     position = Vector2D();
     velocity = Vector2D();

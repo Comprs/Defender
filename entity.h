@@ -3,9 +3,11 @@
 
 #include <memory>
 #include <vector>
+#include <random>
 #include "vector.h"
 #include "texture.h"
 #include "room.h"
+#include "globals.h"
 
 template<typename T>
 inline void __unused(T t)
@@ -53,6 +55,9 @@ protected:
     bool isSame(const std::shared_ptr<Entity>& e) const;
     virtual void interact(std::shared_ptr<Entity>& e);
     virtual void onKill() {}
+
+    static std::default_random_engine engine;
+    static std::uniform_real_distribution<double> distribution;
 
 private:
     bool dead = false;
