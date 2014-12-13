@@ -10,8 +10,7 @@ class Man : public Entity
 public:
     Man(std::vector<std::shared_ptr<Entity>>& newEntities,
         Defender::Room& newRoom,
-        std::shared_ptr<Defender::Texture> newTexture) :
-        Entity(newEntities, newRoom, newTexture) {}
+        std::shared_ptr<Defender::Texture> newTexture);
 
     void update(const double time, std::shared_ptr<Entity> self) override;
 
