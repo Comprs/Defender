@@ -25,14 +25,28 @@ Defender::Entity::Entity(std::vector<std::shared_ptr<Entity>>& newEntities,
 void Defender::Entity::update(const double time, std::shared_ptr<Entity> self)
 {
     __unused(self);
+    interactAll();
+    updatePosition(time);
+    bound();
+    updateLifeTime(time);
+}
+
+void Defender::Entity::interactAll()
+{
     for (std::shared_ptr<Entity> e : entities)
     {
         interact(e);
     }
+}
 
+void Defender::Entity::updatePosition(const double time)
+{
     position += velocity * time + 0.5 * time * time * acceleration;
     velocity += acceleration * time;
+}
 
+void Defender::Entity::bound()
+{
     while (position.x() >= room.width)
     {
         position.x() -= room.width;
@@ -46,11 +60,14 @@ void Defender::Entity::update(const double time, std::shared_ptr<Entity> self)
     {
         position.y() = 0;
     }
-    else if (position.y() > room.height - texture->getRect().h)
+    else if (position.y() > room.height - getBoundingBox().h)
     {
-        position.y() = room.height - texture->getRect().h;
+        position.y() = room.height - getBoundingBox().h;
     }
+}
 
+void Defender::Entity::updateLifeTime(const double time)
+{
     if (lifeTime > 0)
     {
         lifeTime -= time;
@@ -99,9 +116,23 @@ bool Defender::Entity::intersect(const Entity& e) const
     return SDL_HasIntersection(&r1, &r2);
 }
 
+bool Defender::Entity::intersect(const SDL_Rect &r) const
+{
+    SDL_Rect r2 = getBoundingBox();
+
+    return SDL_HasIntersection(&r, &r2);
+}
+
 const Defender::Vector2D& Defender::Entity::getPosition() const
 {
     return position;
+}
+
+const Defender::Vector2D Defender::Entity::getMiddle() const
+{
+    double x = position.x() + getBoundingBox().w / 2;
+    double y = position.y() + getBoundingBox().h / 2;
+    return Vector2D(x, y);
 }
 
 SDL_Rect Defender::Entity::getBoundingBox() const
@@ -110,4 +141,11 @@ SDL_Rect Defender::Entity::getBoundingBox() const
     r.x = position.x();
     r.y = position.y();
     return r;
+}
+
+void Defender::Entity::setMiddle(const Vector2D &a)
+{
+    double x = a.x() - getBoundingBox().w / 2;
+    double y = a.y() - getBoundingBox().h / 2;
+    position = Vector2D(x, y);
 }

@@ -34,9 +34,11 @@ public:
     virtual void update(const double time, std::shared_ptr<Entity> self);
     virtual void draw();
     bool intersect(const Entity& e) const;
+    bool intersect(const SDL_Rect& r) const;
     void kill();
     bool isDead() const;
     const Vector2D& getPosition() const;
+    const Vector2D getMiddle() const;
     virtual SDL_Rect getBoundingBox() const;
 
 protected:
@@ -54,7 +56,12 @@ protected:
 
     bool isSame(const std::shared_ptr<Entity>& e) const;
     virtual void interact(std::shared_ptr<Entity>& e);
+    virtual void interactAll();
+    virtual void updatePosition(const double time);
+    virtual void bound();
+    virtual void updateLifeTime(const double time);
     virtual void onKill() {}
+    void setMiddle(const Vector2D& a);
 
     static std::default_random_engine engine;
     static std::uniform_real_distribution<double> distribution;
