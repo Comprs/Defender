@@ -2,23 +2,28 @@
 #define MAN_H
 
 #include "entity.h"
+#include "abductor.h"
 
 namespace Defender
 {
 class Man : public Entity
 {
+    friend class Abductor;
 public:
     Man(std::vector<std::shared_ptr<Entity>>& newEntities,
         Defender::Room& newRoom,
         std::shared_ptr<Defender::Texture> newTexture);
 
     void update(const double time, std::shared_ptr<Entity> self) override;
+    bool isAbducted() const;
 
 protected:
-    void interact(std::shared_ptr<Entity> &e) override;
+    void interact(std::shared_ptr<Entity>& e) override;
 
 private:
-    bool abducted = false;
+    std::weak_ptr<Entity> abductor;
+    void abduct(std::weak_ptr<Entity> a);
+    void drop();
 };
 }
 
