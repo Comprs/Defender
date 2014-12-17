@@ -26,7 +26,8 @@ SOURCES += \
     mainmenu.cpp \
     ttffont.cpp \
     textureregistry.cpp \
-    fontregistry.cpp
+    fontregistry.cpp \
+    abductor.cpp
 
 HEADERS += \
     window.h \
@@ -47,4 +48,5 @@ HEADERS += \
     mainmenu.h \
     ttffont.h \
     textureregistry.h \
-    fontregistry.h
+    fontregistry.h \
+    abductor.h
