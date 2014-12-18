@@ -12,6 +12,9 @@ public:
                     Defender::Room& newRoom,
                     std::shared_ptr<Defender::Texture> newTexture,
                     Vector2D startPosition, Vector2D startVelocity);
+
+protected:
+    void bound() override;
 };
 }
 
