@@ -40,7 +40,8 @@ void Defender::Alien::interact(std::shared_ptr<Entity> &e)
             Vector2D relativeVelocity = (p->getMiddle() - getMiddle())
                     .normalised();
 
-            Vector2D newVelocity = p->getVelocity() + (relativeVelocity * 500);
+            Vector2D newVelocity = Vector2D(p->getVelocity().x(), 0) +
+                    (relativeVelocity * 500);
             Vector2D newPosition = getMiddle() + (relativeVelocity * 16);
 
             room.addEntity<AlienProjectile>("enemyShot.png", newPosition, newVelocity);
