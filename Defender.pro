@@ -27,7 +27,8 @@ SOURCES += \
     ttffont.cpp \
     textureregistry.cpp \
     fontregistry.cpp \
-    abductor.cpp
+    abductor.cpp \
+    alienprojectile.cpp
 
 HEADERS += \
     window.h \
@@ -49,4 +50,5 @@ HEADERS += \
     ttffont.h \
     textureregistry.h \
     fontregistry.h \
-    abductor.h
+    abductor.h \
+    alienprojectile.h
