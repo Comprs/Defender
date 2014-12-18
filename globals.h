@@ -23,7 +23,7 @@ const double terminalVelocity = 3000;
 
 const double verticalSpeed = 500;
 
-constexpr double shotSpeed = terminalVelocity * 2;
+constexpr double shotSpeed = terminalVelocity * 1.5;
 }
 
 #endif // GLOBALS_H
