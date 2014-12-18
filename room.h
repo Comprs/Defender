@@ -31,6 +31,8 @@ public:
                             args...));
     }
 
+    int score = 0;
+
 protected:
     Game& game;
     std::vector<std::shared_ptr<Entity>> entities;
