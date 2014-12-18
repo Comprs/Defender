@@ -19,6 +19,7 @@ public:
 
 protected:
     void interact(std::shared_ptr<Entity>& e) override;
+    void onKill() override;
 
 private:
     std::weak_ptr<Entity> abductor;

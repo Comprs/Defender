@@ -17,6 +17,7 @@ public:
 protected:
     void interact(std::shared_ptr<Entity> &e) override;
     void update(const double time, std::shared_ptr<Entity> self) override;
+    void onKill() override;
 
 private:
     std::weak_ptr<Man> target;

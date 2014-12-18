@@ -57,3 +57,8 @@ void Defender::Man::drop()
     // abducted
     abductor = std::weak_ptr<Entity>();
 }
+
+void Defender::Man::onKill()
+{
+    room.score -= 5;
+}
