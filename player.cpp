@@ -3,6 +3,7 @@
 #include "globals.h"
 #include "keyboardmanager.h"
 #include "playerprojectile.h"
+#include "alienprojectile.h"
 
 void Defender::Player::update(const double time, std::shared_ptr<Entity> self)
 {
@@ -113,5 +114,17 @@ void Defender::Player::update(const double time, std::shared_ptr<Entity> self)
         // Add the entity to the room
         room.addEntity<PlayerProjectile>("shot.png", startPosition,
                                           facingRight);
+    }
+}
+
+void Defender::Player::interact(std::shared_ptr<Entity>& e)
+{
+    if (auto p = std::dynamic_pointer_cast<AlienProjectile>(e))
+    {
+        if (intersect(*p))
+        {
+            p->kill();
+            kill();
+        }
     }
 }
