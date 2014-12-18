@@ -1,6 +1,7 @@
 #include "maingameroom.h"
 
 #include <typeinfo>
+#include <chrono>
 #include "globals.h"
 #include "player.h"
 #include "mainmenu.h"
@@ -12,13 +13,11 @@
 Defender::MainGameRoom::MainGameRoom(Game &newGame) :
     Room(newGame, Defender::worldWidth, Defender::worldHeight)
 {
+    distribution = std::bernoulli_distribution(0.015);
+    engine.seed(std::chrono::high_resolution_clock::now().time_since_epoch()
+                .count());
     // Add the entities
     addEntity<Player>("player.png");
-    addEntity<Abductor>("alien1.png");
-    addEntity<Abductor>("alien1.png");
-    addEntity<Abductor>("alien1.png");
-    addEntity<Abductor>("alien1.png");
-    addEntity<Abductor>("alien1.png");
     addEntity<Man>("man.png");
     addEntity<Man>("man.png");
     addEntity<Man>("man.png");
@@ -95,5 +94,11 @@ void Defender::MainGameRoom::update(const double time)
         // room
         game.replaceNewRoom<MainMenu>();
     }
+
+    if (distribution(engine))
+    {
+        addEntity<Abductor>("alien1.png");
+    }
+
     Room::update(time);
 }

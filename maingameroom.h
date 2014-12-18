@@ -1,6 +1,7 @@
 #ifndef MAINGAMEROOM_H
 #define MAINGAMEROOM_H
 
+#include <random>
 #include "room.h"
 
 namespace Defender
@@ -19,6 +20,9 @@ protected:
 private:
     Vector2D cameraPos;
     Vector2D radarPos;
+
+    std::default_random_engine engine;
+    std::bernoulli_distribution distribution;
 };
 }
 
