@@ -151,6 +151,11 @@ const Defender::Vector2D& Defender::Entity::getPosition() const
     return position;
 }
 
+const Defender::Vector2D& Defender::Entity::getVelocity() const
+{
+    return velocity;
+}
+
 const Defender::Vector2D Defender::Entity::getMiddle() const
 {
     // Calculate the middle of the entity by adding on half of the bounding box

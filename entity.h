@@ -38,6 +38,7 @@ public:
     void kill();
     bool isDead() const;
     const Vector2D& getPosition() const;
+    const Vector2D& getVelocity() const;
     const Vector2D getMiddle() const;
     virtual SDL_Rect getBoundingBox() const;
 
