@@ -4,11 +4,13 @@
 #include <algorithm>
 #include <SDL2/SDL_image.h>
 
+// Create a blank texture
 Defender::Texture::Texture(SDL_Renderer* newSdlRenderer, const int width,
                            const int height)
 {
     sdlRenderer = newSdlRenderer;
 
+    // Create the texture
     sdlTexture = SDL_CreateTexture(sdlRenderer, SDL_PIXELFORMAT_RGBA8888,
                                    SDL_TEXTUREACCESS_TARGET, width, height);
 
@@ -17,14 +19,17 @@ Defender::Texture::Texture(SDL_Renderer* newSdlRenderer, const int width,
         throw std::runtime_error(SDL_GetError());
     }
 
+    // Set the properties of the rect
     sdlRect = {0, 0, width, height};
 }
 
+// Load a texture
 Defender::Texture::Texture(SDL_Renderer *newSdlRenderer,
                            const std::string &fileName)
 {
     sdlRenderer = newSdlRenderer;
 
+    // Load the texture
     sdlTexture = IMG_LoadTexture(sdlRenderer, fileName.c_str());
 
     if (sdlTexture == nullptr)
@@ -32,11 +37,13 @@ Defender::Texture::Texture(SDL_Renderer *newSdlRenderer,
         throw std::runtime_error(SDL_GetError());
     }
 
+    // Set the properties of the rect
     sdlRect.x = 0;
     sdlRect.y = 0;
     SDL_QueryTexture(sdlTexture, nullptr, nullptr, &sdlRect.w, &sdlRect.h);
 }
 
+// Create a texture out of a given SDL_Renderer and SDL_Texture
 Defender::Texture::Texture(SDL_Renderer *newSdlRenderer,
                            SDL_Texture *newSdlTexture)
 {
@@ -49,10 +56,12 @@ Defender::Texture::Texture(SDL_Renderer *newSdlRenderer,
 
 Defender::Texture::~Texture()
 {
+    // Destory the texture
     SDL_DestroyTexture(sdlTexture);
     sdlTexture = nullptr;
 }
 
+// Move constructor
 Defender::Texture::Texture(Texture&& other)
 {
     sdlRenderer = other.sdlRenderer;
@@ -64,6 +73,7 @@ Defender::Texture::Texture(Texture&& other)
     sdlRect = std::move(other.sdlRect);
 }
 
+// Move assignment
 Defender::Texture& Defender::Texture::operator = (Texture&& other)
 {
     sdlRenderer = other.sdlRenderer;
@@ -83,5 +93,6 @@ const SDL_Rect& Defender::Texture::getRect() const
 
 void Defender::Texture::setRenderTarget()
 {
+    // Set the render target to this texture
     SDL_SetRenderTarget(sdlRenderer, sdlTexture);
 }

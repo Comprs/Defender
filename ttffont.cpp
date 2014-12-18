@@ -4,6 +4,7 @@
 
 Defender::TTFFont::TTFFont(const std::string& fontName, int ptSize)
 {
+    // Load in the font
     sdlFont = TTF_OpenFont(fontName.c_str(), ptSize);
     if (sdlFont == nullptr)
     {
@@ -11,12 +12,14 @@ Defender::TTFFont::TTFFont(const std::string& fontName, int ptSize)
     }
 }
 
+// Move constructor
 Defender::TTFFont::TTFFont(TTFFont&& other)
 {
     sdlFont = other.sdlFont;
     other.sdlFont = nullptr;
 }
 
+// Move assignment
 Defender::TTFFont& Defender::TTFFont::operator = (TTFFont&& other)
 {
     sdlFont = other.sdlFont;
@@ -27,6 +30,7 @@ Defender::TTFFont& Defender::TTFFont::operator = (TTFFont&& other)
 
 Defender::TTFFont::~TTFFont()
 {
+    // Destroy the font
     TTF_CloseFont(sdlFont);
     sdlFont = nullptr;
 }

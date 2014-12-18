@@ -12,6 +12,7 @@ Defender::Man::Man(std::vector<std::shared_ptr<Entity>>& newEntities,
 
 void Defender::Man::interact(std::shared_ptr<Entity>& e)
 {
+    // Kill if it has collieded with a playerprojectile
     if (auto p = std::dynamic_pointer_cast<PlayerProjectile>(e))
     {
         if (p->intersect(*this))
@@ -26,6 +27,7 @@ void Defender::Man::update(const double time, std::shared_ptr<Entity> self)
 {
     Entity::update(time, self);
 
+    // If the man is abducted, it should not fall
     if (isAbducted())
     {
         acceleration = Vector2D(0, 0);
@@ -38,15 +40,20 @@ void Defender::Man::update(const double time, std::shared_ptr<Entity> self)
 
 bool Defender::Man::isAbducted() const
 {
+    // The man is considered abducted if the weak pointer to its abductor has
+    // expired
     return !abductor.expired();
 }
 
 void Defender::Man::abduct(std::weak_ptr<Entity> a)
 {
+    // Set the weak pointer to its abductor to the pointer passed
     abductor = a;
 }
 
 void Defender::Man::drop()
 {
+    // Null the weak pointer to its abductor. This means that it is no longer
+    // abducted
     abductor = std::weak_ptr<Entity>();
 }

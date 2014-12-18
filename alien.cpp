@@ -13,6 +13,7 @@ Defender::Alien::Alien(std::vector<std::shared_ptr<Entity>>& newEntities,
 
 void Defender::Alien::interact(std::shared_ptr<Entity> &e)
 {
+    // Check for collisions with the player projectile
     if (auto p = std::dynamic_pointer_cast<PlayerProjectile>(e))
     {
         if (intersect(*p))
@@ -21,6 +22,7 @@ void Defender::Alien::interact(std::shared_ptr<Entity> &e)
             kill();
         }
     }
+    // Check for collisions with the player
     if (auto p = std::dynamic_pointer_cast<Player>(e))
     {
         if (intersect(*p))

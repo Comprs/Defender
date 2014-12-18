@@ -10,15 +10,16 @@ Defender::Room::Room(Game& newGame) :
 
 void Defender::Room::update(const double time)
 {
+    // Update the entities
     for (std::shared_ptr<Entity> e : entities)
     {
         if (e == nullptr) { continue; }
         updateEntity(time, e);
     }
 
+    // Remove dead entities
     auto newEnd = std::remove_if(entities.begin(), entities.end(),
                                  [](auto e){return e->isDead();});
-
     entities.erase(newEnd, entities.end());
 }
 
@@ -29,6 +30,7 @@ void Defender::Room::updateEntity(const double time, std::shared_ptr<Entity> e)
 
 void Defender::Room::draw()
 {
+    // Draw the entities
     for (std::shared_ptr<Entity> e : entities)
     {
         e->draw();

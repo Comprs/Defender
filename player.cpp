@@ -59,6 +59,7 @@ void Defender::Player::update(const double time, std::shared_ptr<Entity> self)
         }
     }
 
+    // Keep the horizontal velocity within certain bounds
     if (std::abs(velocity.x()) > terminalVelocity)
     {
         if (velocity.x() < 0)
@@ -89,9 +90,12 @@ void Defender::Player::update(const double time, std::shared_ptr<Entity> self)
         velocity.y() = 0;
     }
 
+    // Fire a projectile if the return key was pressed
     if (KeyboardManager::wasPressed(SDL_SCANCODE_RETURN))
     {
         Vector2D startPosition = position;
+        // Set the x position based on direction of the player so that the
+        // projectile won't appear to collide with the  player
         if (facingRight)
         {
             startPosition.x() += texture->getRect().w;
@@ -102,9 +106,11 @@ void Defender::Player::update(const double time, std::shared_ptr<Entity> self)
                     getRect().w;
         }
 
+        // Set the y position so that the projectile is centred
         startPosition.y() += (texture->getRect().h -
                 TextureRegistry::getTexture("shot.png")->getRect().h) / 2;
 
+        // Add the entity to the room
         room.addEntity<PlayerProjectile>("shot.png", startPosition,
                                           facingRight);
     }

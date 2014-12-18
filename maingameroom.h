@@ -10,8 +10,11 @@ class MainGameRoom : public Room
 public:
     MainGameRoom(Game& newGame);
 
-    void updateEntity(const double time, std::shared_ptr<Entity> e) override;
+    void update(const double time) override;
     void draw() override;
+
+protected:
+    void updateEntity(const double time, std::shared_ptr<Entity> e) override;
 
 private:
     Vector2D cameraPos;
