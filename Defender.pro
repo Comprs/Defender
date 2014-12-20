@@ -28,7 +28,8 @@ SOURCES += \
     textureregistry.cpp \
     fontregistry.cpp \
     abductor.cpp \
-    alienprojectile.cpp
+    alienprojectile.cpp \
+    mutant.cpp
 
 HEADERS += \
     window.h \
@@ -51,4 +52,5 @@ HEADERS += \
     textureregistry.h \
     fontregistry.h \
     abductor.h \
-    alienprojectile.h
+    alienprojectile.h \
+    mutant.h

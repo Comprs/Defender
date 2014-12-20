@@ -1,5 +1,7 @@
 #include "abductor.h"
 
+#include "mutant.h"
+
 Defender::Abductor::Abductor(std::vector<std::shared_ptr<Entity>>& newEntities,
                              Defender::Room& newRoom,
                              std::shared_ptr<Defender::Texture> newTexture) :
@@ -92,11 +94,13 @@ void Defender::Abductor::update(const double time, std::shared_ptr<Entity> self)
                 // Set the position of the abducted
                 targetLock->setMiddle(getMiddle() + Vector2D(0, 32));
 
-                // If it has reached the top of the world, kill both
+                // If it has reached the top of the world, kill both and spawn
+                // a mutant
                 if (position.y() <= 0)
                 {
                     targetLock->kill();
                     kill();
+                    room.addEntity<Mutant>("alien2.png", position);
                 }
             }
         }
