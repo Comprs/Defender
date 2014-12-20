@@ -12,6 +12,8 @@ public:
                      Defender::Room& newRoom,
                      std::shared_ptr<Defender::Texture> newTexture,
                      Vector2D startPosition, bool startOrientation);
+
+    SDL_Rect getBoundingBox() const override;
 };
 }
 

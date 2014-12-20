@@ -16,3 +16,13 @@ PlayerProjectile(std::vector<std::shared_ptr<Entity> >& newEntities,
     if (facingRight) { velocity = Vector2D(shotSpeed, 0); }
     else { velocity = Vector2D(-shotSpeed, 0); }
 }
+
+SDL_Rect Defender::PlayerProjectile::getBoundingBox() const
+{
+    SDL_Rect r = Entity::getBoundingBox();
+
+    r.x -= r.h * 2;
+    r.h += r.h * 4;
+
+    return r;
+}
