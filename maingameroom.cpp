@@ -13,7 +13,7 @@
 Defender::MainGameRoom::MainGameRoom(Game &newGame) :
     Room(newGame, Defender::worldWidth, Defender::worldHeight)
 {
-    distribution = std::bernoulli_distribution(0.015);
+    distribution = std::bernoulli_distribution(0.01);
     engine.seed(std::chrono::high_resolution_clock::now().time_since_epoch()
                 .count());
     // Add the entities
