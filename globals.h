@@ -16,8 +16,8 @@ constexpr int windowWidth = windowHeight * 16/9;
 
 constexpr int radarWidth = windowWidth;
 
-const double resistiveAcceleration = 1500;
-const double normalAcceleration = 500;
+const double resistiveAcceleration = 3000;
+const double normalAcceleration = 1000;
 const double passiveSlowdown = 100;
 const double terminalVelocity = 3000;
 
