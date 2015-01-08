@@ -16,6 +16,7 @@ public:
     Game();
 
     void begin();
+    void stop();
 
     template<typename T, typename... Args>
     void pushNewRoom(Args... args)

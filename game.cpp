@@ -95,6 +95,11 @@ void Defender::Game::begin()
     }
 }
 
+void Defender::Game::stop()
+{
+    window.close();
+}
+
 SDL_Renderer* Defender::Game::getRenderer() const
 {
     // Get the renderer from the window
