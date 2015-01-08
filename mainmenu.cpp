@@ -10,15 +10,8 @@ Defender::MainMenu::MainMenu(Game &newGame) :
     // Prerender the options
     optionTextures.push_back(Renderer("Audiowide-Regular.ttf",
                                       game.getRenderer(),
-                                      "Play").getTexture());
-
-    optionTextures.push_back(Renderer("Audiowide-Regular.ttf",
-                                      game.getRenderer(),
-                                      "Options").getTexture());
-
-    optionTextures.push_back(Renderer("Audiowide-Regular.ttf",
-                                      game.getRenderer(),
-                                      "Exit").getTexture());
+                                      "Press enter to play and Escape to quit")
+                             .getTexture());
 }
 
 void Defender::MainMenu::update(const double time)
@@ -30,28 +23,15 @@ void Defender::MainMenu::update(const double time)
         backgroundOffset += unitWidth;
     }
 
-    // Increase the selection
-    if (KeyboardManager::wasPressed(SDL_SCANCODE_DOWN))
-    {
-        ++selection;
-        if (selection >= numbSelections)
-        {
-            selection = 0;
-        }
-    }
-    // Decrease the selection
-    if (KeyboardManager::wasPressed(SDL_SCANCODE_UP))
-    {
-        --selection;
-        if (selection < 0)
-        {
-            selection = numbSelections - 1;
-        }
-    }
     // Accept selection
     if (KeyboardManager::wasPressed(SDL_SCANCODE_RETURN))
     {
         game.replaceNewRoom<MainGameRoom>();
+    }
+
+    if(KeyboardManager::wasPressed(SDL_SCANCODE_ESCAPE))
+    {
+        game.stop();
     }
 }
 
