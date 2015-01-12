@@ -9,7 +9,8 @@ Defender::Window::Window()
     sdlWindow = SDL_CreateWindow("Defender",
                                  SDL_WINDOWPOS_UNDEFINED,
                                  SDL_WINDOWPOS_UNDEFINED,
-                                 windowWidth, windowHeight, SDL_WINDOW_SHOWN);
+                                 windowWidth, windowHeight,
+                                 SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN);
     if (sdlWindow == nullptr)
     {
         throw std::runtime_error(SDL_GetError());
@@ -24,6 +25,8 @@ Defender::Window::Window()
     {
         throw std::runtime_error(SDL_GetError());
     }
+
+    SDL_RenderSetLogicalSize(sdlRenderer, windowWidth, windowHeight);
 }
 
 Defender::Window::~Window()
