@@ -9,7 +9,6 @@ LIBS = -L/usr/lib/ -lSDL2 -lSDL2_image -lSDL2_ttf
 
 SOURCES += \
     window.cpp \
-    vector.cpp \
     texture.cpp \
     renderer.cpp \
     main.cpp \
