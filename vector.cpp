@@ -175,7 +175,7 @@ void Defender::Vector<dim>::addValue(unsigned int index, const double &i,
 
 // + Overload
 template<unsigned int dim>
-Defender::Vector<dim> operator + (Defender::Vector<dim> a,
+inline Defender::Vector<dim> operator + (Defender::Vector<dim> a,
                                     const Defender::Vector<dim>& b)
 {
     a += b;
@@ -184,7 +184,7 @@ Defender::Vector<dim> operator + (Defender::Vector<dim> a,
 
 // - Overload
 template<unsigned int dim>
-Defender::Vector<dim> operator - (Defender::Vector<dim> a,
+inline Defender::Vector<dim> operator - (Defender::Vector<dim> a,
                                     const Defender::Vector<dim>& b)
 {
     a -= b;
@@ -192,7 +192,7 @@ Defender::Vector<dim> operator - (Defender::Vector<dim> a,
 }
 
 template<unsigned int dim>
-Defender::Vector<dim> operator - (const Defender::Vector<dim>& a)
+inline Defender::Vector<dim> operator - (const Defender::Vector<dim>& a)
 {
     Defender::Vector<dim> b;
     b -= a;
@@ -201,14 +201,14 @@ Defender::Vector<dim> operator - (const Defender::Vector<dim>& a)
 
 // * Overload
 template<unsigned int dim>
-Defender::Vector<dim> operator * (Defender::Vector<dim> a, const double& b)
+inline Defender::Vector<dim> operator * (Defender::Vector<dim> a, const double& b)
 {
     a *= b;
     return a;
 }
 
 template<unsigned int dim>
-Defender::Vector<dim> operator * (const double& b, Defender::Vector<dim> a)
+inline Defender::Vector<dim> operator * (const double& b, Defender::Vector<dim> a)
 {
     a *= b;
     return a;
@@ -216,10 +216,38 @@ Defender::Vector<dim> operator * (const double& b, Defender::Vector<dim> a)
 
 // / Overload
 template<unsigned int dim>
-Defender::Vector<dim> operator / (Defender::Vector<dim> a, const double& b)
+inline Defender::Vector<dim> operator / (Defender::Vector<dim> a, const double& b)
 {
     a /= b;
     return a;
+}
+
+// == Overload
+template<unsigned int dim>
+inline bool operator == (const Defender::Vector<dim>& a,
+                         const Defender::Vector<dim>& b)
+{
+    return (a.x() == b.x()) && (a.y() == b.y());
+}
+
+// != Overload
+template<unsigned int dim>
+inline bool operator != (const Defender::Vector<dim>& a,
+                         const Defender::Vector<dim>& b)
+{
+    return !(a == b);
+}
+
+// < Overload
+template<unsigned int dim>
+inline bool operator < (const Defender::Vector<dim>& a,
+                        const Defender::Vector<dim>& b)
+{
+    if (a.x() == b.x())
+    {
+        return a.y() < b.y();
+    }
+    return a.x() < b.x();
 }
 
 #endif //VECTOR_CPP

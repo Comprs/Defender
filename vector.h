@@ -14,31 +14,31 @@ public:
     template <typename... Args>
     Vector(Args... args);
 
-    double& x();
-    const double& x() const;
-    double& y();
-    const double& y() const;
-    double& z();
-    const double& z() const;
+    inline double& x();
+    inline const double& x() const;
+    inline double& y();
+    inline const double& y() const;
+    inline double& z();
+    inline const double& z() const;
 
-    Vector<dim>& operator += (const Vector<dim> &a);
-    Vector<dim>& operator -= (const Vector<dim> &a);
-    Vector<dim>& operator *= (const double &a);
-    Vector<dim>& operator /= (const double &a);
-    double& operator [] (const unsigned int& index);
-    const double& operator [] (const unsigned int& index) const;
+    inline Vector<dim>& operator += (const Vector<dim> &a);
+    inline Vector<dim>& operator -= (const Vector<dim> &a);
+    inline Vector<dim>& operator *= (const double &a);
+    inline Vector<dim>& operator /= (const double &a);
+    inline double& operator [] (const unsigned int& index);
+    inline const double& operator [] (const unsigned int& index) const;
 
-    double magnitude() const;
-    double direction() const;
-    Vector<dim> normalised() const;
+    inline double magnitude() const;
+    inline double direction() const;
+    inline Vector<dim> normalised() const;
 
 private:
     std::array<double, dim> values;
 
-    void addValue(const unsigned int& index, const double& i);
+    inline void addValue(const unsigned int& index, const double& i);
 
     template <typename... Args>
-    void addValue(unsigned int index, const double &i, Args... args);
+    inline void addValue(unsigned int index, const double &i, Args... args);
 };
 
 using Vector2D = Vector<2>;
