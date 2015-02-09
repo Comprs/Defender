@@ -33,7 +33,7 @@ void Defender::Alien::interact(std::shared_ptr<Entity> &e)
             kill();
         }
 
-        // If the player is withing 512 pixels
+        // If the player is within 512 pixels
         if ((p->getPosition() - getPosition()).magnitude() <= 512 &&
                 shotDistribution(engine))
         {
