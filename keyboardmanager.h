@@ -16,8 +16,8 @@ public:
     static bool isDown(SDL_Scancode key);
 
 private:
-    static Uint8 *prevState;
-    static Uint8 *currState;
+    static Uint8 prevState[SDL_NUM_SCANCODES];
+    static Uint8 currState[SDL_NUM_SCANCODES];
 };
 }
 

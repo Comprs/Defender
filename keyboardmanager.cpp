@@ -1,14 +1,10 @@
 #include "keyboardmanager.h"
 
-#include <cstdlib>
 #include <cstring>
 
-// Allocate memory for the C arrays holding the current and previous state
-// of the keyboard
-Uint8* Defender::KeyboardManager::prevState =
-        (Uint8*)std::malloc(SDL_NUM_SCANCODES);
-Uint8* Defender::KeyboardManager::currState =
-        (Uint8*)std::malloc(SDL_NUM_SCANCODES);
+// Initilise the C arrays holding the current and previous state of the keyboard
+Uint8 Defender::KeyboardManager::prevState[SDL_NUM_SCANCODES] = {};
+Uint8 Defender::KeyboardManager::currState[SDL_NUM_SCANCODES] = {};
 
 void Defender::KeyboardManager::update()
 {
