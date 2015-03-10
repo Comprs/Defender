@@ -5,14 +5,7 @@
 #include "maingameroom.h"
 
 Defender::MainMenu::MainMenu(Game &newGame) :
-    Room(newGame, windowWidth, windowHeight)
-{
-    // Prerender the options
-    optionTextures.push_back(Renderer("Audiowide-Regular.ttf",
-                                      game.getRenderer(),
-                                      "Press enter to play and Escape to quit")
-                             .getTexture());
-}
+    Room(newGame, windowWidth, windowHeight) {}
 
 void Defender::MainMenu::update(const double time)
 {
@@ -23,15 +16,37 @@ void Defender::MainMenu::update(const double time)
         backgroundOffset += unitWidth;
     }
 
+    if (KeyboardManager::wasPressed(SDL_SCANCODE_DOWN) ||
+            KeyboardManager::wasPressed(SDL_SCANCODE_S))
+    {
+        ++selection;
+        if (selection > numbSelections) { selection = 0; }
+    }
+    if (KeyboardManager::wasPressed(SDL_SCANCODE_UP) ||
+            KeyboardManager::wasPressed(SDL_SCANCODE_W))
+    {
+        --selection;
+        if (selection < 0) { selection = numbSelections; }
+    }
+
     // Accept selection
     if (KeyboardManager::wasPressed(SDL_SCANCODE_RETURN))
     {
-        game.replaceNewRoom<MainGameRoom>();
-    }
-
-    if(KeyboardManager::wasPressed(SDL_SCANCODE_ESCAPE))
-    {
-        game.stop();
+        switch (selection) {
+        case 0:
+            game.replaceNewRoom<MainGameRoom>();
+            break;
+        case 1:
+            game.toggleFullscreen();
+            break;
+        case 2:
+            game.stop();
+            break;
+        default:
+            throw std::runtime_error("Invalid menu selection\nValue: " +
+                                     std::to_string(selection));
+            break;
+        }
     }
 }
 
@@ -42,10 +57,13 @@ void Defender::MainMenu::draw()
             .addOffset(unitWidth, 0).addOffset(unitWidth * 2, 0).commit();
 
     // Draw the text
-    int drawOffset = 0;
-    for (Texture& t : optionTextures)
-    {
-        Renderer(t).setPosition(0, drawOffset).commit();
-        drawOffset += t.getRect().h;
-    }
+    Renderer("Audiowide-Regular.ttf", game.getRenderer(),
+             "Play").setPosition(40, 0).commit();
+    Renderer("Audiowide-Regular.ttf", game.getRenderer(),
+             "Toggle Fullscreen").setPosition(40, 40).commit();
+    Renderer("Audiowide-Regular.ttf", game.getRenderer(),
+             "Quit").setPosition(40, 80).commit();
+
+    Renderer("Audiowide-Regular.ttf", game.getRenderer(),
+             ">").setPosition(10, 40 * selection).commit();
 }

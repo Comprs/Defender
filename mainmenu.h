@@ -23,8 +23,6 @@ private:
     int selection = 0;
     const int numbSelections = 2;
     double backgroundOffset = 0;
-
-    std::vector<Texture> optionTextures;
 };
 }
 
