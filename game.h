@@ -32,6 +32,7 @@ public:
     }
 
     void killTopRoom();
+    void toggleFullscreen();
 
     SDL_Renderer* getRenderer() const;
 

@@ -105,3 +105,21 @@ SDL_Renderer* Defender::Game::getRenderer() const
     // Get the renderer from the window
     return window.sdlRenderer;
 }
+
+void Defender::Game::toggleFullscreen()
+{
+    // Bitwise and the current mode of the window and the flag we wish to check
+    if (SDL_GetWindowFlags(window.sdlWindow) & SDL_WINDOW_FULLSCREEN)
+    {
+        // The window currently is fullscreen so switch to windowed mode
+        SDL_SetWindowFullscreen(window.sdlWindow, 0);
+        // Make sure the image is not stretched
+        SDL_SetWindowSize(window.sdlWindow, Defender::windowWidth,
+                          Defender::windowHeight);
+    }
+    else
+    {
+        // The window currently is windowed so switch to fullscreen mode
+        SDL_SetWindowFullscreen(window.sdlWindow, SDL_WINDOW_FULLSCREEN);
+    }
+}
