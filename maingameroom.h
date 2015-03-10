@@ -23,6 +23,8 @@ private:
 
     std::default_random_engine engine;
     std::bernoulli_distribution distribution;
+
+    bool playerAlive;
 };
 }
 

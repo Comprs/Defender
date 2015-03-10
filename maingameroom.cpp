@@ -67,8 +67,15 @@ void Defender::MainGameRoom::draw()
     Renderer(target).addOffset(-radarWidth, 0).addOffset(radarWidth, 0)
             .setDestRect(destRect).commit();
 
+    // Render the score counter
     Renderer("Audiowide-Regular.ttf", game.getRenderer(),
-                          "Score: " + std::to_string(score)).commit();
+             "Score: " + std::to_string(score)).commit();
+
+    if (!playerAlive)
+    {
+        Renderer("Audiowide-Regular.ttf", game.getRenderer(),
+                 "Press R to reset").setPosition(0, 40).commit();
+    }
 }
 
 void Defender::MainGameRoom::updateEntity(const double time,
@@ -78,6 +85,8 @@ void Defender::MainGameRoom::updateEntity(const double time,
     Room::updateEntity(time, e);
     if (typeid(*e) == typeid(Player))
     {
+        // A player exist therefore the player is alive
+        playerAlive = true;
         // If the entity is the player, set the camera position such that they
         // Will appear in the centre of the screen
         cameraPos.x() = e->getPosition().x() - windowWidth / 2
@@ -103,5 +112,13 @@ void Defender::MainGameRoom::update(const double time)
         addEntity<Abductor>("alien1.png");
     }
 
+    // Assume the player is dead
+    playerAlive = false;
     Room::update(time);
+
+    // Quickly reset if the player is dead
+    if (!playerAlive && KeyboardManager::wasPressed(SDL_SCANCODE_R))
+    {
+        game.replaceNewRoom<MainGameRoom>();
+    }
 }
