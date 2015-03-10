@@ -67,9 +67,8 @@ void Defender::MainGameRoom::draw()
     Renderer(target).addOffset(-radarWidth, 0).addOffset(radarWidth, 0)
             .setDestRect(destRect).commit();
 
-    Renderer t = Renderer("Audiowide-Regular.ttf", game.getRenderer(),
-                          "Score: " + std::to_string(score));
-    t.commit();
+    Renderer("Audiowide-Regular.ttf", game.getRenderer(),
+                          "Score: " + std::to_string(score)).commit();
 }
 
 void Defender::MainGameRoom::updateEntity(const double time,
