@@ -7,8 +7,10 @@ int main()
     SDL_Init(SDL_INIT_EVERYTHING);
     TTF_Init();
 
+    // Load in the font
     Defender::FontRegistry::addFont("Audiowide-Regular.ttf", 32);
 
+    // Create the game and add the first room which is the menu
     Defender::Game game;
     game.replaceNewRoom<Defender::MainMenu>();
 
