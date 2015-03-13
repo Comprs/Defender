@@ -192,7 +192,7 @@ inline Defender::Vector<dim> operator - (Defender::Vector<dim> a,
 template<unsigned int dim>
 inline Defender::Vector<dim> operator - (const Defender::Vector<dim>& a)
 {
-    Defender::Vector<dim> b;
+    Defender::Vector<dim> b = {};
     b -= a;
     return b;
 }
