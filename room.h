@@ -16,6 +16,8 @@ public:
     Room(Game& newGame);
     Room(Game& newGame, int newWidth, int newHeight);
 
+    ~Room();
+
     const int width;
     const int height;
 
