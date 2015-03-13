@@ -1,6 +1,7 @@
 #include "game.h"
 
 #include <stdexcept>
+#include <fstream>
 #include "textureregistry.h"
 #include "keyboardmanager.h"
 
@@ -10,6 +11,10 @@ Defender::Game::Game()
     TextureRegistry::attachRenderer(getRenderer());
     clear();
     present();
+
+    std::ifstream file("highscore.dat");
+    file >> highScore;
+    file.close();
 }
 
 void Defender::Game::killTopRoom()
@@ -97,6 +102,10 @@ void Defender::Game::begin()
 
 void Defender::Game::stop()
 {
+    std::ofstream file("highscore.dat",
+                       std::ios_base::out | std::ios_base::trunc);
+    file << highScore;
+    file.close();
     window.close();
 }
 

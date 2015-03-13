@@ -71,10 +71,13 @@ void Defender::MainGameRoom::draw()
     Renderer("Audiowide-Regular.ttf", game.getRenderer(),
              "Score: " + std::to_string(score)).commit();
 
+    Renderer("Audiowide-Regular.ttf", game.getRenderer(), "High Score: " +
+             std::to_string(game.highScore)).setPosition(0, 40).commit();
+
     if (!playerAlive)
     {
         Renderer("Audiowide-Regular.ttf", game.getRenderer(),
-                 "Press R to reset").setPosition(0, 40).commit();
+                 "Press R to reset").setPosition(0, 80).commit();
     }
 }
 

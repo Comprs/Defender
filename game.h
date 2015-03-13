@@ -15,6 +15,8 @@ class Game
 public:
     Game();
 
+    int highScore = 0;
+
     void begin();
     void stop();
 
@@ -42,7 +44,6 @@ private:
     std::vector<std::shared_ptr<Room>> rooms;
 
     std::shared_ptr<Room> getActiveRoom();
-
     void update();
     void draw();
     void eventLoop();
