@@ -18,16 +18,7 @@ Defender::MainGameRoom::MainGameRoom(Game &newGame) :
                 .count());
     // Add the entities
     addEntity<Player>("player.png");
-    addEntity<Man>("man.png");
-    addEntity<Man>("man.png");
-    addEntity<Man>("man.png");
-    addEntity<Man>("man.png");
-    addEntity<Man>("man.png");
-    addEntity<Man>("man.png");
-    addEntity<Man>("man.png");
-    addEntity<Man>("man.png");
-    addEntity<Man>("man.png");
-    addEntity<Man>("man.png");
+    for (int i = 0; i < 20; ++i) { addEntity<Man>("man.png"); }
 }
 
 void Defender::MainGameRoom::draw()
