@@ -8,12 +8,13 @@
 #include "keyboardmanager.h"
 
 #include "abductor.h"
+#include "fighter.h"
 #include "man.h"
 
 Defender::MainGameRoom::MainGameRoom(Game &newGame) :
     Room(newGame, Defender::worldWidth, Defender::worldHeight)
 {
-    distribution = std::bernoulli_distribution(0.01);
+    distribution = std::bernoulli_distribution(0.005);
     engine.seed(std::chrono::high_resolution_clock::now().time_since_epoch()
                 .count());
     // Add the entities
@@ -104,6 +105,11 @@ void Defender::MainGameRoom::update(const double time)
     if (distribution(engine))
     {
         addEntity<Abductor>("alien1.png");
+    }
+
+    if (distribution(engine))
+    {
+        addEntity<Fighter>("alien3.png");
     }
 
     // Assume the player is dead

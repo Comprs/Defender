@@ -28,7 +28,8 @@ SOURCES += \
     fontregistry.cpp \
     abductor.cpp \
     alienprojectile.cpp \
-    mutant.cpp
+    mutant.cpp \
+    fighter.cpp
 
 HEADERS += \
     window.h \
@@ -52,4 +53,5 @@ HEADERS += \
     fontregistry.h \
     abductor.h \
     alienprojectile.h \
-    mutant.h
+    mutant.h \
+    fighter.h
