@@ -123,7 +123,8 @@ void Defender::MainGameRoom::update(const double time)
         nextBombScore += 10;
     }
 
-    if (KeyboardManager::wasPressed(SDL_SCANCODE_SPACE) && bombs > 0)
+    if (KeyboardManager::wasPressed(SDL_SCANCODE_SPACE) && bombs > 0 &&
+            playerAlive)
     {
         --bombs;
         for (std::shared_ptr<Entity> e: entities)
