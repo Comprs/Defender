@@ -3,8 +3,10 @@ CONFIG += console
 CONFIG -= app_bundle
 CONFIG -= qt
 
+QMAKE_CXXFLAGS -= -O2
 QMAKE_CXXFLAGS += -std=c++14
 QMAKE_CXXFLAGS_RELEASE += -O3
+QMAKE_CXXFLAGS_DEBUG += -O0
 
 LIBS = -L/usr/lib/ -lSDL2 -lSDL2_image -lSDL2_ttf
 
