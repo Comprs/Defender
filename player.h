@@ -15,6 +15,7 @@ public:
 
     void update(const double time, std::shared_ptr<Entity> self) override;
     void interact(std::shared_ptr<Entity>& e) override;
+    void onKill() override;
 };
 }
 

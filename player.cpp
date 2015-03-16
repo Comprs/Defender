@@ -4,6 +4,7 @@
 #include "keyboardmanager.h"
 #include "playerprojectile.h"
 #include "alienprojectile.h"
+#include "particle.h"
 
 void Defender::Player::update(const double time, std::shared_ptr<Entity> self)
 {
@@ -127,4 +128,18 @@ void Defender::Player::interact(std::shared_ptr<Entity>& e)
             kill();
         }
     }
+}
+
+void Defender::Player::onKill()
+{
+    std::uniform_real_distribution<double> particleDistribution(-480, 480);
+    for (int i = 0; i < 200; ++i)
+    {
+        room.addEntity<Particle>("playerShard.png", getMiddle(), 30,
+                                 Vector2D(particleDistribution(engine),
+                                          -120 + particleDistribution(engine)) +
+                                 velocity / 4,
+                                 Vector2D(0, 240));
+    }
+    Entity::onKill();
 }
