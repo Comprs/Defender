@@ -24,6 +24,8 @@ public:
 
     virtual void update(const double time);
     virtual void draw();
+    virtual void incrementScore(int delta);
+    int getScore() const;
 
     template<typename T, typename... Args>
     void addEntity(const std::string& textureName, Args... args)
@@ -34,9 +36,8 @@ public:
                             args...));
     }
 
-    int score = 0;
-
 protected:
+    int score = 0;
     Game& game;
     std::vector<std::shared_ptr<Entity>> entities;
     std::queue<std::shared_ptr<Entity>> entityQueue;

@@ -48,3 +48,13 @@ void Defender::Room::draw()
         e->draw();
     }
 }
+
+void Defender::Room::incrementScore(int delta)
+{
+    score += delta;
+}
+
+int Defender::Room::getScore() const
+{
+    return score;
+}

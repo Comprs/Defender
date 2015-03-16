@@ -61,7 +61,7 @@ void Defender::Man::drop()
 
 void Defender::Man::onKill()
 {
-    room.score -= 5;
+    room.incrementScore(-5);
     std::uniform_real_distribution<double> particleDistribution(-15, 15);
     for (int i = 0; i < 50; ++i)
     {

@@ -110,6 +110,6 @@ void Defender::Abductor::update(const double time, std::shared_ptr<Entity> self)
 
 void Defender::Abductor::onKill()
 {
-    room.score += 1;
+    room.incrementScore(1);
     Alien::onKill();
 }
