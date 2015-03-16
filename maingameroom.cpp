@@ -151,3 +151,8 @@ void Defender::MainGameRoom::update(const double time)
         game.replaceNewRoom<MainGameRoom>();
     }
 }
+
+void Defender::MainGameRoom::incrementScore(int delta)
+{
+    if (playerAlive) { score += delta; }
+}

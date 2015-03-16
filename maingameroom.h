@@ -13,6 +13,7 @@ public:
 
     void update(const double time) override;
     void draw() override;
+    void incrementScore(int delta) override;
 
 protected:
     void updateEntity(const double time, std::shared_ptr<Entity> e) override;
