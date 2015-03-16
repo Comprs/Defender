@@ -69,10 +69,12 @@ void Defender::Entity::bound()
     if (position.y() < 0)
     {
         position.y() = 0;
+        velocity.y() = 0;
     }
     else if (position.y() > room.height - getBoundingBox().h)
     {
         position.y() = room.height - getBoundingBox().h;
+        velocity.y() = 0;
     }
 }
 
