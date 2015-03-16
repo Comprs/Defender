@@ -2,6 +2,7 @@
 #define ROOM_H
 
 #include <string>
+#include <queue>
 #include "entity.h"
 #include "textureregistry.h"
 #include "game.h"
@@ -27,7 +28,7 @@ public:
     template<typename T, typename... Args>
     void addEntity(const std::string& textureName, Args... args)
     {
-        entities.push_back(std::make_shared<T>
+        entityQueue.push(std::make_shared<T>
                            (entities, *this,
                             TextureRegistry::getTexture(textureName),
                             args...));
@@ -38,6 +39,7 @@ public:
 protected:
     Game& game;
     std::vector<std::shared_ptr<Entity>> entities;
+    std::queue<std::shared_ptr<Entity>> entityQueue;
 
     virtual void updateEntity(const double time, std::shared_ptr<Entity> e);
 };

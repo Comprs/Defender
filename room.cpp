@@ -26,6 +26,13 @@ void Defender::Room::update(const double time)
     auto newEnd = std::remove_if(entities.begin(), entities.end(),
                                  [](auto e){return e->isDead();});
     entities.erase(newEnd, entities.end());
+
+    // Add new entities
+    while (entityQueue.size() > 0)
+    {
+        entities.push_back(entityQueue.front());
+        entityQueue.pop();
+    }
 }
 
 void Defender::Room::updateEntity(const double time, std::shared_ptr<Entity> e)
