@@ -25,6 +25,8 @@ private:
     std::bernoulli_distribution distribution;
 
     bool playerAlive;
+    int bombs = 1;
+    int nextBombScore = 10;
 };
 }
 

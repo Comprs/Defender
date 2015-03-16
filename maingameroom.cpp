@@ -10,6 +10,7 @@
 #include "abductor.h"
 #include "fighter.h"
 #include "man.h"
+#include "alienprojectile.h"
 
 Defender::MainGameRoom::MainGameRoom(Game &newGame) :
     Room(newGame, Defender::worldWidth, Defender::worldHeight)
@@ -63,13 +64,17 @@ void Defender::MainGameRoom::draw()
     Renderer("Audiowide-Regular.ttf", game.getRenderer(),
              "Score: " + std::to_string(score)).commit();
 
+    // Render the high score counter
     Renderer("Audiowide-Regular.ttf", game.getRenderer(), "High Score: " +
              std::to_string(game.highScore)).setPosition(0, 40).commit();
+
+    Renderer("Audiowide-Regular.ttf", game.getRenderer(), "Bombs: " +
+             std::to_string(bombs)).setPosition(0, 80).commit();
 
     if (!playerAlive)
     {
         Renderer("Audiowide-Regular.ttf", game.getRenderer(),
-                 "Press R to reset").setPosition(0, 80).commit();
+                 "Press R to reset").setPosition(0, 120).commit();
     }
 }
 
@@ -110,6 +115,29 @@ void Defender::MainGameRoom::update(const double time)
     if (distribution(engine))
     {
         addEntity<Fighter>("alien3.png");
+    }
+
+    while (score >= nextBombScore)
+    {
+        ++bombs;
+        nextBombScore += 10;
+    }
+
+    if (KeyboardManager::wasPressed(SDL_SCANCODE_SPACE) && bombs > 0)
+    {
+        --bombs;
+        for (std::shared_ptr<Entity> e: entities)
+        {
+            if (std::shared_ptr<Alien> a = std::dynamic_pointer_cast<Alien>(e))
+            {
+                a->kill();
+            }
+            if (std::shared_ptr<AlienProjectile> a =
+                    std::dynamic_pointer_cast<AlienProjectile>(e))
+            {
+                a->kill();
+            }
+        }
     }
 
     // Assume the player is dead
