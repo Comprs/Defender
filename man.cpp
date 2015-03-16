@@ -1,6 +1,7 @@
 #include "man.h"
 
 #include "playerprojectile.h"
+#include "particle.h"
 
 Defender::Man::Man(std::vector<std::shared_ptr<Entity>>& newEntities,
     Defender::Room& newRoom,
@@ -61,5 +62,14 @@ void Defender::Man::drop()
 void Defender::Man::onKill()
 {
     room.score -= 5;
+    std::uniform_real_distribution<double> particleDistribution(-15, 15);
+    for (int i = 0; i < 50; ++i)
+    {
+        room.addEntity<Particle>("blood.png", getMiddle(), 5,
+                                 Vector2D(particleDistribution(engine),
+                                          -60 + particleDistribution(engine)) +
+                                 velocity,
+                                 Vector2D(0, 240));
+    }
     Entity::onKill();
 }
