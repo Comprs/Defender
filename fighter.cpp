@@ -9,7 +9,7 @@ Defender::Fighter::Fighter(std::vector<std::shared_ptr<Entity>> &newEntities,
     acceleration = Vector2D(0, -240);
 
     // 50/50 chance of facing each direction
-    if (std::bernoulli_distribution(0.5)(engine))
+    if (Defender::pseudo_random_distribution(0.5)(engine))
     {
         velocity = Vector2D(600, 0);
         facingRight = true;
@@ -19,8 +19,8 @@ Defender::Fighter::Fighter(std::vector<std::shared_ptr<Entity>> &newEntities,
         velocity = Vector2D(-600, 0);
         facingRight = false;
     }
-    diveDistribution = std::bernoulli_distribution(0.002);
-    swapDistrubution = std::bernoulli_distribution(0.001);
+    diveDistribution = Defender::pseudo_random_distribution(0.002);
+    swapDistrubution = Defender::pseudo_random_distribution(0.001);
 }
 
 void Defender::Fighter::update(const double time, std::shared_ptr<Entity> self)

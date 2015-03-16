@@ -59,4 +59,5 @@ HEADERS += \
     alienprojectile.h \
     mutant.h \
     fighter.h \
-    particle.h
+    particle.h \
+    pseudorandomdistribution.h

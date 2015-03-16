@@ -16,8 +16,8 @@ protected:
     void update(const double time, std::shared_ptr<Entity> self) override;
     void onKill() override;
 
-    std::bernoulli_distribution diveDistribution;
-    std::bernoulli_distribution swapDistrubution;
+    Defender::pseudo_random_distribution diveDistribution;
+    Defender::pseudo_random_distribution swapDistrubution;
 };
 }
 

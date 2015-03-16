@@ -2,6 +2,7 @@
 #define MAINGAMEROOM_H
 
 #include <random>
+#include "pseudorandomdistribution.h"
 #include "room.h"
 
 namespace Defender
@@ -23,7 +24,7 @@ private:
     Vector2D radarPos;
 
     std::default_random_engine engine;
-    std::bernoulli_distribution distribution;
+    Defender::pseudo_random_distribution distribution;
 
     bool playerAlive;
     int bombs = 1;

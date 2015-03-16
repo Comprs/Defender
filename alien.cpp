@@ -11,7 +11,7 @@ Defender::Alien::Alien(std::vector<std::shared_ptr<Entity>>& newEntities,
     Entity(newEntities, newRoom, newTexture)
 {
     position = Vector2D(distribution(engine), 0);
-    shotDistribution = std::bernoulli_distribution(0.02);
+    shotDistribution = Defender::pseudo_random_distribution(0.02);
 }
 
 void Defender::Alien::interact(std::shared_ptr<Entity> &e)
