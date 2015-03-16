@@ -62,12 +62,12 @@ void Defender::Man::drop()
 void Defender::Man::onKill()
 {
     room.incrementScore(-5);
-    std::uniform_real_distribution<double> particleDistribution(-15, 15);
+    std::uniform_real_distribution<double> particleDistribution(-7, 7);
     for (int i = 0; i < 50; ++i)
     {
         room.addEntity<Particle>("blood.png", getMiddle(), 5,
                                  Vector2D(particleDistribution(engine),
-                                          -60 + particleDistribution(engine)) +
+                                          particleDistribution(engine) * 2) +
                                  velocity,
                                  Vector2D(0, 240));
     }
