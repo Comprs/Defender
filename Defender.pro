@@ -32,7 +32,8 @@ SOURCES += \
     abductor.cpp \
     alienprojectile.cpp \
     mutant.cpp \
-    fighter.cpp
+    fighter.cpp \
+    particle.cpp
 
 HEADERS += \
     window.h \
@@ -57,4 +58,5 @@ HEADERS += \
     abductor.h \
     alienprojectile.h \
     mutant.h \
-    fighter.h
+    fighter.h \
+    particle.h

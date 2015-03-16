@@ -3,6 +3,7 @@
 #include "player.h"
 #include "playerprojectile.h"
 #include "alienprojectile.h"
+#include "particle.h"
 
 Defender::Alien::Alien(std::vector<std::shared_ptr<Entity>>& newEntities,
                        Defender::Room& newRoom,
@@ -46,5 +47,18 @@ void Defender::Alien::interact(std::shared_ptr<Entity> &e)
 
             room.addEntity<AlienProjectile>("enemyShot.png", newPosition, newVelocity);
         }
+    }
+}
+
+void Defender::Alien::onKill()
+{
+    std::uniform_real_distribution<double> particleDistribution(-120, 120);
+    for (int i = 0; i < 10; ++i)
+    {
+        room.addEntity<Particle>("shard.png", getMiddle(), 5,
+                                 Vector2D(particleDistribution(engine),
+                                          -120 + particleDistribution(engine)) +
+                                 velocity,
+                                 Vector2D(0, 240));
     }
 }

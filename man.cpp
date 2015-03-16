@@ -61,4 +61,5 @@ void Defender::Man::drop()
 void Defender::Man::onKill()
 {
     room.score -= 5;
+    Entity::onKill();
 }

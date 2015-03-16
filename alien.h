@@ -14,6 +14,7 @@ public:
 
 protected:
     void interact(std::shared_ptr<Entity> &e) override;
+    void onKill() override;
 
     std::bernoulli_distribution shotDistribution;
 };
