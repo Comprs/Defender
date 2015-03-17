@@ -1,6 +1,7 @@
 #ifndef PSEUDORANDOMDISTRIBUTION
 #define PSEUDORANDOMDISTRIBUTION
 
+#include <iostream>
 #include <limits>
 
 namespace Defender
@@ -15,6 +16,12 @@ public:
         typedef pseudo_random_distribution distribution_type;
         explicit param_type(double c) : parameter_c(c) {}
         double c() const { return parameter_c; }
+
+        friend bool operator == (const param_type& lhs,
+                                 const param_type& rhs)
+        {
+            return lhs.parameter_c == rhs.parameter_c;
+        }
 
     private:
         double parameter_c;
@@ -49,10 +56,41 @@ public:
         return operator()(g, parameters);
     }
 
+    friend bool operator == (const pseudo_random_distribution& lhs,
+                      const pseudo_random_distribution& rhs)
+    {
+        return (lhs.parameters == rhs.parameters) &&
+                (lhs.internal_n == rhs.internal_n);
+    }
+
+    friend bool operator != (const pseudo_random_distribution& lhs,
+                      const pseudo_random_distribution& rhs)
+    {
+        return !(lhs == rhs);
+    }
+
 private:
     param_type parameters;
     int internal_n;
 };
+
+template <class CharT, class Traits>
+std::basic_ostream<CharT, Traits>&
+operator << (std::basic_ostream<CharT, Traits>& os,
+             const pseudo_random_distribution& d)
+{
+    os << d.parameters.parameter_c << d.internal_n;
+    return os;
+}
+
+template <class CharT, class Traits>
+std::basic_istream<CharT, Traits>&
+operator >> (std::basic_istream<CharT, Traits>& is,
+             const pseudo_random_distribution& d)
+{
+    is >> d.parameters.parameter_c >> d.internal_n;
+    return is;
+}
 }
 
 #endif // PSEUDORANDOMDISTRIBUTION
