@@ -225,7 +225,11 @@ template<unsigned int dim>
 inline bool operator == (const Defender::Vector<dim>& a,
                          const Defender::Vector<dim>& b)
 {
-    return (a.x() == b.x()) && (a.y() == b.y());
+    for (unsigned int i = 0; i < dim; ++i)
+    {
+        if (a[i] != b[i]) { return false; }
+    }
+    return true;
 }
 
 // != Overload
@@ -241,11 +245,11 @@ template<unsigned int dim>
 inline bool operator < (const Defender::Vector<dim>& a,
                         const Defender::Vector<dim>& b)
 {
-    if (a.x() == b.x())
+    for (unsigned int i = 0; ; ++i)
     {
-        return a.y() < b.y();
+        if (i >= dim) { return false; }
+        if (a[i] < b[i]) { return true; }
     }
-    return a.x() < b.x();
 }
 
 #endif // VECTOR_H
