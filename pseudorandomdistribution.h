@@ -27,7 +27,7 @@ public:
         double parameter_c;
     };
     explicit pseudo_random_distribution(double c = 0.5) : parameters(c),
-        internal_n(1) {}
+        internal_n(0) {}
     explicit pseudo_random_distribution(const param_type& params) :
         parameters(params) {}
 
@@ -39,7 +39,7 @@ public:
     result_type min() { return std::numeric_limits<result_type>::min(); }
     result_type max() { return std::numeric_limits<result_type>::max(); }
 
-    void reset() { internal_n = 1; }
+    void reset() { internal_n = 0; }
 
     template<typename Generator>
     result_type operator () (Generator& g, const param_type& gen_params)
@@ -47,6 +47,7 @@ public:
         double thisChance = gen_params.c() * internal_n;
         bool success = (g() - g.min()) < thisChance * (g.max() - g.min());
         if (success) { internal_n = 1; }
+        else { internal_n += 0.0085; }
         return success;
     }
 
@@ -71,7 +72,7 @@ public:
 
 private:
     param_type parameters;
-    int internal_n;
+    double internal_n;
 };
 
 template <class CharT, class Traits>
