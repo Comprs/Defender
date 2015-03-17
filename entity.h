@@ -8,19 +8,7 @@
 #include "texture.h"
 #include "room.h"
 #include "globals.h"
-
-template<typename T>
-inline void __unused(T t)
-{
-    (void)t;
-}
-
-template<typename T, typename... Args>
-inline void __unused(T t, Args... args)
-{
-    __unused(t);
-    __unused(args...);
-}
+#include "defenderutils.h"
 
 namespace Defender
 {

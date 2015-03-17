@@ -60,4 +60,5 @@ HEADERS += \
     mutant.h \
     fighter.h \
     particle.h \
-    pseudorandomdistribution.h
+    pseudorandomdistribution.h \
+    defenderutils.h

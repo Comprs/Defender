@@ -2,6 +2,7 @@
 #define MAINMENU_H
 
 #include "room.h"
+#include "defenderutils.h"
 
 namespace Defender
 {
