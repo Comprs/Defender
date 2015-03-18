@@ -4,7 +4,7 @@
 #include <chrono>
 #include "globals.h"
 #include "player.h"
-#include "mainmenu.h"
+#include "pauseroom.h"
 #include "keyboardmanager.h"
 #include "gamecontrollermanager.h"
 #include "abductor.h"
@@ -113,7 +113,7 @@ void Defender::MainGameRoom::update(const double time)
     {
         // If the escaped is pressed, return to the main menu discarding the
         // room
-        game.replaceNewRoom<MainMenu>();
+        game.pushNewRoom<PauseRoom>();
         return;
     }
 

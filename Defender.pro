@@ -34,7 +34,8 @@ SOURCES += \
     mutant.cpp \
     fighter.cpp \
     particle.cpp \
-    gamecontrollermanager.cpp
+    gamecontrollermanager.cpp \
+    pauseroom.cpp
 
 HEADERS += \
     window.h \
@@ -63,4 +64,5 @@ HEADERS += \
     particle.h \
     pseudorandomdistribution.h \
     defenderutils.h \
-    gamecontrollermanager.h
+    gamecontrollermanager.h \
+    pauseroom.h
