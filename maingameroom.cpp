@@ -6,7 +6,7 @@
 #include "player.h"
 #include "mainmenu.h"
 #include "keyboardmanager.h"
-
+#include "gamecontrollermanager.h"
 #include "abductor.h"
 #include "fighter.h"
 #include "man.h"
@@ -74,7 +74,7 @@ void Defender::MainGameRoom::draw()
     if (!playerAlive)
     {
         Renderer("Audiowide-Regular.ttf", game.getRenderer(),
-                 "Press R to reset").setPosition(0, 120).commit();
+                 "Press R or Start to reset").setPosition(0, 120).commit();
     }
 }
 
@@ -100,7 +100,8 @@ void Defender::MainGameRoom::updateEntity(const double time,
 
 void Defender::MainGameRoom::update(const double time)
 {
-    if (KeyboardManager::wasPressed(SDL_SCANCODE_ESCAPE))
+    if (KeyboardManager::wasPressed(SDL_SCANCODE_ESCAPE) ||
+            GameControllerManager::wasPressed(SDL_CONTROLLER_BUTTON_BACK))
     {
         // If the escaped is pressed, return to the main menu discarding the
         // room
@@ -123,8 +124,10 @@ void Defender::MainGameRoom::update(const double time)
         nextBombScore += 10;
     }
 
-    if (KeyboardManager::wasPressed(SDL_SCANCODE_SPACE) && bombs > 0 &&
-            playerAlive)
+    if ((KeyboardManager::wasPressed(SDL_SCANCODE_SPACE) ||
+         GameControllerManager::wasPressed(SDL_CONTROLLER_BUTTON_X) ||
+         GameControllerManager::wasPressed(SDL_CONTROLLER_BUTTON_LEFTSHOULDER)) &&
+            bombs > 0 && playerAlive)
     {
         --bombs;
         for (std::shared_ptr<Entity> e: entities)
@@ -146,7 +149,8 @@ void Defender::MainGameRoom::update(const double time)
     Room::update(time);
 
     // Quickly reset if the player is dead
-    if (!playerAlive && KeyboardManager::wasPressed(SDL_SCANCODE_R))
+    if (!playerAlive && (KeyboardManager::wasPressed(SDL_SCANCODE_R) ||
+                         GameControllerManager::wasPressed(SDL_CONTROLLER_BUTTON_START)))
     {
         game.replaceNewRoom<MainGameRoom>();
     }

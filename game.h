@@ -50,6 +50,7 @@ private:
     void present();
     void clear();
     void updateKeyboard();
+    void updateGameController();
 };
 }
 

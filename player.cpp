@@ -2,6 +2,7 @@
 
 #include "globals.h"
 #include "keyboardmanager.h"
+#include "gamecontrollermanager.h"
 #include "playerprojectile.h"
 #include "alienprojectile.h"
 #include "particle.h"
@@ -9,6 +10,13 @@
 void Defender::Player::update(const double time, std::shared_ptr<Entity> self)
 {
     Entity::update(time, self);
+
+    double leftXAxis =
+            Defender::GameControllerManager::getAxis(SDL_CONTROLLER_AXIS_LEFTX);
+    double leftYAxis =
+            Defender::GameControllerManager::getAxis(SDL_CONTROLLER_AXIS_LEFTY);
+    double rightXAxis =
+            Defender::GameControllerManager::getAxis(SDL_CONTROLLER_AXIS_RIGHTX);
 
     // If D is down and A is not, accelerate to the right
     if (Defender::KeyboardManager::isDown(SDL_SCANCODE_D) &&
@@ -42,6 +50,34 @@ void Defender::Player::update(const double time, std::shared_ptr<Entity> self)
         }
         facingRight = false;
     }
+    // Perform acceleration based on game controller input
+    else if (leftXAxis != 0)
+    {
+        if (leftXAxis > 0)
+        {
+            facingRight = true;
+            if (velocity.x() < 0)
+            {
+                acceleration.x() = resistiveAcceleration * leftXAxis;
+            }
+            else
+            {
+                acceleration.x() = normalAcceleration * leftXAxis;
+            }
+        }
+        else if (leftXAxis < 0)
+        {
+            facingRight = false;
+            if (velocity.x() > 0)
+            {
+                acceleration.x() = resistiveAcceleration * leftXAxis;
+            }
+            else
+            {
+                acceleration.x() = normalAcceleration * leftXAxis;
+            }
+        }
+    }
     // Else perfom slow down
     else
     {
@@ -59,6 +95,11 @@ void Defender::Player::update(const double time, std::shared_ptr<Entity> self)
         {
             velocity.x() = 0;
         }
+    }
+
+    if (rightXAxis != 0)
+    {
+        facingRight = rightXAxis > 0;
     }
 
     // Keep the horizontal velocity within certain bounds
@@ -86,6 +127,10 @@ void Defender::Player::update(const double time, std::shared_ptr<Entity> self)
     {
         velocity.y() = verticalSpeed;
     }
+    else if (leftYAxis != 0)
+    {
+        velocity.y() = verticalSpeed * leftYAxis;
+    }
     // Else stay still
     else
     {
@@ -93,7 +138,9 @@ void Defender::Player::update(const double time, std::shared_ptr<Entity> self)
     }
 
     // Fire a projectile if the return key was pressed
-    if (KeyboardManager::wasPressed(SDL_SCANCODE_RETURN))
+    if (KeyboardManager::wasPressed(SDL_SCANCODE_RETURN) ||
+            GameControllerManager::wasPressed(SDL_CONTROLLER_BUTTON_A) ||
+            GameControllerManager::wasPressed(SDL_CONTROLLER_BUTTON_RIGHTSHOULDER))
     {
         Vector2D startPosition = position;
         // Set the x position based on direction of the player so that the

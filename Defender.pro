@@ -33,7 +33,8 @@ SOURCES += \
     alienprojectile.cpp \
     mutant.cpp \
     fighter.cpp \
-    particle.cpp
+    particle.cpp \
+    gamecontrollermanager.cpp
 
 HEADERS += \
     window.h \
@@ -61,4 +62,5 @@ HEADERS += \
     fighter.h \
     particle.h \
     pseudorandomdistribution.h \
-    defenderutils.h
+    defenderutils.h \
+    gamecontrollermanager.h

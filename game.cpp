@@ -4,6 +4,7 @@
 #include <fstream>
 #include "textureregistry.h"
 #include "keyboardmanager.h"
+#include "gamecontrollermanager.h"
 
 Defender::Game::Game()
 {
@@ -69,6 +70,12 @@ void Defender::Game::updateKeyboard()
     Defender::KeyboardManager::update();
 }
 
+void Defender::Game::updateGameController()
+{
+    // Update the state of the game controller
+    Defender::GameControllerManager::update();
+}
+
 void Defender::Game::begin()
 {
     // Game loop
@@ -77,6 +84,7 @@ void Defender::Game::begin()
         // Manage system status
         eventLoop();
         updateKeyboard();
+        updateGameController();
 
         // Clear the renderer for rendering
         clear();

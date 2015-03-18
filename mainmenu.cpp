@@ -2,6 +2,7 @@
 
 #include "globals.h"
 #include "keyboardmanager.h"
+#include "gamecontrollermanager.h"
 #include "maingameroom.h"
 
 Defender::MainMenu::MainMenu(Game &newGame) :
@@ -17,20 +18,24 @@ void Defender::MainMenu::update(const double time)
     }
 
     if (KeyboardManager::wasPressed(SDL_SCANCODE_DOWN) ||
-            KeyboardManager::wasPressed(SDL_SCANCODE_S))
+            KeyboardManager::wasPressed(SDL_SCANCODE_S) ||
+            GameControllerManager::wasAxisTapped(SDL_CONTROLLER_AXIS_LEFTY, true))
     {
         ++selection;
         if (selection > numbSelections) { selection = 0; }
     }
     if (KeyboardManager::wasPressed(SDL_SCANCODE_UP) ||
-            KeyboardManager::wasPressed(SDL_SCANCODE_W))
+            KeyboardManager::wasPressed(SDL_SCANCODE_W) ||
+            GameControllerManager::wasAxisTapped(SDL_CONTROLLER_AXIS_LEFTY, false))
     {
         --selection;
         if (selection < 0) { selection = numbSelections; }
     }
 
     // Accept selection
-    if (KeyboardManager::wasPressed(SDL_SCANCODE_RETURN))
+    if (KeyboardManager::wasPressed(SDL_SCANCODE_RETURN) ||
+            GameControllerManager::wasPressed(SDL_CONTROLLER_BUTTON_A) ||
+            GameControllerManager::wasPressed(SDL_CONTROLLER_BUTTON_START))
     {
         switch (selection) {
         case 0:
