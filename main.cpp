@@ -7,16 +7,18 @@ int main()
     SDL_Init(SDL_INIT_EVERYTHING);
     TTF_Init();
 
-    // Load in the font
-    Defender::FontRegistry::addFont("Audiowide-Regular.ttf", 32);
+    // Catch any error that may occur and display a messagebox stating the
+    // error.
+    try
+    {
+        // Load in the font
+        Defender::FontRegistry::addFont("Audiowide-Regular.ttf", 32);
 
-    // Create the game and add the first room which is the menu
-    Defender::Game game;
-    game.replaceNewRoom<Defender::MainMenu>();
-
-    // Start the game. Catch any error that may occur and display a messagebox
-    // stating the error.
-    try { game.begin(); }
+        // Create the game and add the first room which is the menu
+        Defender::Game game;
+        game.replaceNewRoom<Defender::MainMenu>();
+        game.begin();
+    }
     catch (std::runtime_error e)
     {
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
