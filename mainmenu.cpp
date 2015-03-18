@@ -22,14 +22,14 @@ void Defender::MainMenu::update(const double time)
             GameControllerManager::wasAxisTapped(SDL_CONTROLLER_AXIS_LEFTY, true))
     {
         ++selection;
-        if (selection > numbSelections) { selection = 0; }
+        if (selection > numbSelections - 1) { selection = 0; }
     }
     if (KeyboardManager::wasPressed(SDL_SCANCODE_UP) ||
             KeyboardManager::wasPressed(SDL_SCANCODE_W) ||
             GameControllerManager::wasAxisTapped(SDL_CONTROLLER_AXIS_LEFTY, false))
     {
         --selection;
-        if (selection < 0) { selection = numbSelections; }
+        if (selection < 0) { selection = numbSelections - 1; }
     }
 
     // Accept selection
@@ -37,16 +37,17 @@ void Defender::MainMenu::update(const double time)
             GameControllerManager::wasPressed(SDL_CONTROLLER_BUTTON_A) ||
             GameControllerManager::wasPressed(SDL_CONTROLLER_BUTTON_START))
     {
-        switch (selection) {
+        switch (selection)
+        {
         case 0:
             game.replaceNewRoom<MainGameRoom>();
-            break;
+            return;
         case 1:
             game.toggleFullscreen();
-            break;
+            return;
         case 2:
             game.stop();
-            break;
+            return;
         default:
             throw std::runtime_error("Invalid menu selection\nValue: " +
                                      std::to_string(selection));

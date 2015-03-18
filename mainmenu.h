@@ -22,7 +22,7 @@ protected:
 
 private:
     int selection = 0;
-    const int numbSelections = 2;
+    const int numbSelections = 3;
     double backgroundOffset = 0;
 };
 }
