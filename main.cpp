@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "game.h"
 #include "mainmenu.h"
 #include "fontregistry.h"
@@ -24,9 +25,11 @@ int main()
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
                                  "A runtime error occured",
                                  e.what(), nullptr);
+        SDL_Quit();
+        return EXIT_FAILURE;
     }
 
     SDL_Quit();
 
-    return 0;
+    return EXIT_SUCCESS;
 }
