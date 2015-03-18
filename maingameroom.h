@@ -20,8 +20,8 @@ protected:
     void updateEntity(const double time, std::shared_ptr<Entity> e) override;
 
 private:
-    Vector2D cameraPos;
-    Vector2D radarPos;
+    Vector2D cameraPos = Vector2D();
+    Vector2D radarPos = Vector2D();
 
     std::default_random_engine engine;
     Defender::pseudo_random_distribution distribution;

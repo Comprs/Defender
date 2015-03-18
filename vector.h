@@ -10,10 +10,11 @@ template<unsigned int dim>
 class Vector final
 {
 public:
-    Vector() = default;
-
     // Constructor
-    template <typename... Args> Vector(Args... args)
+    Vector() { values = {0}; }
+
+    template <typename... Args>
+    Vector(Args... args)
     {
         static_assert(dim >= sizeof...(args), "Too many parameters");
         static_assert(dim <= sizeof...(args), "Not enough parameters");
