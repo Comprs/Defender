@@ -33,7 +33,7 @@ void Defender::Mutant::interact(std::shared_ptr<Entity>& e)
             distance = newDisplacement.magnitude();
         }
 
-        velocity = newDisplacement.normalised() * 500;
+        velocity = newDisplacement.normalised() * 1000;
     }
 
     Alien::interact(e);
