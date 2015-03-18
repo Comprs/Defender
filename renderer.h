@@ -15,7 +15,7 @@ class TTFFont;
 class Renderer
 {
 public:
-    Renderer(Defender::Texture& texture);
+    Renderer(Texture& texture);
     Renderer(const std::string& textureName);
 
     Renderer(TTFFont& font, SDL_Renderer* newSdlRenderer,
@@ -41,7 +41,7 @@ public:
     Renderer& setFlip(const SDL_RendererFlip newFlip);
     Renderer& addOffset(const Vector2D& offset);
 
-    Renderer& setPosition(const Defender::Vector2D& position);
+    Renderer& setPosition(const Vector2D& position);
     Renderer& setPosition(const int x, const int y);
     Renderer& addOffset(const int x, const int y);
 

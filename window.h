@@ -11,11 +11,11 @@ public:
     Window();
     ~Window();
 
-    Window(const Defender::Window& other) = delete;
-    Defender::Window& operator = (const Defender::Window& other) = delete;
+    Window(const Window& other) = delete;
+    Window& operator = (const Window& other) = delete;
 
-    Window(Defender::Window&& other);
-    Defender::Window& operator = (Defender::Window&& other);
+    Window(Window&& other);
+    Window& operator = (Window&& other);
 
     void close();
     bool isOpen();

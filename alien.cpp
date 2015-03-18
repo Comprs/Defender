@@ -5,17 +5,17 @@
 #include "alienprojectile.h"
 #include "particle.h"
 #include "maingameroom.h"
+#include "defenderutils.h"
 
-Defender::Alien::Alien(std::vector<std::shared_ptr<Entity>>& newEntities,
-                       Defender::Room& newRoom,
-                       std::shared_ptr<Defender::Texture> newTexture) :
+Defender::Alien::Alien(std::vector<std::shared_ptr<Entity>>& newEntities, Room& newRoom,
+                       std::shared_ptr<Texture> newTexture) :
     Entity(newEntities, newRoom, newTexture)
 {
     auto params = std::normal_distribution<>::param_type(
                 static_cast<MainGameRoom&>(room).getPlayerPos().x() + worldWidth / 2,
                 worldWidth / 5);
     position = Vector2D(positionDistribution(engine, params), 0);
-    shotDistribution = Defender::pseudo_random_distribution(0.02);
+    shotDistribution = pseudo_random_distribution(0.02);
 }
 
 void Defender::Alien::interact(std::shared_ptr<Entity> &e)
@@ -38,15 +38,13 @@ void Defender::Alien::interact(std::shared_ptr<Entity> &e)
             kill();
         }
 
+        Vector2D vectorTo = getSmallestVectorTo(getMiddle(), p->getMiddle());
         // If the player is within 512 pixels
-        if ((p->getPosition() - getPosition()).magnitude() <= 512 &&
-                shotDistribution(engine))
+        if (vectorTo.magnitude() <= 512 && shotDistribution(engine))
         {
-            Vector2D relativeVelocity = (p->getMiddle() - getMiddle())
-                    .normalised();
+            Vector2D relativeVelocity = vectorTo.normalised();
 
-            Vector2D newVelocity = Vector2D(p->getVelocity().x(), 0) +
-                    (relativeVelocity * 500);
+            Vector2D newVelocity = Vector2D(p->getVelocity().x(), 0) + (relativeVelocity * 500);
             Vector2D newPosition = getMiddle() + (relativeVelocity * 16);
 
             room.addEntity<AlienProjectile>("enemyShot.png", newPosition, newVelocity);
@@ -60,9 +58,7 @@ void Defender::Alien::onKill()
     for (int i = 0; i < 10; ++i)
     {
         room.addEntity<Particle>("shard.png", getMiddle(), 5,
-                                 Vector2D(particleDistribution(engine),
-                                          -120 + particleDistribution(engine)) +
-                                 velocity,
+                                 Vector2D(particleDistribution(engine), -120 + particleDistribution(engine)) + velocity,
                                  Vector2D(0, 240));
     }
 }

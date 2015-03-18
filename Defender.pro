@@ -35,7 +35,8 @@ SOURCES += \
     fighter.cpp \
     particle.cpp \
     gamecontrollermanager.cpp \
-    pauseroom.cpp
+    pauseroom.cpp \
+    defenderutils.cpp
 
 HEADERS += \
     window.h \

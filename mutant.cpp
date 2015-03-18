@@ -1,6 +1,7 @@
 #include "mutant.h"
 
 #include "player.h"
+#include "defenderutils.h"
 
 Defender::Mutant::Mutant(std::vector<std::shared_ptr<Entity>>& newEntities,
                          Defender::Room& newRoom,
@@ -15,25 +16,7 @@ void Defender::Mutant::interact(std::shared_ptr<Entity>& e)
 {
     if (auto p = std::dynamic_pointer_cast<Player>(e))
     {
-        Vector2D newDisplacement = p->getMiddle() - getMiddle();
-        double distance = newDisplacement.magnitude();
-
-        if ((p->getMiddle() - getMiddle() + Vector2D(worldWidth, 0))
-                .magnitude() < distance)
-        {
-            newDisplacement = p->getMiddle() - getMiddle()
-                    + Vector2D(worldWidth, 0);
-            distance = newDisplacement.magnitude();
-        }
-        if ((p->getMiddle() - getMiddle() - Vector2D(worldWidth, 0))
-                .magnitude() < distance)
-        {
-            newDisplacement = p->getMiddle() - getMiddle()
-                    - Vector2D(worldWidth, 0);
-            distance = newDisplacement.magnitude();
-        }
-
-        velocity = newDisplacement.normalised() * 1000;
+        velocity = getSmallestVectorTo(getMiddle(), p->getMiddle()).normalised() * 1000;
     }
 
     Alien::interact(e);

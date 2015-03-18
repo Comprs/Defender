@@ -1,10 +1,10 @@
 #include "abductor.h"
 
 #include "mutant.h"
+#include "defenderutils.h"
 
-Defender::Abductor::Abductor(std::vector<std::shared_ptr<Entity>>& newEntities,
-                             Defender::Room& newRoom,
-                             std::shared_ptr<Defender::Texture> newTexture) :
+Defender::Abductor::Abductor(std::vector<std::shared_ptr<Entity>>& newEntities, Room& newRoom,
+                             std::shared_ptr<Texture> newTexture) :
     Alien(newEntities, newRoom, newTexture) {}
 
 void Defender::Abductor::interact(std::shared_ptr<Entity>& e)
@@ -37,23 +37,7 @@ void Defender::Abductor::interact(std::shared_ptr<Entity>& e)
             // Check that the displacement to the current interation is smaller
             // than the displacement to the current target
             // This is repeated for +worldWidth and -worldWidth
-            Vector2D displacementVector = m->getMiddle() - getMiddle();
-            if (displacementVector.magnitude() < displacementMagnitude)
-            {
-                velocity = displacementVector.normalised() * 100;
-                displacementMagnitude = displacementVector.magnitude();
-                target = m;
-            }
-            displacementVector = m->getMiddle() - getMiddle()
-                    + Vector2D(worldWidth, 0);
-            if (displacementVector.magnitude() < displacementMagnitude)
-            {
-                velocity = displacementVector.normalised() * 100;
-                displacementMagnitude = displacementVector.magnitude();
-                target = m;
-            }
-            displacementVector = m->getMiddle() - getMiddle() -
-                    Vector2D(worldWidth, 0);
+            Vector2D displacementVector = getSmallestVectorTo(getMiddle(), m->getMiddle());
             if (displacementVector.magnitude() < displacementMagnitude)
             {
                 velocity = displacementVector.normalised() * 100;

@@ -16,9 +16,8 @@ class Room;
 class Entity
 {
 public:
-    Entity(std::vector<std::shared_ptr<Entity>>& newEntities,
-           Defender::Room& newRoom,
-           std::shared_ptr<Defender::Texture> newTexture);
+    Entity(std::vector<std::shared_ptr<Entity>>& newEntities, Room& newRoom,
+           std::shared_ptr<Texture> newTexture);
     virtual void update(const double time, std::shared_ptr<Entity> self);
     virtual void draw();
     bool intersect(const Entity& e) const;
@@ -31,17 +30,17 @@ public:
     virtual SDL_Rect getBoundingBox() const;
 
 protected:
-    std::shared_ptr<Defender::Texture> texture;
+    std::shared_ptr<Texture> texture;
 
-    Defender::Vector2D position;
-    Defender::Vector2D velocity;
-    Defender::Vector2D acceleration;
+    Vector2D position;
+    Vector2D velocity;
+    Vector2D acceleration;
 
     double lifeTime = -1.0;
     bool facingRight = true;
 
     std::vector<std::shared_ptr<Entity>>& entities;
-    Defender::Room& room;
+    Room& room;
 
     bool isSame(const std::shared_ptr<Entity>& e) const;
     virtual void interact(std::shared_ptr<Entity>& e) {__unused(e);}

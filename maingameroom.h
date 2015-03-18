@@ -26,7 +26,7 @@ private:
     Vector2D playerPos = Vector2D();
 
     std::default_random_engine engine;
-    Defender::pseudo_random_distribution spawnDistribution;
+    pseudo_random_distribution spawnDistribution;
     std::normal_distribution<> spawnFighterDistribution;
     std::normal_distribution<> spawnAbductorDistribution;
 

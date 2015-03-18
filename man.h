@@ -10,9 +10,8 @@ class Man : public Entity
 {
     friend class Abductor;
 public:
-    Man(std::vector<std::shared_ptr<Entity>>& newEntities,
-        Defender::Room& newRoom,
-        std::shared_ptr<Defender::Texture> newTexture);
+    Man(std::vector<std::shared_ptr<Entity>>& newEntities, Room& newRoom,
+        std::shared_ptr<Texture> newTexture);
 
     void update(const double time, std::shared_ptr<Entity> self) override;
     bool isAbducted() const;

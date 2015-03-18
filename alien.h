@@ -9,16 +9,15 @@ namespace Defender
 class Alien : public Entity
 {
 public:
-    Alien(std::vector<std::shared_ptr<Entity>>& newEntities,
-          Defender::Room& newRoom,
-          std::shared_ptr<Defender::Texture> newTexture);
+    Alien(std::vector<std::shared_ptr<Entity>>& newEntities, Room& newRoom,
+          std::shared_ptr<Texture> newTexture);
 
 protected:
     void interact(std::shared_ptr<Entity> &e) override;
     void onKill() override;
 
     std::normal_distribution<> positionDistribution;
-    Defender::pseudo_random_distribution shotDistribution;
+    pseudo_random_distribution shotDistribution;
 };
 }
 

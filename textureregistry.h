@@ -14,11 +14,11 @@ public:
     TextureRegistry() = delete;
     static void attachRenderer(SDL_Renderer* newSdlRenderer);
     static void addTexture(const std::string& textureName);
-    static std::shared_ptr<Defender::Texture>
+    static std::shared_ptr<Texture>
     getTexture(const std::string& textureName);
 
 private:
-    static std::unordered_map<std::string, std::shared_ptr<Defender::Texture>> textures;
+    static std::unordered_map<std::string, std::shared_ptr<Texture>> textures;
     static SDL_Renderer* sdlRenderer;
 };
 }
