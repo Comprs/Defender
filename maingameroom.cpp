@@ -100,12 +100,21 @@ void Defender::MainGameRoom::updateEntity(const double time,
 
 void Defender::MainGameRoom::update(const double time)
 {
+    // Quickly reset if the player is dead
+    if (!playerAlive && (KeyboardManager::wasPressed(SDL_SCANCODE_R) ||
+                         GameControllerManager::wasPressed(SDL_CONTROLLER_BUTTON_START)))
+    {
+        game.replaceNewRoom<MainGameRoom>();
+        return;
+    }
+
     if (KeyboardManager::wasPressed(SDL_SCANCODE_ESCAPE) ||
-            GameControllerManager::wasPressed(SDL_CONTROLLER_BUTTON_BACK))
+            GameControllerManager::wasPressed(SDL_CONTROLLER_BUTTON_START))
     {
         // If the escaped is pressed, return to the main menu discarding the
         // room
         game.replaceNewRoom<MainMenu>();
+        return;
     }
 
     if (distribution(engine))
@@ -147,13 +156,6 @@ void Defender::MainGameRoom::update(const double time)
     // Assume the player is dead
     playerAlive = false;
     Room::update(time);
-
-    // Quickly reset if the player is dead
-    if (!playerAlive && (KeyboardManager::wasPressed(SDL_SCANCODE_R) ||
-                         GameControllerManager::wasPressed(SDL_CONTROLLER_BUTTON_START)))
-    {
-        game.replaceNewRoom<MainGameRoom>();
-    }
 }
 
 void Defender::MainGameRoom::incrementScore(int delta)
