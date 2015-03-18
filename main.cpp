@@ -12,11 +12,13 @@ int main()
     // error.
     try
     {
+        // Create the game
+        Defender::Game game;
+
         // Load in the font
         Defender::FontRegistry::addFont("Audiowide-Regular.ttf", 32);
 
-        // Create the game and add the first room which is the menu
-        Defender::Game game;
+        // Add the first room which is the menu
         game.replaceNewRoom<Defender::MainMenu>();
         game.begin();
     }
