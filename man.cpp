@@ -63,7 +63,7 @@ void Defender::Man::onKill()
 {
     room.incrementScore(-5);
     std::uniform_real_distribution<double> particleDistribution(-7, 7);
-    for (int i = 0; i < 50; ++i)
+    for (int i = 0; i < 20; ++i)
     {
         room.addEntity<Particle>("blood.png", getMiddle(), 5,
                                  Vector2D(particleDistribution(engine),
