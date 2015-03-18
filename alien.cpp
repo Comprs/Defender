@@ -4,13 +4,17 @@
 #include "playerprojectile.h"
 #include "alienprojectile.h"
 #include "particle.h"
+#include "maingameroom.h"
 
 Defender::Alien::Alien(std::vector<std::shared_ptr<Entity>>& newEntities,
                        Defender::Room& newRoom,
                        std::shared_ptr<Defender::Texture> newTexture) :
     Entity(newEntities, newRoom, newTexture)
 {
-    position = Vector2D(distribution(engine), 0);
+    auto params = std::normal_distribution<>::param_type(
+                static_cast<MainGameRoom&>(room).getPlayerPos().x() + worldWidth / 2,
+                worldWidth / 5);
+    position = Vector2D(positionDistribution(engine, params), 0);
     shotDistribution = Defender::pseudo_random_distribution(0.02);
 }
 

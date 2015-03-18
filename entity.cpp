@@ -5,9 +5,6 @@
 
 std::default_random_engine Defender::Entity::engine;
 
-std::uniform_real_distribution<double> Defender::Entity::distribution =
-        std::uniform_real_distribution<double>(0.0, Defender::worldWidth);
-
 Defender::Entity::Entity(std::vector<std::shared_ptr<Entity>>& newEntities,
                          Room& newRoom, std::shared_ptr<Texture> newTexture) :
     entities(newEntities), room(newRoom)

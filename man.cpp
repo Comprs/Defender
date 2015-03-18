@@ -3,12 +3,15 @@
 #include "playerprojectile.h"
 #include "particle.h"
 
+std::uniform_real_distribution<double> Defender::Man::positionDistribution =
+        std::uniform_real_distribution<double>(0.0, Defender::worldWidth);
+
 Defender::Man::Man(std::vector<std::shared_ptr<Entity>>& newEntities,
     Defender::Room& newRoom,
     std::shared_ptr<Defender::Texture> newTexture) :
     Entity(newEntities, newRoom, newTexture)
 {
-    position = Vector2D(distribution(engine), worldHeight - getBoundingBox().h);
+    position = Vector2D(positionDistribution(engine), worldHeight - getBoundingBox().h);
 }
 
 void Defender::Man::interact(std::shared_ptr<Entity>& e)

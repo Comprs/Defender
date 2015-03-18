@@ -40,7 +40,7 @@ void Defender::Abductor::interact(std::shared_ptr<Entity>& e)
             Vector2D displacementVector = m->getMiddle() - getMiddle();
             if (displacementVector.magnitude() < displacementMagnitude)
             {
-                velocity = displacementVector.normalised() * 50;
+                velocity = displacementVector.normalised() * 100;
                 displacementMagnitude = displacementVector.magnitude();
                 target = m;
             }
@@ -48,7 +48,7 @@ void Defender::Abductor::interact(std::shared_ptr<Entity>& e)
                     + Vector2D(worldWidth, 0);
             if (displacementVector.magnitude() < displacementMagnitude)
             {
-                velocity = displacementVector.normalised() * 50;
+                velocity = displacementVector.normalised() * 100;
                 displacementMagnitude = displacementVector.magnitude();
                 target = m;
             }
@@ -56,7 +56,7 @@ void Defender::Abductor::interact(std::shared_ptr<Entity>& e)
                     Vector2D(worldWidth, 0);
             if (displacementVector.magnitude() < displacementMagnitude)
             {
-                velocity = displacementVector.normalised() * 50;
+                velocity = displacementVector.normalised() * 100;
                 displacementMagnitude = displacementVector.magnitude();
                 target = m;
             }
@@ -89,7 +89,7 @@ void Defender::Abductor::update(const double time, std::shared_ptr<Entity> self)
             {
                 // The abductor of its target is itself
                 // It should move up
-                velocity = Vector2D(0, -20);
+                velocity = Vector2D(0, -100);
 
                 // Set the position of the abducted
                 targetLock->setMiddle(getMiddle() + Vector2D(0, 32));

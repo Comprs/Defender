@@ -20,6 +20,7 @@ public:
 protected:
     void interact(std::shared_ptr<Entity>& e) override;
     void onKill() override;
+    static std::uniform_real_distribution<double> positionDistribution;
 
 private:
     std::weak_ptr<Entity> abductor;

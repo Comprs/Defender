@@ -53,7 +53,6 @@ protected:
     void setMiddle(const Vector2D& a);
 
     static std::default_random_engine engine;
-    static std::uniform_real_distribution<double> distribution;
 
 private:
     bool dead = false;

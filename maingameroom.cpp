@@ -9,13 +9,16 @@
 #include "gamecontrollermanager.h"
 #include "abductor.h"
 #include "fighter.h"
+#include "mutant.h"
 #include "man.h"
 #include "alienprojectile.h"
 
 Defender::MainGameRoom::MainGameRoom(Game &newGame) :
     Room(newGame, Defender::worldWidth, Defender::worldHeight)
 {
-    distribution = Defender::pseudo_random_distribution(0.005);
+    spawnDistribution = Defender::pseudo_random_distribution(0.0025);
+    spawnFighterDistribution = std::normal_distribution<>(1, 0.5);
+    spawnAbductorDistribution = std::normal_distribution<>(3, 1.5);
     engine.seed(std::chrono::high_resolution_clock::now().time_since_epoch()
                 .count());
     // Add the entities
@@ -87,6 +90,7 @@ void Defender::MainGameRoom::updateEntity(const double time,
     {
         // A player exist therefore the player is alive
         playerAlive = true;
+        playerPos = e->getPosition();
         // If the entity is the player, set the camera position such that they
         // Will appear in the centre of the screen
         cameraPos.x() = e->getPosition().x() - windowWidth / 2
@@ -117,20 +121,19 @@ void Defender::MainGameRoom::update(const double time)
         return;
     }
 
-    if (distribution(engine))
+    if (spawnDistribution(engine))
     {
-        addEntity<Abductor>("alien1.png");
-    }
-
-    if (distribution(engine))
-    {
-        addEntity<Fighter>("alien3.png");
+        int spawnCount = 0;
+        spawnCount = std::lround(spawnAbductorDistribution(engine));
+        for (int i = 0; i < spawnCount; ++i) { addEntity<Abductor>("alien1.png"); }
+        spawnCount = std::lround(spawnFighterDistribution(engine));
+        for (int i = 0; i < spawnCount; ++i) { addEntity<Fighter>("alien3.png"); }
     }
 
     while (score >= nextBombScore)
     {
         ++bombs;
-        nextBombScore += 10;
+        nextBombScore += 20;
     }
 
     if ((KeyboardManager::wasPressed(SDL_SCANCODE_SPACE) ||
@@ -143,9 +146,10 @@ void Defender::MainGameRoom::update(const double time)
         {
             if (std::shared_ptr<Alien> a = std::dynamic_pointer_cast<Alien>(e))
             {
+                if (typeid(*a) == typeid(Mutant)) { break; }
                 a->kill();
             }
-            if (std::shared_ptr<AlienProjectile> a =
+            else if (std::shared_ptr<AlienProjectile> a =
                     std::dynamic_pointer_cast<AlienProjectile>(e))
             {
                 a->kill();
@@ -161,4 +165,9 @@ void Defender::MainGameRoom::update(const double time)
 void Defender::MainGameRoom::incrementScore(int delta)
 {
     if (playerAlive) { score += delta; }
+}
+
+Defender::Vector2D Defender::MainGameRoom::getPlayerPos()
+{
+    return playerPos;
 }
