@@ -19,7 +19,6 @@ Defender::Window::Window()
     // Create the renderer from the window
     sdlRenderer = SDL_CreateRenderer(sdlWindow, -1,
                                      SDL_RENDERER_ACCELERATED |
-                                     SDL_RENDERER_PRESENTVSYNC |
                                      SDL_RENDERER_TARGETTEXTURE);
     if (sdlRenderer == nullptr)
     {
