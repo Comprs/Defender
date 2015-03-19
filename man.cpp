@@ -72,5 +72,6 @@ void Defender::Man::onKill()
                                  velocity,
                                  Vector2D(0, 240));
     }
+    room.addEntity<Man>("man.png");
     Entity::onKill();
 }
