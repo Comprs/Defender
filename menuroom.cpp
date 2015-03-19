@@ -33,6 +33,8 @@ void Defender::MenuRoom::update(const double)
     }
 }
 
+void Defender::MenuRoom::updateEntity(const double, std::shared_ptr<Entity>) {}
+
 void Defender::MenuRoom::draw()
 {
     Renderer("Audiowide-Regular.ttf", game.getRenderer(), menuTitle).setPosition(40, 0).commit();

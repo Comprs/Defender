@@ -13,16 +13,16 @@ Defender::Entity::Entity(Room& room, std::shared_ptr<Texture> texture) : texture
     engine.seed(std::chrono::high_resolution_clock::now().time_since_epoch().count());
 }
 
-void Defender::Entity::update(const double time, std::shared_ptr<Entity> self)
+void Defender::Entity::update(const double time, std::shared_ptr<Entity>)
 {
-    __unused(self);
-
     // Perform all updates needed
     interactAll();
     updatePosition(time);
     bound();
     updateLifeTime(time);
 }
+
+void Defender::Entity::interact(std::shared_ptr<Entity>&) {}
 
 void Defender::Entity::interactAll()
 {
