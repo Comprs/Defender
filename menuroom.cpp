@@ -1,7 +1,6 @@
 #include "menuroom.h"
 
-#include "keyboardmanager.h"
-#include "gamecontrollermanager.h"
+#include "inputmanager.h"
 
 Defender::MenuRoom::MenuRoom(Game &game, int numbSelections, std::string menuTitle) :
     Room(game), numbSelections(numbSelections), menuTitle(menuTitle) {}

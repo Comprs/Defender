@@ -37,7 +37,8 @@ SOURCES += \
     gamecontrollermanager.cpp \
     pauseroom.cpp \
     defenderutils.cpp \
-    menuroom.cpp
+    menuroom.cpp \
+    inputmanager.cpp
 
 HEADERS += \
     window.h \
@@ -68,4 +69,5 @@ HEADERS += \
     defenderutils.h \
     gamecontrollermanager.h \
     pauseroom.h \
-    menuroom.h
+    menuroom.h \
+    inputmanager.h

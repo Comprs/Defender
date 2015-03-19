@@ -1,8 +1,7 @@
 #include "player.h"
 
 #include "globals.h"
-#include "keyboardmanager.h"
-#include "gamecontrollermanager.h"
+#include "inputmanager.h"
 #include "playerprojectile.h"
 #include "alienprojectile.h"
 #include "particle.h"
@@ -140,9 +139,7 @@ void Defender::Player::update(const double time, std::shared_ptr<Entity> self)
     }
 
     // Fire a projectile if the return key was pressed
-    if (KeyboardManager::wasPressed(SDL_SCANCODE_RETURN) ||
-            GameControllerManager::wasPressed(SDL_CONTROLLER_BUTTON_A) ||
-            GameControllerManager::wasPressed(SDL_CONTROLLER_BUTTON_RIGHTSHOULDER))
+    if (ifOneWasPressed(SDL_SCANCODE_RETURN, SDL_CONTROLLER_BUTTON_A, SDL_CONTROLLER_BUTTON_RIGHTSHOULDER))
     {
         Vector2D startPosition = position;
         // Set the x position based on direction of the player so that the

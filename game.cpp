@@ -3,8 +3,7 @@
 #include <stdexcept>
 #include <fstream>
 #include "textureregistry.h"
-#include "keyboardmanager.h"
-#include "gamecontrollermanager.h"
+#include "inputmanager.h"
 
 Defender::Game::Game()
 {
