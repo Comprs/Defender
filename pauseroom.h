@@ -1,12 +1,12 @@
 #ifndef PAUSEROOM
 #define PAUSEROOM
 
-#include "room.h"
+#include "menuroom.h"
 #include "defenderutils.h"
 
 namespace Defender
 {
-class PauseRoom : public Room
+class PauseRoom : public MenuRoom
 {
 public:
     PauseRoom(Game& newGame);
@@ -15,14 +15,7 @@ public:
     void draw() override;
 
 protected:
-    void updateEntity(const double time, std::shared_ptr<Entity> e) override
-    {
-        __unused(e, time);
-    }
-
-private:
-    int selection = 0;
-    const int numbSelections = 2;
+    void select(int selectionNumber) override;
 };
 }
 

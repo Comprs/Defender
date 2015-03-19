@@ -11,10 +11,9 @@ Defender::Alien::Alien(std::vector<std::shared_ptr<Entity>>& newEntities, Room& 
                        std::shared_ptr<Texture> newTexture) :
     Entity(newEntities, newRoom, newTexture)
 {
-    auto params = std::normal_distribution<>::param_type(
-                static_cast<MainGameRoom&>(room).getPlayerPos().x() + worldWidth / 2,
-                worldWidth / 5);
-    position = Vector2D(positionDistribution(engine, params), 0);
+    std::normal_distribution<> positionDistribution(static_cast<MainGameRoom&>(room).getPlayerPos().x() + worldWidth / 2,
+                                                    worldWidth / 5);
+    position = Vector2D(positionDistribution(engine), 0);
     shotDistribution = pseudo_random_distribution(0.02);
 }
 
@@ -43,9 +42,9 @@ void Defender::Alien::interact(std::shared_ptr<Entity> &e)
         if (vectorTo.magnitude() <= 512 && shotDistribution(engine))
         {
             Vector2D relativeVelocity = vectorTo.normalised();
-
-            Vector2D newVelocity = Vector2D(p->getVelocity().x(), 0) + (relativeVelocity * 500);
-            Vector2D newPosition = getMiddle() + (relativeVelocity * 16);
+            Vector2D newVelocity = Vector2D(p->getVelocity().x(), 0) +
+                    (relativeVelocity * alienProjectileFireRange);
+            Vector2D newPosition = getMiddle() + (relativeVelocity * alienProjectileSpeed);
 
             room.addEntity<AlienProjectile>("enemyShot.png", newPosition, newVelocity);
         }

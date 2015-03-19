@@ -27,6 +27,7 @@ Defender::Window::Window()
 
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
     SDL_RenderSetLogicalSize(sdlRenderer, windowWidth, windowHeight);
+    SDL_ShowCursor(SDL_FALSE);
 }
 
 Defender::Window::~Window()

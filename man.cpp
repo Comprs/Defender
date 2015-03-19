@@ -38,7 +38,7 @@ void Defender::Man::update(const double time, std::shared_ptr<Entity> self)
     }
     else
     {
-        acceleration = Vector2D(0, 15);
+        acceleration = Vector2D(0, manFallSpeed);
     }
 }
 
@@ -64,9 +64,9 @@ void Defender::Man::drop()
 
 void Defender::Man::onKill()
 {
-    room.incrementScore(-5);
+    room.incrementScore(manScoreDeduction);
     std::uniform_real_distribution<double> particleDistribution(-7, 7);
-    for (int i = 0; i < 20; ++i)
+    for (int i = 0; i < manParticleCount; ++i)
     {
         room.addEntity<Particle>("blood.png", getMiddle(), 5,
                                  Vector2D(particleDistribution(engine),

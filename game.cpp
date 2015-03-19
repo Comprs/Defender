@@ -110,8 +110,7 @@ void Defender::Game::begin()
 
 void Defender::Game::stop()
 {
-    std::ofstream file("highscore.dat",
-                       std::ios_base::out | std::ios_base::trunc);
+    std::ofstream file("highscore.dat", std::ios_base::out | std::ios_base::trunc);
     file << highScore;
     file.close();
     window.close();

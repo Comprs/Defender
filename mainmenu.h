@@ -1,12 +1,12 @@
 #ifndef MAINMENU_H
 #define MAINMENU_H
 
-#include "room.h"
+#include "menuroom.h"
 #include "defenderutils.h"
 
 namespace Defender
 {
-class MainMenu : public Room
+class MainMenu : public MenuRoom
 {
 public:
     MainMenu(Game& newGame);
@@ -15,14 +15,9 @@ public:
     void draw() override;
 
 protected:
-    void updateEntity(const double time, std::shared_ptr<Entity> e) override
-    {
-        __unused(e, time);
-    }
+    void select(int selectionNumber) override;
 
 private:
-    int selection = 0;
-    const int numbSelections = 3;
     double backgroundOffset = 0;
 };
 }

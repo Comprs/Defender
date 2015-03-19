@@ -16,8 +16,14 @@ void Defender::Mutant::interact(std::shared_ptr<Entity>& e)
 {
     if (auto p = std::dynamic_pointer_cast<Player>(e))
     {
-        velocity = getSmallestVectorTo(getMiddle(), p->getMiddle()).normalised() * 1000;
+        velocity = getSmallestVectorTo(getMiddle(), p->getMiddle()).normalised() * mutantSpeed;
     }
 
     Alien::interact(e);
+}
+
+void Defender::Mutant::onKill()
+{
+    room.incrementScore(mutantScore);
+    Alien::onKill();
 }

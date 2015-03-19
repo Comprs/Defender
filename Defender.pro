@@ -36,7 +36,8 @@ SOURCES += \
     particle.cpp \
     gamecontrollermanager.cpp \
     pauseroom.cpp \
-    defenderutils.cpp
+    defenderutils.cpp \
+    menuroom.cpp
 
 HEADERS += \
     window.h \
@@ -66,4 +67,5 @@ HEADERS += \
     pseudorandomdistribution.h \
     defenderutils.h \
     gamecontrollermanager.h \
-    pauseroom.h
+    pauseroom.h \
+    menuroom.h

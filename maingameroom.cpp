@@ -23,7 +23,7 @@ Defender::MainGameRoom::MainGameRoom(Game &newGame) :
                 .count());
     // Add the entities
     addEntity<Player>("player.png");
-    for (int i = 0; i < 20; ++i) { addEntity<Man>("man.png"); }
+    for (int i = 0; i < initialManCount; ++i) { addEntity<Man>("man.png"); }
 }
 
 void Defender::MainGameRoom::draw()
@@ -38,8 +38,7 @@ void Defender::MainGameRoom::draw()
     // Create a renderer to render the background
     Renderer r = Renderer("background.png");
     // Set enougth offsets to cover the whole world
-    for (int i = 0; i < width;
-         i += TextureRegistry::getTexture("background.png")->getRect().w)
+    for (int i = 0; i < width; i += TextureRegistry::getTexture("background.png")->getRect().w)
     {
         r.addOffset(i, 0);
     }
@@ -81,8 +80,7 @@ void Defender::MainGameRoom::draw()
     }
 }
 
-void Defender::MainGameRoom::updateEntity(const double time,
-                                          std::shared_ptr<Entity> e)
+void Defender::MainGameRoom::updateEntity(const double time, std::shared_ptr<Entity> e)
 {
     // Update the entities
     Room::updateEntity(time, e);
@@ -97,8 +95,7 @@ void Defender::MainGameRoom::updateEntity(const double time,
                 + TextureRegistry::getTexture("player.png")->getRect().w / 2;
 
         // Set the radar camera position such that the player is again centred
-        radarPos.x() = e->getPosition().x() / worldWidth * windowWidth
-                - radarWidth / 2;
+        radarPos.x() = e->getPosition().x() / worldWidth * windowWidth - radarWidth / 2;
     }
 }
 

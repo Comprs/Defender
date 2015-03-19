@@ -180,7 +180,7 @@ void Defender::Player::interact(std::shared_ptr<Entity>& e)
 void Defender::Player::onKill()
 {
     std::uniform_real_distribution<double> particleDistribution(-480, 480);
-    for (int i = 0; i < 200; ++i)
+    for (int i = 0; i < playerParticleCount; ++i)
     {
         room.addEntity<Particle>("playerShard.png", getMiddle(), 30,
                                  Vector2D(particleDistribution(engine),

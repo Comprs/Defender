@@ -16,7 +16,6 @@ protected:
     void interact(std::shared_ptr<Entity> &e) override;
     void onKill() override;
 
-    std::normal_distribution<> positionDistribution;
     pseudo_random_distribution shotDistribution;
 };
 }

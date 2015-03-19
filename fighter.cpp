@@ -11,12 +11,12 @@ Defender::Fighter::Fighter(std::vector<std::shared_ptr<Entity>> &newEntities,
     // 50/50 chance of facing each direction
     if (std::bernoulli_distribution(0.5)(engine))
     {
-        velocity = Vector2D(600, 0);
+        velocity = Vector2D(fighterSpeed, 0);
         facingRight = true;
     }
     else
     {
-        velocity = Vector2D(-600, 0);
+        velocity = Vector2D(-fighterSpeed, 0);
         facingRight = false;
     }
     diveDistribution = Defender::pseudo_random_distribution(0.002);
@@ -42,6 +42,6 @@ void Defender::Fighter::update(const double time, std::shared_ptr<Entity> self)
 
 void Defender::Fighter::onKill()
 {
-    room.incrementScore(1);
+    room.incrementScore(fighterScore);
     Alien::onKill();
 }
