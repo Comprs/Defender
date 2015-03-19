@@ -40,8 +40,8 @@ protected:
 
     Room& room;
 
-    bool isSame(const std::shared_ptr<Entity>& e) const;
-    virtual void interact(std::shared_ptr<Entity>& e);
+    bool isSame(const std::shared_ptr<Entity> e) const;
+    virtual void interact(std::shared_ptr<Entity> e);
     virtual void interactAll();
     virtual void updatePosition(const double time);
     virtual void bound();

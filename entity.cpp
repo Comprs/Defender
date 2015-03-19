@@ -22,7 +22,7 @@ void Defender::Entity::update(const double time, std::shared_ptr<Entity>)
     updateLifeTime(time);
 }
 
-void Defender::Entity::interact(std::shared_ptr<Entity>&) {}
+void Defender::Entity::interact(std::shared_ptr<Entity>) {}
 
 void Defender::Entity::interactAll()
 {
@@ -108,7 +108,7 @@ void Defender::Entity::kill()
     dead = true;
 }
 
-bool Defender::Entity::isSame(const std::shared_ptr<Entity> &e) const
+bool Defender::Entity::isSame(const std::shared_ptr<Entity> e) const
 {
     // Check that a normal point to the object pointed by the shared pointer is
     // the same as the normal pointer to itself
