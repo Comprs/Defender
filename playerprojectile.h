@@ -8,8 +8,7 @@ namespace Defender
 class PlayerProjectile : public Entity
 {
 public:
-    PlayerProjectile(Room& newRoom, std::shared_ptr<Texture> newTexture, Vector2D startPosition,
-                     bool startOrientation);
+    PlayerProjectile(Room& room, std::shared_ptr<Texture> texture, Vector2D position, bool orientation);
 
     SDL_Rect getBoundingBox() const override;
 };

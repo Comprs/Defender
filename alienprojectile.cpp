@@ -1,13 +1,13 @@
 #include "alienprojectile.h"
 
-Defender::AlienProjectile::
-AlienProjectile(Defender::Room& newRoom, std::shared_ptr<Defender::Texture> newTexture,
-                Vector2D startPosition, Vector2D startVelocity) :
-    Entity(newRoom, newTexture)
+Defender::AlienProjectile:: AlienProjectile(Defender::Room& room,
+                                            std::shared_ptr<Defender::Texture> texture,
+                                            Vector2D position, Vector2D velocity) :
+    Entity(room, texture)
 {
-    lifeTime = 2;
-    position = startPosition;
-    velocity = startVelocity;
+    this->position = position;
+    this->velocity = velocity;
+    this->lifeTime = 2;
 }
 
 void Defender::AlienProjectile::bound()

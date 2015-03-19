@@ -4,7 +4,7 @@
 #include "gamecontrollermanager.h"
 #include "mainmenu.h"
 
-Defender::PauseRoom::PauseRoom(Game &newGame) : MenuRoom(newGame, 2, "Paused") {}
+Defender::PauseRoom::PauseRoom(Game &game) : MenuRoom(game, 2, "Paused") {}
 
 void Defender::PauseRoom::select(int selectionNumber)
 {

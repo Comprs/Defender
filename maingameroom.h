@@ -10,7 +10,7 @@ namespace Defender
 class MainGameRoom : public Room
 {
 public:
-    MainGameRoom(Game& newGame);
+    MainGameRoom(Game& game);
 
     void update(const double time) override;
     void draw() override;

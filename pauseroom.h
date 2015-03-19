@@ -9,7 +9,7 @@ namespace Defender
 class PauseRoom : public MenuRoom
 {
 public:
-    PauseRoom(Game& newGame);
+    PauseRoom(Game& game);
 
     void update(const double time) override;
     void draw() override;

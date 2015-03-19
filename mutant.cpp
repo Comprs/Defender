@@ -3,11 +3,10 @@
 #include "player.h"
 #include "defenderutils.h"
 
-Defender::Mutant::Mutant(Defender::Room& newRoom, std::shared_ptr<Defender::Texture> newTexture,
-                         Vector2D startPosition) :
-    Alien(newRoom, newTexture)
+Defender::Mutant::Mutant(Defender::Room& room, std::shared_ptr<Defender::Texture> texture,
+                         Vector2D position) : Alien(room, texture)
 {
-    position = startPosition;
+    this->position = position;
 }
 
 void Defender::Mutant::interact(std::shared_ptr<Entity>& e)

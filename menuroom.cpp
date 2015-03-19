@@ -3,13 +3,11 @@
 #include "keyboardmanager.h"
 #include "gamecontrollermanager.h"
 
-Defender::MenuRoom::MenuRoom(Game &newGame, int newNumbSelections, std::string newMenuTitle) :
-    Room(newGame), numbSelections(newNumbSelections), menuTitle(newMenuTitle) {}
+Defender::MenuRoom::MenuRoom(Game &game, int numbSelections, std::string menuTitle) :
+    Room(game), numbSelections(numbSelections), menuTitle(menuTitle) {}
 
-void Defender::MenuRoom::update(const double time)
+void Defender::MenuRoom::update(const double)
 {
-    __unused(time);
-
     // Change the selection
     if (KeyboardManager::wasPressed(SDL_SCANCODE_DOWN) ||
             KeyboardManager::wasPressed(SDL_SCANCODE_S) ||

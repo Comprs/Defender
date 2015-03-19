@@ -8,9 +8,8 @@ namespace Defender
 class Particle : public Entity
 {
 public:
-    Particle(Room& newRoom, std::shared_ptr<Texture> newTexture, Vector2D newPosition,
-             int newLifeTime = -1, Vector2D newVelocity = Vector2D(),
-             Vector2D newAcceleration = Vector2D());
+    Particle(Room& room, std::shared_ptr<Texture> texture, Vector2D position, int lifeTime = -1,
+             Vector2D velocity = Vector2D(), Vector2D acceleration = Vector2D());
 
 protected:
     void bound() override;

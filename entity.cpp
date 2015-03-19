@@ -5,18 +5,12 @@
 
 std::default_random_engine Defender::Entity::engine;
 
-Defender::Entity::Entity(Room& newRoom, std::shared_ptr<Texture> newTexture) : room(newRoom)
+Defender::Entity::Entity(Room& room, std::shared_ptr<Texture> texture) : texture(texture),
+    position(Vector2D()), velocity(Vector2D()), acceleration(Vector2D()), room(room)
 {
-    texture = newTexture;
-
     // Seed the random engine so that the positions generated won't be the same
     // each time the game is run
-    engine.seed(std::chrono::high_resolution_clock::now().time_since_epoch()
-                .count());
-
-    position = Vector2D();
-    velocity = Vector2D();
-    acceleration = Vector2D();
+    engine.seed(std::chrono::high_resolution_clock::now().time_since_epoch().count());
 }
 
 void Defender::Entity::update(const double time, std::shared_ptr<Entity> self)

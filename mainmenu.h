@@ -9,7 +9,7 @@ namespace Defender
 class MainMenu : public MenuRoom
 {
 public:
-    MainMenu(Game& newGame);
+    MainMenu(Game& game);
 
     void update(const double time) override;
     void draw() override;

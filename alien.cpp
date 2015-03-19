@@ -7,13 +7,12 @@
 #include "maingameroom.h"
 #include "defenderutils.h"
 
-Defender::Alien::Alien(Room& newRoom, std::shared_ptr<Texture> newTexture) :
-    Entity(newRoom, newTexture)
+Defender::Alien::Alien(Room& room, std::shared_ptr<Texture> texture) : Entity(room, texture)
 {
-    std::normal_distribution<> positionDistribution(static_cast<MainGameRoom&>(room).getPlayerPos().x() + worldWidth / 2,
-                                                    worldWidth / 5);
-    position = Vector2D(positionDistribution(engine), 0);
-    shotDistribution = pseudo_random_distribution(0.02);
+    double playerPosition = static_cast<MainGameRoom&>(this->room).getPlayerPos().x();
+    std::normal_distribution<> positionDistribution(playerPosition + worldWidth / 2, worldWidth / 5);
+    this->position = Vector2D(positionDistribution(engine), 0);
+    this->shotDistribution = pseudo_random_distribution(0.02);
 }
 
 void Defender::Alien::interact(std::shared_ptr<Entity> &e)

@@ -12,8 +12,8 @@ class Texture
 {
     friend class Renderer;
 public:
-    Texture(SDL_Renderer* newSdlRenderer, const int width, const int height);
-    Texture(SDL_Renderer* newSdlRenderer, const std::string& fileName);
+    Texture(SDL_Renderer* sdlRenderer, const int width, const int height);
+    Texture(SDL_Renderer* sdlRenderer, const std::string& fileName);
 
     ~Texture();
 
@@ -28,8 +28,8 @@ public:
 
 private:
     Texture(SDL_Renderer *newSdlRenderer, SDL_Texture* newSdlTexture);
-    SDL_Texture* sdlTexture = nullptr;
     SDL_Renderer* sdlRenderer = nullptr;
+    SDL_Texture* sdlTexture = nullptr;
     SDL_Rect sdlRect;
 };
 }

@@ -2,11 +2,9 @@
 
 #include <algorithm>
 
-Defender::Room::Room(Game& newGame, int newWidth, int newHeight) :
-    width(newWidth), height(newHeight), game(newGame) {}
+Defender::Room::Room(Game& game, int width, int height) : width(width), height(height), game(game) {}
 
-Defender::Room::Room(Game& newGame) :
-    Defender::Room::Room(newGame, 512, 512) {}
+Defender::Room::Room(Game& game) : Defender::Room::Room(game, 512, 512) {}
 
 Defender::Room::~Room()
 {

@@ -3,20 +3,11 @@
 #include "textureregistry.h"
 #include "fontregistry.h"
 
-Defender::Renderer::Renderer(Defender::Texture &texture)
+Defender::Renderer::Renderer(Defender::Texture& texture) : sdlRenderer(texture.sdlRenderer),
+    sdlTexture(texture.sdlTexture), srcRect(texture.sdlRect), destRect(texture.sdlRect),
+    angle(0), flip(SDL_FLIP_NONE)
 {
-    // Extract values from the texture
-    sdlRenderer = texture.sdlRenderer;
-    sdlTexture = texture.sdlTexture;
-
-    srcRect = texture.sdlRect;
-    destRect = texture.sdlRect;
-
-    // Set the defaults
-    angle = 0;
-    centre = {destRect.x / 2, destRect.y / 2};
-    flip = SDL_FLIP_NONE;
-
+    this->centre = {this->destRect.x / 2, this->destRect.y / 2};
     offsets = {Vector2D()};
 }
 
@@ -24,83 +15,74 @@ Defender::Renderer::Renderer(Defender::Texture &texture)
 Defender::Renderer::Renderer(const std::string &textureName) :
     Renderer(*TextureRegistry::getTexture(textureName)) {}
 
-Defender::Renderer::Renderer(TTFFont &font, SDL_Renderer *newSdlRenderer,
-                             const std::string &text)
+Defender::Renderer::Renderer(TTFFont &font, SDL_Renderer* sdlRenderer, const std::string& text) :
+    sdlRenderer(sdlRenderer), angle(0), flip(SDL_FLIP_NONE)
 {
-    sdlRenderer = newSdlRenderer;
-
     // Render the text
-    SDL_Surface* tempsurface = TTF_RenderUTF8_Blended(font.sdlFont,
-                                                      text.c_str(),
-                                                      {255, 255, 255, 255});
+    SDL_Surface* tempsurface = TTF_RenderUTF8_Blended(font.sdlFont, text.c_str(), {255, 255, 255, 255});
 
     // Convert the rendered surface into a texure
-    sdlTexture = SDL_CreateTextureFromSurface(sdlRenderer, tempsurface);
+    this->sdlTexture = SDL_CreateTextureFromSurface(this->sdlRenderer, tempsurface);
     // Set the responsibility to destroy the texture
-    destroyTexture = true;
+    this->destroyTexture = true;
 
     // Destroy the surface
     SDL_FreeSurface(tempsurface);
     tempsurface = nullptr;
 
     // Set the size of the source rectangle
-    srcRect = {0, 0, 0, 0};
-    SDL_QueryTexture(sdlTexture, nullptr, nullptr, &srcRect.w, &srcRect.h);
+    this->srcRect = {0, 0, 0, 0};
+    SDL_QueryTexture(this->sdlTexture, nullptr, nullptr, &this->srcRect.w, &this->srcRect.h);
 
-    // Set the defaults
-    destRect = srcRect;
-    angle = 0;
-    centre = {destRect.x / 2, destRect.y / 2};
-    flip = SDL_FLIP_NONE;
-
+    this->destRect = this->srcRect;
+    this->centre = {this->destRect.x / 2, this->destRect.y / 2};
     offsets = {Vector2D()};
 }
 
 // If a string is passed rather that a font, it should retrive the font from the
 // font registry
-Defender::Renderer::Renderer(const std::string &fontName,
-                             SDL_Renderer *sdlRenderer,
-                             const std::string &text) :
+Defender::Renderer::Renderer(const std::string& fontName, SDL_Renderer* sdlRenderer,
+                             const std::string& text) :
     Renderer(*FontRegistry::getFont(fontName), sdlRenderer, text) {}
 
 // Move constructor
 Defender::Renderer::Renderer(Renderer&& other)
 {
-    sdlRenderer = other.sdlRenderer;
+    this->sdlRenderer = other.sdlRenderer;
     other.sdlRenderer = nullptr;
 
-    sdlTexture = other.sdlTexture;
+    this->sdlTexture = other.sdlTexture;
     other.sdlTexture = nullptr;
 
-    srcRect = std::move(other.srcRect);
-    destRect = std::move(other.destRect);
-    angle = std::move(other.angle);
-    centre = std::move(other.centre);
-    flip = std::move(other.flip);
+    this->srcRect = std::move(other.srcRect);
+    this->destRect = std::move(other.destRect);
+    this->angle = std::move(other.angle);
+    this->centre = std::move(other.centre);
+    this->flip = std::move(other.flip);
 
-    offsets = std::move(other.offsets);
+    this->offsets = std::move(other.offsets);
 
-    destroyTexture = std::move(other.destroyTexture);
+    this->destroyTexture = std::move(other.destroyTexture);
 }
 
 // Move assignment
 Defender::Renderer& Defender::Renderer::operator = (Renderer&& other)
 {
-    sdlRenderer = other.sdlRenderer;
+    this->sdlRenderer = other.sdlRenderer;
     other.sdlRenderer = nullptr;
 
-    sdlTexture = other.sdlTexture;
+    this->sdlTexture = other.sdlTexture;
     other.sdlTexture = nullptr;
 
-    srcRect = std::move(other.srcRect);
-    destRect = std::move(other.destRect);
-    angle = std::move(other.angle);
-    centre = std::move(other.centre);
-    flip = std::move(other.flip);
+    this->srcRect = std::move(other.srcRect);
+    this->destRect = std::move(other.destRect);
+    this->angle = std::move(other.angle);
+    this->centre = std::move(other.centre);
+    this->flip = std::move(other.flip);
 
-    offsets = std::move(other.offsets);
+    this->offsets = std::move(other.offsets);
 
-    destroyTexture = std::move(other.destroyTexture);
+    this->destroyTexture = std::move(other.destroyTexture);
 
     return *this;
 }

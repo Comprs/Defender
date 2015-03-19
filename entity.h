@@ -16,7 +16,7 @@ class Room;
 class Entity
 {
 public:
-    Entity(Room& newRoom, std::shared_ptr<Texture> newTexture);
+    Entity(Room& room, std::shared_ptr<Texture> texture);
     virtual void update(const double time, std::shared_ptr<Entity> self);
     virtual void draw();
     bool intersect(const Entity& e) const;

@@ -3,23 +3,23 @@
 #include "globals.h"
 
 Defender::PlayerProjectile::
-PlayerProjectile(Room& newRoom, std::shared_ptr<Defender::Texture> newTexture,
-                 Vector2D startPosition, bool startOrientation) :
-  Defender::Entity(newRoom, newTexture)
+PlayerProjectile(Room& room, std::shared_ptr<Defender::Texture> texture, Vector2D position,
+                 bool orientation) : Entity(room, texture)
 {
-    position = startPosition;
-    facingRight = startOrientation;
-    lifeTime = 0.2;
+    this->position = position;
+    this->facingRight = orientation;
+    this->lifeTime = 0.2;
 
-    if (facingRight) { velocity = Vector2D(shotSpeed, 0); }
-    else { velocity = Vector2D(-shotSpeed, 0); }
+    if (this->facingRight) { this->velocity = Vector2D(shotSpeed, 0); }
+    else { this->velocity = Vector2D(-shotSpeed, 0); }
 }
 
 SDL_Rect Defender::PlayerProjectile::getBoundingBox() const
 {
     SDL_Rect r = Entity::getBoundingBox();
 
-    r.x -= r.h * 2;
+    // Increase effective height
+    r.y -= r.h * 2;
     r.h += r.h * 4;
 
     return r;

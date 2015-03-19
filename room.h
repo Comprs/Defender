@@ -13,10 +13,10 @@ class Game;
 class Entity;
 class Room
 {
-public:
     friend class Entity;
-    Room(Game& newGame);
-    Room(Game& newGame, int newWidth, int newHeight);
+public:
+    Room(Game& game);
+    Room(Game& game, int width, int height);
 
     ~Room();
 

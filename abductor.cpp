@@ -3,8 +3,7 @@
 #include "mutant.h"
 #include "defenderutils.h"
 
-Defender::Abductor::Abductor(Room& newRoom, std::shared_ptr<Texture> newTexture) :
-    Alien(newRoom, newTexture) {}
+Defender::Abductor::Abductor(Room& room, std::shared_ptr<Texture> texture) : Alien(room, texture) {}
 
 void Defender::Abductor::interact(std::shared_ptr<Entity>& e)
 {

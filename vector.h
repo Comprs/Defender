@@ -11,14 +11,14 @@ class Vector final
 {
 public:
     // Constructor
-    Vector() { values = {0}; }
+    Vector() { this->values = {0}; }
 
     template <typename... Args>
     Vector(Args... args)
     {
         static_assert(dim >= sizeof...(args), "Too many parameters");
         static_assert(dim <= sizeof...(args), "Not enough parameters");
-        addValue(0, args...);
+        this->addValue(0, args...);
     }
 
     // Get the x value ([0]) for Vector with dim of at least 1

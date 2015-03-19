@@ -1,14 +1,13 @@
 #include "particle.h"
 
-Defender::Particle::Particle(Defender::Room &newRoom, std::shared_ptr<Defender::Texture> newTexture,
-                             Vector2D newPosition, int newLifeTime, Vector2D newVelocity,
-                             Vector2D newAcceleration) :
-    Entity(newRoom, newTexture)
+Defender::Particle::Particle(Defender::Room &room, std::shared_ptr<Defender::Texture> texture,
+                             Vector2D position, int lifeTime, Vector2D velocity,
+                             Vector2D acceleration) : Entity(room, texture)
 {
-    lifeTime = newLifeTime;
-    position = newPosition;
-    velocity = newVelocity;
-    acceleration = newAcceleration;
+    this->position = position;
+    this->velocity = velocity;
+    this->acceleration = acceleration;
+    this->lifeTime = lifeTime;
 }
 
 void Defender::Particle::bound()

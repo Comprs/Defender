@@ -1,24 +1,24 @@
 #include "fighter.h"
 
-Defender::Fighter::Fighter(Defender::Room &newRoom, std::shared_ptr<Defender::Texture> newTexture) :
-    Alien(newRoom, newTexture)
+Defender::Fighter::Fighter(Defender::Room &room, std::shared_ptr<Defender::Texture> texture) :
+    Alien(room, texture)
 {
     // Always accelerate upwards
-    acceleration = Vector2D(0, -240);
+    this->acceleration = Vector2D(0, -240);
 
     // 50/50 chance of facing each direction
     if (std::bernoulli_distribution(0.5)(engine))
     {
-        velocity = Vector2D(fighterSpeed, 0);
-        facingRight = true;
+        this->velocity = Vector2D(fighterSpeed, 0);
+        this->facingRight = true;
     }
     else
     {
-        velocity = Vector2D(-fighterSpeed, 0);
-        facingRight = false;
+        this->velocity = Vector2D(-fighterSpeed, 0);
+        this->facingRight = false;
     }
-    diveDistribution = Defender::pseudo_random_distribution(0.002);
-    swapDistrubution = Defender::pseudo_random_distribution(0.001);
+    this->diveDistribution = Defender::pseudo_random_distribution(0.002);
+    this->swapDistrubution = Defender::pseudo_random_distribution(0.001);
 }
 
 void Defender::Fighter::update(const double time, std::shared_ptr<Entity> self)

@@ -8,8 +8,7 @@ namespace Defender
 class AlienProjectile : public Entity
 {
 public:
-    AlienProjectile(Room& newRoom, std::shared_ptr<Texture> newTexture, Vector2D startPosition,
-                    Vector2D startVelocity);
+    AlienProjectile(Room& room, std::shared_ptr<Texture> texture, Vector2D position, Vector2D velocity);
 
 protected:
     void bound() override;

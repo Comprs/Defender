@@ -9,7 +9,7 @@ namespace Defender
 class Alien : public Entity
 {
 public:
-    Alien(Room& newRoom, std::shared_ptr<Texture> newTexture);
+    Alien(Room& room, std::shared_ptr<Texture> texture);
 
 protected:
     void interact(std::shared_ptr<Entity> &e) override;

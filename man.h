@@ -10,7 +10,7 @@ class Man : public Entity
 {
     friend class Abductor;
 public:
-    Man(Room& newRoom, std::shared_ptr<Texture> newTexture);
+    Man(Room& room, std::shared_ptr<Texture> texture);
 
     void update(const double time, std::shared_ptr<Entity> self) override;
     bool isAbducted() const;

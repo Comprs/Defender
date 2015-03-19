@@ -1,10 +1,9 @@
 #include "clock.h"
 
-Defender::Clock::Clock()
+Defender::Clock::Clock() : timeSpan(0.0)
 {
-    t1 = std::chrono::high_resolution_clock::now();
-    t2 = t1;
-    timeSpan = 0.0;
+    this->t1 = std::chrono::high_resolution_clock::now();
+    this->t2 = this->t1;
 }
 
 void Defender::Clock::tick(double desiredFrameRate = 0.0)

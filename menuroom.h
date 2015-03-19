@@ -8,7 +8,7 @@ namespace Defender
 class MenuRoom : public Room
 {
 public:
-    MenuRoom(Game& newGame, int newNumbSelections, std::string newMenuTitle);
+    MenuRoom(Game& game, int numbSelections, std::string menuTitle);
 
     void update(const double time) override;
     void draw() override;

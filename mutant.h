@@ -8,7 +8,7 @@ namespace Defender
 class Mutant : public Alien
 {
 public:
-    Mutant(Room& newRoom, std::shared_ptr<Texture> newTexture, Vector2D startPosition);
+    Mutant(Room& room, std::shared_ptr<Texture> texture, Vector2D position);
 
 protected:
     void interact(std::shared_ptr<Entity>& e) override;

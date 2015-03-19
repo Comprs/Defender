@@ -9,12 +9,12 @@
 Defender::Game::Game()
 {
     // Attach renderer to the texture registry retrived from the window
-    TextureRegistry::attachRenderer(getRenderer());
-    clear();
-    present();
+    TextureRegistry::attachRenderer(this->getRenderer());
+    this->clear();
+    this->present();
 
     std::ifstream file("highscore.dat");
-    file >> highScore;
+    file >> this->highScore;
     file.close();
 }
 
