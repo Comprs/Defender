@@ -5,9 +5,7 @@
 
 std::default_random_engine Defender::Entity::engine;
 
-Defender::Entity::Entity(std::vector<std::shared_ptr<Entity>>& newEntities,
-                         Room& newRoom, std::shared_ptr<Texture> newTexture) :
-    entities(newEntities), room(newRoom)
+Defender::Entity::Entity(Room& newRoom, std::shared_ptr<Texture> newTexture) : room(newRoom)
 {
     texture = newTexture;
 
@@ -34,7 +32,7 @@ void Defender::Entity::update(const double time, std::shared_ptr<Entity> self)
 
 void Defender::Entity::interactAll()
 {
-    for (std::shared_ptr<Entity> e : entities)
+    for (std::shared_ptr<Entity> e : room.entities)
     {
         // Don't interact with itself
         if (isSame(e)) { continue; }

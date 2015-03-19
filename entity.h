@@ -16,8 +16,7 @@ class Room;
 class Entity
 {
 public:
-    Entity(std::vector<std::shared_ptr<Entity>>& newEntities, Room& newRoom,
-           std::shared_ptr<Texture> newTexture);
+    Entity(Room& newRoom, std::shared_ptr<Texture> newTexture);
     virtual void update(const double time, std::shared_ptr<Entity> self);
     virtual void draw();
     bool intersect(const Entity& e) const;
@@ -39,7 +38,6 @@ protected:
     double lifeTime = -1.0;
     bool facingRight = true;
 
-    std::vector<std::shared_ptr<Entity>>& entities;
     Room& room;
 
     bool isSame(const std::shared_ptr<Entity>& e) const;

@@ -6,10 +6,8 @@
 std::uniform_real_distribution<double> Defender::Man::positionDistribution =
         std::uniform_real_distribution<double>(0.0, Defender::worldWidth);
 
-Defender::Man::Man(std::vector<std::shared_ptr<Entity>>& newEntities,
-    Defender::Room& newRoom,
-    std::shared_ptr<Defender::Texture> newTexture) :
-    Entity(newEntities, newRoom, newTexture)
+Defender::Man::Man(Defender::Room& newRoom, std::shared_ptr<Defender::Texture> newTexture) :
+    Entity(newRoom, newTexture)
 {
     position = Vector2D(positionDistribution(engine), worldHeight - getBoundingBox().h);
 }

@@ -10,8 +10,7 @@ class Man;
 class Abductor : public Alien
 {
 public:
-    Abductor(std::vector<std::shared_ptr<Entity>>& newEntities, Room& newRoom,
-             std::shared_ptr<Texture> newTexture);
+    Abductor(Room& newRoom, std::shared_ptr<Texture> newTexture);
 
 protected:
     void interact(std::shared_ptr<Entity> &e) override;

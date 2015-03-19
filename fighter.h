@@ -8,8 +8,7 @@ namespace Defender
 class Fighter : public Alien
 {
 public:
-    Fighter(std::vector<std::shared_ptr<Entity>>& newEntities, Room& newRoom,
-            std::shared_ptr<Texture> newTexture);
+    Fighter(Room& newRoom, std::shared_ptr<Texture> newTexture);
 
 protected:
     void update(const double time, std::shared_ptr<Entity> self) override;

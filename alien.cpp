@@ -7,9 +7,8 @@
 #include "maingameroom.h"
 #include "defenderutils.h"
 
-Defender::Alien::Alien(std::vector<std::shared_ptr<Entity>>& newEntities, Room& newRoom,
-                       std::shared_ptr<Texture> newTexture) :
-    Entity(newEntities, newRoom, newTexture)
+Defender::Alien::Alien(Room& newRoom, std::shared_ptr<Texture> newTexture) :
+    Entity(newRoom, newTexture)
 {
     std::normal_distribution<> positionDistribution(static_cast<MainGameRoom&>(room).getPlayerPos().x() + worldWidth / 2,
                                                     worldWidth / 5);

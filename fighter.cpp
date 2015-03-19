@@ -1,9 +1,7 @@
 #include "fighter.h"
 
-Defender::Fighter::Fighter(std::vector<std::shared_ptr<Entity>> &newEntities,
-                           Defender::Room &newRoom,
-                           std::shared_ptr<Defender::Texture> newTexture) :
-    Alien(newEntities, newRoom, newTexture)
+Defender::Fighter::Fighter(Defender::Room &newRoom, std::shared_ptr<Defender::Texture> newTexture) :
+    Alien(newRoom, newTexture)
 {
     // Always accelerate upwards
     acceleration = Vector2D(0, -240);

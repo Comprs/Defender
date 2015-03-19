@@ -14,6 +14,7 @@ class Entity;
 class Room
 {
 public:
+    friend class Entity;
     Room(Game& newGame);
     Room(Game& newGame, int newWidth, int newHeight);
 
@@ -30,7 +31,7 @@ public:
     template<typename T, typename... Args>
     void addEntity(const std::string& textureName, Args... args)
     {
-        entityQueue.push(std::make_shared<T>(entities, *this,
+        entityQueue.push(std::make_shared<T>(*this,
                                              TextureRegistry::getTexture(textureName), args...));
     }
 
