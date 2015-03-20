@@ -9,14 +9,15 @@ Defender::Mutant::Mutant(Defender::Room& room, std::shared_ptr<Defender::Texture
     this->position = position;
 }
 
-void Defender::Mutant::interact(std::shared_ptr<Entity>& e)
+void Defender::Mutant::interact(Entity &entity)
 {
-    if (auto p = std::dynamic_pointer_cast<Player>(e))
-    {
-        velocity = getSmallestVectorTo(getMiddle(), p->getMiddle()).normalised() * mutantSpeed;
-    }
+    entity.interact(*this);
+}
 
-    Alien::interact(e);
+void Defender::Mutant::interact(Player &player)
+{
+    velocity = getSmallestVectorTo(getMiddle(), player.getMiddle()).normalised() * mutantSpeed;
+    Alien::interact(player);
 }
 
 void Defender::Mutant::onKill()
@@ -24,3 +25,5 @@ void Defender::Mutant::onKill()
     room.incrementScore(mutantScore);
     Alien::onKill();
 }
+
+void Defender::Mutant::interactWithBomb() {}

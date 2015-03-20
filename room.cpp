@@ -2,7 +2,8 @@
 
 #include <algorithm>
 
-Defender::Room::Room(Game& game, int width, int height) : width(width), height(height), game(game) {}
+Defender::Room::Room(Game& game, int width, int height) : width(width), height(height),
+    game(game) {}
 
 Defender::Room::Room(Game& game) : Defender::Room::Room(game, 512, 512) {}
 
@@ -16,7 +17,7 @@ void Defender::Room::update(const double time)
     // Update the entities
     for (std::shared_ptr<Entity> e : entities)
     {
-        updateEntity(time, e);
+        updateEntity(time, *e);
     }
 
     // Remove dead entities
@@ -32,9 +33,9 @@ void Defender::Room::update(const double time)
     }
 }
 
-void Defender::Room::updateEntity(const double time, std::shared_ptr<Entity> e)
+void Defender::Room::updateEntity(const double time, Entity& entity)
 {
-    e->update(time, e);
+    entity.update(time);
 }
 
 void Defender::Room::draw()

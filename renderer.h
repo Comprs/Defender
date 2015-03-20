@@ -53,9 +53,7 @@ private:
     double angle;
     SDL_Point centre;
     SDL_RendererFlip flip;
-
     std::vector<Vector2D> offsets;
-
     bool destroyTexture = false;
 };
 }

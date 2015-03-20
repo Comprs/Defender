@@ -35,7 +35,8 @@ void Defender::MainGameRoom::draw()
     // Create a renderer to render the background
     Renderer r = Renderer("background.png");
     // Set enougth offsets to cover the whole world
-    for (int i = 0; i < width; i += TextureRegistry::getTexture("background.png")->getRect().w)
+    for (int i = 0; i < width; i +=
+         TextureRegistry::getTexture("background.png")->getRect().w)
     {
         r.addOffset(i, 0);
     }
@@ -77,22 +78,22 @@ void Defender::MainGameRoom::draw()
     }
 }
 
-void Defender::MainGameRoom::updateEntity(const double time, std::shared_ptr<Entity> e)
+void Defender::MainGameRoom::updateEntity(const double time, Entity& entity)
 {
     // Update the entities
-    Room::updateEntity(time, e);
-    if (typeid(*e) == typeid(Player))
+    Room::updateEntity(time, entity);
+    if (typeid(entity) == typeid(Player))
     {
         // A player exist therefore the player is alive
         playerAlive = true;
-        playerPos = e->getPosition();
+        playerPos = entity.getPosition();
         // If the entity is the player, set the camera position such that they
         // Will appear in the centre of the screen
-        cameraPos.x() = e->getPosition().x() - windowWidth / 2
+        cameraPos.x() = entity.getPosition().x() - windowWidth / 2
                 + TextureRegistry::getTexture("player.png")->getRect().w / 2;
 
         // Set the radar camera position such that the player is again centred
-        radarPos.x() = e->getPosition().x() / worldWidth * windowWidth - radarWidth / 2;
+        radarPos.x() = entity.getPosition().x() / worldWidth * windowWidth - radarWidth / 2;
     }
 }
 
@@ -128,22 +129,13 @@ void Defender::MainGameRoom::update(const double time)
         nextBombScore += 20;
     }
 
-    if (ifOneWasPressed(SDL_SCANCODE_SPACE, SDL_CONTROLLER_BUTTON_X, SDL_CONTROLLER_BUTTON_LEFTSHOULDER) &&
-            bombs > 0 && playerAlive)
+    if (ifOneWasPressed(SDL_SCANCODE_SPACE, SDL_CONTROLLER_BUTTON_X,
+                        SDL_CONTROLLER_BUTTON_LEFTSHOULDER) && bombs > 0 && playerAlive)
     {
         --bombs;
-        for (std::shared_ptr<Entity> e: entities)
+        for (std::shared_ptr<Entity> entity: entities)
         {
-            if (std::shared_ptr<Alien> a = std::dynamic_pointer_cast<Alien>(e))
-            {
-                if (typeid(*a) == typeid(Mutant)) { break; }
-                a->kill();
-            }
-            else if (std::shared_ptr<AlienProjectile> a =
-                    std::dynamic_pointer_cast<AlienProjectile>(e))
-            {
-                a->kill();
-            }
+            entity->interactWithBomb();
         }
     }
 

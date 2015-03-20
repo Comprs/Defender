@@ -18,7 +18,7 @@ public:
     Vector2D getPlayerPos();
 
 protected:
-    void updateEntity(const double time, std::shared_ptr<Entity> e) override;
+    void updateEntity(const double time, Entity& entity) override;
 
 private:
     Vector2D cameraPos = Vector2D();

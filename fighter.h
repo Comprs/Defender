@@ -9,13 +9,14 @@ class Fighter : public Alien
 {
 public:
     Fighter(Room& room, std::shared_ptr<Texture> texture);
+    void interact(Entity& entity) override;
 
 protected:
-    void update(const double time, std::shared_ptr<Entity> self) override;
-    void onKill() override;
-
     pseudo_random_distribution diveDistribution;
     pseudo_random_distribution swapDistrubution;
+
+    void update(const double time) override;
+    void onKill() override;
 };
 }
 

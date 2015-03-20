@@ -12,18 +12,17 @@ class Man : public Entity
 public:
     Man(Room& room, std::shared_ptr<Texture> texture);
 
-    void update(const double time, std::shared_ptr<Entity> self) override;
+    void update(const double time) override;
+    void interact(Entity& entity) override;
+    void interact(PlayerProjectile &playerProjectile) override;
     bool isAbducted() const;
 
 protected:
-    void interact(std::shared_ptr<Entity>& e) override;
-    void onKill() override;
     static std::uniform_real_distribution<double> positionDistribution;
+    void onKill() override;
 
 private:
-    std::weak_ptr<Entity> abductor;
-    void abduct(std::weak_ptr<Entity> a);
-    void drop();
+    Abductor* abductor = nullptr;
 };
 }
 

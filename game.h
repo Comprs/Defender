@@ -17,9 +17,6 @@ public:
 
     int highScore = 0;
 
-    void begin();
-    void stop();
-
     template<typename T, typename... Args>
     void pushNewRoom(Args... args)
     {
@@ -33,9 +30,10 @@ public:
         pushNewRoom<T>(args...);
     }
 
+    void begin();
+    void stop();
     void killTopRoom();
     void toggleFullscreen();
-
     SDL_Renderer* getRenderer() const;
 
 private:

@@ -17,13 +17,12 @@ public:
     Window(Window&& other);
     Window& operator = (Window&& other);
 
-    void close();
-    bool isOpen();
-
-    void eventLoop();
-
     SDL_Window* sdlWindow = nullptr;
     SDL_Renderer* sdlRenderer = nullptr;
+
+    void close();
+    bool isOpen();
+    void eventLoop();
 
 private:
     bool open = true;

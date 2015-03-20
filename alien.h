@@ -10,12 +10,13 @@ class Alien : public Entity
 {
 public:
     Alien(Room& room, std::shared_ptr<Texture> texture);
+    void interact(Player& player) override;
+    void interact(PlayerProjectile& playerProjectile) override;
+    void interactWithBomb() override;
 
 protected:
-    void interact(std::shared_ptr<Entity> &e) override;
-    void onKill() override;
-
     pseudo_random_distribution shotDistribution;
+    void onKill() override;
 };
 }
 

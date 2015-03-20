@@ -10,6 +10,11 @@ Defender::AlienProjectile:: AlienProjectile(Defender::Room& room,
     this->lifeTime = 2;
 }
 
+void Defender::AlienProjectile::interact(Entity &entity)
+{
+    entity.interact(*this);
+}
+
 void Defender::AlienProjectile::bound()
 {
     // Wrap around horizontaly
@@ -31,4 +36,9 @@ void Defender::AlienProjectile::bound()
     {
         kill();
     }
+}
+
+void Defender::AlienProjectile::interactWithBomb()
+{
+    kill();
 }

@@ -8,9 +8,9 @@
 
 Defender::Player::Player(Room &room, std::shared_ptr<Texture> texture) : Entity(room, texture) {}
 
-void Defender::Player::update(const double time, std::shared_ptr<Entity> self)
+void Defender::Player::update(const double time)
 {
-    Entity::update(time, self);
+    Entity::update(time);
 
     double leftXAxis =
             Defender::GameControllerManager::getAxis(SDL_CONTROLLER_AXIS_LEFTX);
@@ -139,7 +139,8 @@ void Defender::Player::update(const double time, std::shared_ptr<Entity> self)
     }
 
     // Fire a projectile if the return key was pressed
-    if (ifOneWasPressed(SDL_SCANCODE_RETURN, SDL_CONTROLLER_BUTTON_A, SDL_CONTROLLER_BUTTON_RIGHTSHOULDER))
+    if (ifOneWasPressed(SDL_SCANCODE_RETURN, SDL_CONTROLLER_BUTTON_A,
+                        SDL_CONTROLLER_BUTTON_RIGHTSHOULDER))
     {
         Vector2D startPosition = position;
         // Set the x position based on direction of the player so that the
@@ -164,15 +165,17 @@ void Defender::Player::update(const double time, std::shared_ptr<Entity> self)
     }
 }
 
-void Defender::Player::interact(std::shared_ptr<Entity>& e)
+void Defender::Player::interact(Entity &entity)
 {
-    if (auto p = std::dynamic_pointer_cast<AlienProjectile>(e))
+    entity.interact(*this);
+}
+
+void Defender::Player::interact(AlienProjectile& alienProjectile)
+{
+    if (intersect(alienProjectile))
     {
-        if (intersect(*p))
-        {
-            p->kill();
-            kill();
-        }
+        alienProjectile.kill();
+        kill();
     }
 }
 

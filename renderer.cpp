@@ -19,7 +19,8 @@ Defender::Renderer::Renderer(TTFFont &font, SDL_Renderer* sdlRenderer, const std
     sdlRenderer(sdlRenderer), angle(0), flip(SDL_FLIP_NONE)
 {
     // Render the text
-    SDL_Surface* tempsurface = TTF_RenderUTF8_Blended(font.sdlFont, text.c_str(), {255, 255, 255, 255});
+    SDL_Surface* tempsurface = TTF_RenderUTF8_Blended(font.sdlFont, text.c_str(),
+    {255, 255, 255, 255});
 
     // Convert the rendered surface into a texure
     this->sdlTexture = SDL_CreateTextureFromSurface(this->sdlRenderer, tempsurface);

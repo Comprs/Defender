@@ -10,6 +10,11 @@ Defender::Particle::Particle(Defender::Room &room, std::shared_ptr<Defender::Tex
     this->lifeTime = lifeTime;
 }
 
+void Defender::Particle::interact(Entity &entity)
+{
+    entity.interact(*this);
+}
+
 void Defender::Particle::bound()
 {
     // Do not bound to the room;

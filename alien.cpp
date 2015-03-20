@@ -15,37 +15,33 @@ Defender::Alien::Alien(Room& room, std::shared_ptr<Texture> texture) : Entity(ro
     this->shotDistribution = pseudo_random_distribution(0.02);
 }
 
-void Defender::Alien::interact(std::shared_ptr<Entity> &e)
+void Defender::Alien::interact(PlayerProjectile &playerProjectile)
 {
-    // Check for collisions with the player projectile
-    if (auto p = std::dynamic_pointer_cast<PlayerProjectile>(e))
+    if (intersect(playerProjectile))
     {
-        if (intersect(*p))
-        {
-            p->kill();
-            kill();
-        }
+        playerProjectile.kill();
+        kill();
     }
-    // Check for collisions with the player
-    if (auto p = std::dynamic_pointer_cast<Player>(e))
+}
+
+void Defender::Alien::interact(Player &player)
+{
+    if (intersect(player))
     {
-        if (intersect(*p))
-        {
-            p->kill();
-            kill();
-        }
+        player.kill();
+        kill();
+    }
 
-        Vector2D vectorTo = getSmallestVectorTo(getMiddle(), p->getMiddle());
-        // If the player is within 512 pixels
-        if (vectorTo.magnitude() <= 512 && shotDistribution(engine))
-        {
-            Vector2D relativeVelocity = vectorTo.normalised();
-            Vector2D newVelocity = Vector2D(p->getVelocity().x(), 0) +
-                    (relativeVelocity * alienProjectileFireRange);
-            Vector2D newPosition = getMiddle() + (relativeVelocity * alienProjectileSpeed);
+    Vector2D vectorTo = getSmallestVectorTo(getMiddle(), player.getMiddle());
+    // If the player is within 512 pixels
+    if (vectorTo.magnitude() <= 512 && shotDistribution(engine))
+    {
+        Vector2D relativeVelocity = vectorTo.normalised();
+        Vector2D newVelocity = Vector2D(player.getVelocity().x(), 0) +
+                (relativeVelocity * alienProjectileFireRange);
+        Vector2D newPosition = getMiddle() + (relativeVelocity * alienProjectileSpeed);
 
-            room.addEntity<AlienProjectile>("enemyShot.png", newPosition, newVelocity);
-        }
+        room.addEntity<AlienProjectile>("enemyShot.png", newPosition, newVelocity);
     }
 }
 
@@ -55,7 +51,13 @@ void Defender::Alien::onKill()
     for (int i = 0; i < 10; ++i)
     {
         room.addEntity<Particle>("shard.png", getMiddle(), 5,
-                                 Vector2D(particleDistribution(engine), -120 + particleDistribution(engine)) + velocity,
+                                 Vector2D(particleDistribution(engine),
+                                          -120 + particleDistribution(engine)) + velocity,
                                  Vector2D(0, 240));
     }
+}
+
+void Defender::Alien::interactWithBomb()
+{
+    kill();
 }

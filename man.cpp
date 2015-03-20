@@ -9,25 +9,28 @@ std::uniform_real_distribution<double> Defender::Man::positionDistribution =
 Defender::Man::Man(Defender::Room& room, std::shared_ptr<Defender::Texture> texture) :
     Entity(room, texture)
 {
-    this->position = Vector2D(this->positionDistribution(this->engine), worldHeight - this->getBoundingBox().h);
+    this->position = Vector2D(this->positionDistribution(this->engine), worldHeight -
+                              this->getBoundingBox().h);
 }
 
-void Defender::Man::interact(std::shared_ptr<Entity>& e)
+void Defender::Man::interact(Entity &entity)
+{
+    entity.interact(*this);
+}
+
+void Defender::Man::interact(PlayerProjectile& playerProjectile)
 {
     // Kill if it has collieded with a playerprojectile
-    if (auto p = std::dynamic_pointer_cast<PlayerProjectile>(e))
+    if (playerProjectile.intersect(*this))
     {
-        if (p->intersect(*this))
-        {
-            p->kill();
-            kill();
-        }
+        playerProjectile.kill();
+        kill();
     }
 }
 
-void Defender::Man::update(const double time, std::shared_ptr<Entity> self)
+void Defender::Man::update(const double time)
 {
-    Entity::update(time, self);
+    Entity::update(time);
 
     // If the man is abducted, it should not fall
     if (isAbducted())
@@ -42,22 +45,7 @@ void Defender::Man::update(const double time, std::shared_ptr<Entity> self)
 
 bool Defender::Man::isAbducted() const
 {
-    // The man is considered abducted if the weak pointer to its abductor has
-    // expired
-    return !abductor.expired();
-}
-
-void Defender::Man::abduct(std::weak_ptr<Entity> a)
-{
-    // Set the weak pointer to its abductor to the pointer passed
-    abductor = a;
-}
-
-void Defender::Man::drop()
-{
-    // Null the weak pointer to its abductor. This means that it is no longer
-    // abducted
-    abductor = std::weak_ptr<Entity>();
+    return abductor != nullptr;
 }
 
 void Defender::Man::onKill()
@@ -73,5 +61,10 @@ void Defender::Man::onKill()
                                  Vector2D(0, 240));
     }
     room.addEntity<Man>("man.png");
+    if (abductor != nullptr)
+    {
+        abductor->abducting = nullptr;
+        abductor = nullptr;
+    }
     Entity::onKill();
 }

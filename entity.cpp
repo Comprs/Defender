@@ -13,7 +13,7 @@ Defender::Entity::Entity(Room& room, std::shared_ptr<Texture> texture) : texture
     engine.seed(std::chrono::high_resolution_clock::now().time_since_epoch().count());
 }
 
-void Defender::Entity::update(const double time, std::shared_ptr<Entity>)
+void Defender::Entity::update(const double time)
 {
     // Perform all updates needed
     interactAll();
@@ -22,8 +22,6 @@ void Defender::Entity::update(const double time, std::shared_ptr<Entity>)
     updateLifeTime(time);
 }
 
-void Defender::Entity::interact(std::shared_ptr<Entity>) {}
-
 void Defender::Entity::interactAll()
 {
     for (std::shared_ptr<Entity> e : room.entities)
@@ -31,7 +29,7 @@ void Defender::Entity::interactAll()
         // Don't interact with itself
         if (isSame(e)) { continue; }
         // Interact with all other entities
-        interact(e);
+        interact(*e);
     }
 }
 
@@ -174,3 +172,15 @@ void Defender::Entity::setMiddle(const Vector2D &a)
     double y = a.y() - getBoundingBox().h / 2;
     position = Vector2D(x, y);
 }
+
+void Defender::Entity::interactWithBomb() {}
+
+void Defender::Entity::interact(Abductor&) {}
+void Defender::Entity::interact(Alien&) {}
+void Defender::Entity::interact(AlienProjectile&) {}
+void Defender::Entity::interact(Fighter&) {}
+void Defender::Entity::interact(Man&) {}
+void Defender::Entity::interact(Mutant&) {}
+void Defender::Entity::interact(Particle&) {}
+void Defender::Entity::interact(Player&) {}
+void Defender::Entity::interact(PlayerProjectile&) {}

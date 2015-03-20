@@ -1,6 +1,7 @@
 #include "fighter.h"
 
-Defender::Fighter::Fighter(Defender::Room &room, std::shared_ptr<Defender::Texture> texture) :
+Defender::Fighter::Fighter(Defender::Room &room,
+                           std::shared_ptr<Defender::Texture> texture) :
     Alien(room, texture)
 {
     // Always accelerate upwards
@@ -21,7 +22,12 @@ Defender::Fighter::Fighter(Defender::Room &room, std::shared_ptr<Defender::Textu
     this->swapDistrubution = Defender::pseudo_random_distribution(0.001);
 }
 
-void Defender::Fighter::update(const double time, std::shared_ptr<Entity> self)
+void Defender::Fighter::interact(Entity &entity)
+{
+    entity.interact(*this);
+}
+
+void Defender::Fighter::update(const double time)
 {
     // If at the top, randomly dive
     if (position.y() == 0 && diveDistribution(engine))
@@ -35,7 +41,7 @@ void Defender::Fighter::update(const double time, std::shared_ptr<Entity> self)
         velocity.x() = -velocity.x();
         facingRight = !facingRight;
     }
-    Alien::update(time, self);
+    Alien::update(time);
 }
 
 void Defender::Fighter::onKill()

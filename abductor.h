@@ -9,17 +9,20 @@ namespace Defender
 class Man;
 class Abductor : public Alien
 {
+    friend class Man;
 public:
     Abductor(Room& room, std::shared_ptr<Texture> texture);
+    void interact(Entity& entity) override;
+    void interact(Man& man) override;
 
 protected:
-    void interact(std::shared_ptr<Entity> &e) override;
-    void update(const double time, std::shared_ptr<Entity> self) override;
+    void update(const double time) override;
     void onKill() override;
 
 private:
-    std::weak_ptr<Man> target;
-    std::weak_ptr<Entity> self_ptr;
+    Man* abducting = nullptr;
+    Man* target = nullptr;
+    double distanceToTarget;
 };
 }
 
