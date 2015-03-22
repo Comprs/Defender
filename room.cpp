@@ -28,7 +28,7 @@ void Defender::Room::update(const double time)
     // Add new entities
     while (entityQueue.size() > 0)
     {
-        entities.push_back(entityQueue.front());
+        entities.push_back(std::move(entityQueue.front()));
         entityQueue.pop();
     }
 }

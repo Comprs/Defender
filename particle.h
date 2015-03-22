@@ -12,6 +12,7 @@ public:
              Vector2D velocity = Vector2D(), Vector2D acceleration = Vector2D());
 
     void interact(Entity& entity) override;
+    void interactAll() override;
 
 protected:
     void bound() override;

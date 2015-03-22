@@ -13,7 +13,7 @@ void Defender::Abductor::interact(Entity& entity)
 
 void Defender::Abductor::interact(Man& man)
 {
-    if (abducting == nullptr && !man.isAbducted())
+    if (abducting == nullptr && !man.isAbducted() && !man.isDead())
     {
         Vector2D displacementVector = getSmallestVectorTo(getMiddle(), man.getMiddle());
         if (displacementVector.magnitude() < distanceToTarget)

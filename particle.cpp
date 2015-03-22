@@ -15,6 +15,8 @@ void Defender::Particle::interact(Entity& entity)
     entity.interact(*this);
 }
 
+void Defender::Particle::interactAll() {}
+
 void Defender::Particle::bound()
 {
     // Do not bound to the room;
