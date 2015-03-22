@@ -66,7 +66,7 @@ protected:
     virtual void updatePosition(const double time);
     virtual void bound();
     virtual void updateLifeTime(const double time);
-    virtual void onKill() {}
+    virtual void onKill();
     void setMiddle(const Vector2D& a);
 
 private:

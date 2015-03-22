@@ -184,3 +184,5 @@ void Defender::Entity::interact(Mutant&) {}
 void Defender::Entity::interact(Particle&) {}
 void Defender::Entity::interact(Player&) {}
 void Defender::Entity::interact(PlayerProjectile&) {}
+
+void Defender::Entity::onKill() {}
