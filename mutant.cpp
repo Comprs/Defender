@@ -9,12 +9,12 @@ Defender::Mutant::Mutant(Defender::Room& room, std::shared_ptr<Defender::Texture
     this->position = position;
 }
 
-void Defender::Mutant::interact(Entity &entity)
+void Defender::Mutant::interact(Entity& entity)
 {
     entity.interact(*this);
 }
 
-void Defender::Mutant::interact(Player &player)
+void Defender::Mutant::interact(Player& player)
 {
     velocity = getSmallestVectorTo(getMiddle(), player.getMiddle()).normalised() * mutantSpeed;
     Alien::interact(player);

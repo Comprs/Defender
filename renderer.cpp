@@ -12,10 +12,10 @@ Defender::Renderer::Renderer(Defender::Texture& texture) : sdlRenderer(texture.s
 }
 
 // If given a string, it should use this with the texture registry
-Defender::Renderer::Renderer(const std::string &textureName) :
+Defender::Renderer::Renderer(const std::string& textureName) :
     Renderer(*TextureRegistry::getTexture(textureName)) {}
 
-Defender::Renderer::Renderer(TTFFont &font, SDL_Renderer* sdlRenderer, const std::string& text) :
+Defender::Renderer::Renderer(TTFFont& font, SDL_Renderer* sdlRenderer, const std::string& text) :
     sdlRenderer(sdlRenderer), angle(0), flip(SDL_FLIP_NONE)
 {
     // Render the text
@@ -121,13 +121,13 @@ Defender::Renderer& Defender::Renderer::operator () ()
     return commit();
 }
 
-Defender::Renderer& Defender::Renderer::setSrcRect(const SDL_Rect &newSrcRect)
+Defender::Renderer& Defender::Renderer::setSrcRect(const SDL_Rect& newSrcRect)
 {
     srcRect = newSrcRect;
     return *this;
 }
 
-Defender::Renderer& Defender::Renderer::setDestRect(const SDL_Rect &newDestRect)
+Defender::Renderer& Defender::Renderer::setDestRect(const SDL_Rect& newDestRect)
 {
     destRect = newDestRect;
     return *this;
@@ -139,7 +139,7 @@ Defender::Renderer& Defender::Renderer::setAngle(const double newAngle)
     return *this;
 }
 
-Defender::Renderer& Defender::Renderer::setCentre(const SDL_Point &newCentre)
+Defender::Renderer& Defender::Renderer::setCentre(const SDL_Point& newCentre)
 {
     centre = newCentre;
     return *this;
@@ -151,8 +151,7 @@ Defender::Renderer& Defender::Renderer::setFlip(const SDL_RendererFlip newFlip)
     return *this;
 }
 
-Defender::Renderer& Defender::Renderer::setPosition(const Defender::Vector2D
-                                                    &position)
+Defender::Renderer& Defender::Renderer::setPosition(const Defender::Vector2D &position)
 {
     destRect.x = position.x();
     destRect.y = position.y();
@@ -166,7 +165,7 @@ Defender::Renderer& Defender::Renderer::setPosition(const int x, const int y)
     return *this;
 }
 
-Defender::Renderer& Defender::Renderer::addOffset(const Vector2D &offset)
+Defender::Renderer& Defender::Renderer::addOffset(const Vector2D& offset)
 {
     // Add the offset to the vector of offsets
     offsets.push_back(offset);

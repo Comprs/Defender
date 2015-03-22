@@ -22,7 +22,7 @@ Defender::Texture::Texture(SDL_Renderer* sdlRenderer, const int width, const int
 }
 
 // Load a texture
-Defender::Texture::Texture(SDL_Renderer* sdlRenderer, const std::string &fileName) :
+Defender::Texture::Texture(SDL_Renderer* sdlRenderer, const std::string& fileName) :
     sdlRenderer(sdlRenderer)
 {
     // Load the texture

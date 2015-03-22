@@ -15,7 +15,7 @@ Defender::Alien::Alien(Room& room, std::shared_ptr<Texture> texture) : Entity(ro
     this->shotDistribution = pseudo_random_distribution(0.02);
 }
 
-void Defender::Alien::interact(PlayerProjectile &playerProjectile)
+void Defender::Alien::interact(PlayerProjectile& playerProjectile)
 {
     if (intersect(playerProjectile))
     {
@@ -24,7 +24,7 @@ void Defender::Alien::interact(PlayerProjectile &playerProjectile)
     }
 }
 
-void Defender::Alien::interact(Player &player)
+void Defender::Alien::interact(Player& player)
 {
     if (intersect(player))
     {

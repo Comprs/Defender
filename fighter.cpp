@@ -1,6 +1,6 @@
 #include "fighter.h"
 
-Defender::Fighter::Fighter(Defender::Room &room,
+Defender::Fighter::Fighter(Defender::Room& room,
                            std::shared_ptr<Defender::Texture> texture) :
     Alien(room, texture)
 {
@@ -22,7 +22,7 @@ Defender::Fighter::Fighter(Defender::Room &room,
     this->swapDistrubution = Defender::pseudo_random_distribution(0.001);
 }
 
-void Defender::Fighter::interact(Entity &entity)
+void Defender::Fighter::interact(Entity& entity)
 {
     entity.interact(*this);
 }

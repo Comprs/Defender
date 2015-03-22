@@ -13,7 +13,7 @@ Defender::Man::Man(Defender::Room& room, std::shared_ptr<Defender::Texture> text
                               this->getBoundingBox().h);
 }
 
-void Defender::Man::interact(Entity &entity)
+void Defender::Man::interact(Entity& entity)
 {
     entity.interact(*this);
 }

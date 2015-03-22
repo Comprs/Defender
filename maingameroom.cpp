@@ -12,7 +12,7 @@
 #include "man.h"
 #include "alienprojectile.h"
 
-Defender::MainGameRoom::MainGameRoom(Game &game) : Room(game, worldWidth, worldHeight)
+Defender::MainGameRoom::MainGameRoom(Game& game) : Room(game, worldWidth, worldHeight)
 {
     this->spawnDistribution = Defender::pseudo_random_distribution(0.0025);
     this->spawnFighterDistribution = std::normal_distribution<>(1, 0.5);

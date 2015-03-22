@@ -128,7 +128,7 @@ bool Defender::Entity::intersect(const Entity& e) const
 }
 
 // Overload to check for intersection between itself and a SDL_Rect
-bool Defender::Entity::intersect(const SDL_Rect &r) const
+bool Defender::Entity::intersect(const SDL_Rect& r) const
 {
     SDL_Rect r2 = getBoundingBox();
 
@@ -164,7 +164,7 @@ SDL_Rect Defender::Entity::getBoundingBox() const
     return r;
 }
 
-void Defender::Entity::setMiddle(const Vector2D &a)
+void Defender::Entity::setMiddle(const Vector2D& a)
 {
     // Set the position of the middle by reducing the given value by half of the
     // bounding box

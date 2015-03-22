@@ -3,7 +3,7 @@
 std::unordered_map<std::string, std::shared_ptr<Defender::TTFFont>>
 Defender::FontRegistry::fonts;
 
-void Defender::FontRegistry::addFont(const std::string &fontName,
+void Defender::FontRegistry::addFont(const std::string& fontName,
                                      const int ptSize)
 {
     // Add the font by creating a TTFFont and add it to the registry
@@ -11,7 +11,7 @@ void Defender::FontRegistry::addFont(const std::string &fontName,
 }
 
 std::shared_ptr<Defender::TTFFont>
-Defender::FontRegistry::getFont(const std::string &fontName)
+Defender::FontRegistry::getFont(const std::string& fontName)
 {
     // If the font doesn't exist, add it
     if (fonts.count(fontName) == 0)

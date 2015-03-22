@@ -9,7 +9,7 @@ void Defender::TextureRegistry::attachRenderer(SDL_Renderer *newSdlRenderer)
     sdlRenderer = newSdlRenderer;
 }
 
-void Defender::TextureRegistry::addTexture(const std::string &textureName)
+void Defender::TextureRegistry::addTexture(const std::string& textureName)
 {
     // Create and add a texture
     textures[textureName] =
@@ -17,7 +17,7 @@ void Defender::TextureRegistry::addTexture(const std::string &textureName)
 }
 
 std::shared_ptr<Defender::Texture>
-Defender::TextureRegistry::getTexture(const std::string &textureName)
+Defender::TextureRegistry::getTexture(const std::string& textureName)
 {
     if (textures.count(textureName) == 0)
     {

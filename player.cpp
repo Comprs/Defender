@@ -6,7 +6,7 @@
 #include "alienprojectile.h"
 #include "particle.h"
 
-Defender::Player::Player(Room &room, std::shared_ptr<Texture> texture) : Entity(room, texture) {}
+Defender::Player::Player(Room& room, std::shared_ptr<Texture> texture) : Entity(room, texture) {}
 
 void Defender::Player::update(const double time)
 {
@@ -165,7 +165,7 @@ void Defender::Player::update(const double time)
     }
 }
 
-void Defender::Player::interact(Entity &entity)
+void Defender::Player::interact(Entity& entity)
 {
     entity.interact(*this);
 }

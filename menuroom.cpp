@@ -2,7 +2,7 @@
 
 #include "inputmanager.h"
 
-Defender::MenuRoom::MenuRoom(Game &game, int numbSelections, std::string menuTitle) :
+Defender::MenuRoom::MenuRoom(Game& game, int numbSelections, std::string menuTitle) :
     Room(game), numbSelections(numbSelections), menuTitle(menuTitle) {}
 
 void Defender::MenuRoom::update(const double)

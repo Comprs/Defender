@@ -64,7 +64,7 @@ public:
     }
 
     // += Overload
-    inline Vector<dim>& operator += (const Vector<dim> &a)
+    inline Vector<dim>& operator += (const Vector<dim>& a)
     {
         for(unsigned int i = 0; i < dim; ++i)
         {
@@ -74,7 +74,7 @@ public:
     }
 
     // -= Overload
-    inline Vector<dim>& operator -= (const Vector<dim> &a)
+    inline Vector<dim>& operator -= (const Vector<dim>& a)
     {
         for(unsigned int i = 0; i < dim; ++i)
         {
@@ -84,7 +84,7 @@ public:
     }
 
     // *= Overload
-    inline Vector<dim>& operator *= (const double &a)
+    inline Vector<dim>& operator *= (const double a)
     {
         for(unsigned int i = 0; i < dim; ++i)
         {
@@ -94,7 +94,7 @@ public:
     }
 
     // /= Overload
-    inline Vector<dim>& operator /= (const double &a)
+    inline Vector<dim>& operator /= (const double a)
     {
         for(unsigned int i = 0; i < dim; ++i)
         {
@@ -146,13 +146,13 @@ private:
 
     // These two functions recursively add values into the array based on the
     // passed parameter pack
-    inline void addValue(const unsigned int& index, const double& i)
+    inline void addValue(const unsigned int index, const double i)
     {
         values[index] = i;
     }
 
     template <typename... Args>
-    inline void addValue(unsigned int index, const double &i, Args... args)
+    inline void addValue(unsigned int index, const double i, Args... args)
     {
         addValue(index, i);
         addValue(++index, args...);
@@ -200,14 +200,14 @@ inline Defender::Vector<dim> operator - (const Defender::Vector<dim>& a)
 
 // * Overload
 template<unsigned int dim>
-inline Defender::Vector<dim> operator * (Defender::Vector<dim> a, const double& b)
+inline Defender::Vector<dim> operator * (Defender::Vector<dim> a, const double b)
 {
     a *= b;
     return a;
 }
 
 template<unsigned int dim>
-inline Defender::Vector<dim> operator * (const double& b, Defender::Vector<dim> a)
+inline Defender::Vector<dim> operator * (const double b, Defender::Vector<dim> a)
 {
     a *= b;
     return a;
@@ -215,7 +215,7 @@ inline Defender::Vector<dim> operator * (const double& b, Defender::Vector<dim> 
 
 // / Overload
 template<unsigned int dim>
-inline Defender::Vector<dim> operator / (Defender::Vector<dim> a, const double& b)
+inline Defender::Vector<dim> operator / (Defender::Vector<dim> a, const double b)
 {
     a /= b;
     return a;
@@ -223,8 +223,7 @@ inline Defender::Vector<dim> operator / (Defender::Vector<dim> a, const double& 
 
 // == Overload
 template<unsigned int dim>
-inline bool operator == (const Defender::Vector<dim>& a,
-                         const Defender::Vector<dim>& b)
+inline bool operator == (const Defender::Vector<dim>& a, const Defender::Vector<dim>& b)
 {
     for (unsigned int i = 0; i < dim; ++i)
     {
@@ -235,16 +234,14 @@ inline bool operator == (const Defender::Vector<dim>& a,
 
 // != Overload
 template<unsigned int dim>
-inline bool operator != (const Defender::Vector<dim>& a,
-                         const Defender::Vector<dim>& b)
+inline bool operator != (const Defender::Vector<dim>& a, const Defender::Vector<dim>& b)
 {
     return !(a == b);
 }
 
 // < Overload
 template<unsigned int dim>
-inline bool operator < (const Defender::Vector<dim>& a,
-                        const Defender::Vector<dim>& b)
+inline bool operator < (const Defender::Vector<dim>& a, const Defender::Vector<dim>& b)
 {
     for (unsigned int i = 0; ; ++i)
     {

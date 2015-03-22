@@ -3,7 +3,7 @@
 #include "globals.h"
 #include "maingameroom.h"
 
-Defender::MainMenu::MainMenu(Game &game) : MenuRoom(game, 3, "Defender") {}
+Defender::MainMenu::MainMenu(Game& game) : MenuRoom(game, 3, "Defender") {}
 
 void Defender::MainMenu::update(const double time)
 {

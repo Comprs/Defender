@@ -14,7 +14,7 @@ public:
 
     void update(const double time) override;
     void interact(Entity& entity) override;
-    void interact(PlayerProjectile &playerProjectile) override;
+    void interact(PlayerProjectile& playerProjectile) override;
     bool isAbducted() const;
 
 protected:

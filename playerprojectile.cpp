@@ -15,7 +15,7 @@ Defender::PlayerProjectile:: PlayerProjectile(Room& room,
     else { this->velocity = Vector2D(-shotSpeed, 0); }
 }
 
-void Defender::PlayerProjectile::interact(Entity &entity)
+void Defender::PlayerProjectile::interact(Entity& entity)
 {
     entity.interact(*this);
 }

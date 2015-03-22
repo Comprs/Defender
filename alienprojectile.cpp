@@ -10,7 +10,7 @@ Defender::AlienProjectile:: AlienProjectile(Defender::Room& room,
     this->lifeTime = 2;
 }
 
-void Defender::AlienProjectile::interact(Entity &entity)
+void Defender::AlienProjectile::interact(Entity& entity)
 {
     entity.interact(*this);
 }

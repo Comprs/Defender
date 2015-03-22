@@ -1,6 +1,6 @@
 #include "particle.h"
 
-Defender::Particle::Particle(Defender::Room &room, std::shared_ptr<Defender::Texture> texture,
+Defender::Particle::Particle(Defender::Room& room, std::shared_ptr<Defender::Texture> texture,
                              Vector2D position, int lifeTime, Vector2D velocity,
                              Vector2D acceleration) : Entity(room, texture)
 {
@@ -10,7 +10,7 @@ Defender::Particle::Particle(Defender::Room &room, std::shared_ptr<Defender::Tex
     this->lifeTime = lifeTime;
 }
 
-void Defender::Particle::interact(Entity &entity)
+void Defender::Particle::interact(Entity& entity)
 {
     entity.interact(*this);
 }
