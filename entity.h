@@ -18,6 +18,7 @@ class Abductor;
 class Alien;
 class AlienProjectile;
 class Fighter;
+class Interceptor;
 class Man;
 class Mutant;
 class Particle;
@@ -43,6 +44,7 @@ public:
     virtual void interact(Alien& alien);
     virtual void interact(AlienProjectile& alienProjectile);
     virtual void interact(Fighter& fighter);
+    virtual void interact(Interceptor& interceptor);
     virtual void interact(Man& man);
     virtual void interact(Mutant& mutant);
     virtual void interact(Particle& particle);

@@ -188,6 +188,7 @@ void Defender::Entity::interact(Abductor&) {}
 void Defender::Entity::interact(Alien&) {}
 void Defender::Entity::interact(AlienProjectile&) {}
 void Defender::Entity::interact(Fighter&) {}
+void Defender::Entity::interact(Interceptor&) {}
 void Defender::Entity::interact(Man&) {}
 void Defender::Entity::interact(Mutant&) {}
 void Defender::Entity::interact(Particle&) {}

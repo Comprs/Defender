@@ -8,6 +8,7 @@
 #include "inputmanager.h"
 #include "abductor.h"
 #include "fighter.h"
+#include "interceptor.h"
 #include "mutant.h"
 #include "man.h"
 #include "alienprojectile.h"
@@ -104,6 +105,8 @@ void Defender::MainGameRoom::update(const double time)
         for (int i = 0; i < spawnCount; ++i) { addEntity<Abductor>("alien1.png"); }
         spawnCount = std::lround(spawnFighterDistribution(engine));
         for (int i = 0; i < spawnCount; ++i) { addEntity<Fighter>("alien3.png"); }
+        spawnCount = std::lround(spawnFighterDistribution(engine));
+        for (int i = 0; i < spawnCount; ++i) { addEntity<Interceptor>("alien4.png"); }
     }
 
     while (score >= nextBombScore)

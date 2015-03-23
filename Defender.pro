@@ -40,7 +40,8 @@ SOURCES += \
     menuroom.cpp \
     inputmanager.cpp \
     audio.cpp \
-    audioregistry.cpp
+    audioregistry.cpp \
+    interceptor.cpp
 
 HEADERS += \
     window.h \
@@ -74,4 +75,5 @@ HEADERS += \
     menuroom.h \
     inputmanager.h \
     audioregistry.h \
-    audio.h
+    audio.h \
+    interceptor.h
