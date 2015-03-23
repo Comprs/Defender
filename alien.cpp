@@ -33,13 +33,12 @@ void Defender::Alien::interact(Player& player)
     }
 
     Vector2D vectorTo = getSmallestVectorTo(getMiddle(), player.getMiddle());
-    // If the player is within 512 pixels
-    if (vectorTo.magnitude() <= 512 && shotDistribution(engine))
+    if (vectorTo.magnitude() <= alienProjectileFireRange && shotDistribution(engine))
     {
         Vector2D relativeVelocity = vectorTo.normalised();
         Vector2D newVelocity = Vector2D(player.getVelocity().x(), 0) +
-                (relativeVelocity * alienProjectileFireRange);
-        Vector2D newPosition = getMiddle() + (relativeVelocity * alienProjectileSpeed);
+                (relativeVelocity * alienProjectileSpeed);
+        Vector2D newPosition = getMiddle() + (newVelocity.normalised() * 20);
 
         room.addEntity<AlienProjectile>("enemyShot.png", newPosition, newVelocity);
     }

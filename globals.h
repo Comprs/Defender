@@ -33,7 +33,7 @@ constexpr double abductingSpeed = abductorSpeed * abductorSpeedPortion;
 const int abductorScore = 1;
 
 const double alienProjectileFireRange = 500;
-const double alienProjectileSpeed = 16;
+const double alienProjectileSpeed = 300;
 const double alienProjectileLifeTime = 2;
 
 const double fighterSpeed = 600;
