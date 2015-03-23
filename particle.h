@@ -15,7 +15,7 @@ public:
     void interactAll() override;
 
 protected:
-    void bound() override;
+    void boundY() override;
 };
 }
 

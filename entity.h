@@ -66,6 +66,8 @@ protected:
     virtual void interactAll();
     virtual void updatePosition(const double time);
     virtual void bound();
+    virtual void boundX();
+    virtual void boundY();
     virtual void updateLifeTime(const double time);
     virtual void onKill();
     void setMiddle(const Vector2D& a);

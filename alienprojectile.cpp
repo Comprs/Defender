@@ -15,18 +15,8 @@ void Defender::AlienProjectile::interact(Entity& entity)
     entity.interact(*this);
 }
 
-void Defender::AlienProjectile::bound()
+void Defender::AlienProjectile::boundY()
 {
-    // Wrap around horizontaly
-    while (position.x() >= room.width)
-    {
-        position.x() -= room.width;
-    }
-    while (position.x() < 0)
-    {
-        position.x() += room.width;
-    }
-
     // Kill if the projectile goes out of the room verticaly
     if (position.y() >= room.height)
     {

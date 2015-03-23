@@ -14,7 +14,7 @@ public:
     void interactWithBomb() override;
 
 protected:
-    void bound() override;
+    void boundY() override;
 };
 }
 

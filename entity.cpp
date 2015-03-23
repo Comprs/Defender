@@ -42,6 +42,12 @@ void Defender::Entity::updatePosition(const double time)
 
 void Defender::Entity::bound()
 {
+    boundX();
+    boundY();
+}
+
+void Defender::Entity::boundX()
+{
     // Wrap around horizontaly
     while (position.x() >= room.width)
     {
@@ -51,7 +57,10 @@ void Defender::Entity::bound()
     {
         position.x() += room.width;
     }
+}
 
+void Defender::Entity::boundY()
+{
     // Keep within the world vertically
     if (position.y() < 0)
     {

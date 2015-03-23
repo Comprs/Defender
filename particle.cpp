@@ -17,7 +17,7 @@ void Defender::Particle::interact(Entity& entity)
 
 void Defender::Particle::interactAll() {}
 
-void Defender::Particle::bound()
+void Defender::Particle::boundY()
 {
     if (position.y() > worldHeight) { kill(); }
 }
