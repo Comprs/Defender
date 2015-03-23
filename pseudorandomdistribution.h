@@ -30,7 +30,7 @@ public:
         double parameter_c;
         double parameter_d;
     };
-    explicit pseudo_random_distribution(double c = 0.5, double d = 0.009) :
+    explicit pseudo_random_distribution(double c = 0.5, double d = 0.01) :
         parameters(c, d), internal_n(0) {}
     explicit pseudo_random_distribution(const param_type& params) :
         parameters(params) {}
