@@ -12,6 +12,7 @@
 #include "man.h"
 #include "alienprojectile.h"
 #include "particle.h"
+#include "audioregistry.h"
 
 Defender::MainGameRoom::MainGameRoom(Game& game) : Room(game, worldWidth, worldHeight)
 {
@@ -127,6 +128,7 @@ void Defender::MainGameRoom::update(const double time)
             addEntity<Particle>("explosion.png", Vector2D(horDis(engine), verDis(engine)),
                                 -1, Vector2D(0, -480),
                                 Vector2D(0, 480 + accelerationVariance(engine)));
+            AudioRegistry::play("explosion.wav");
         }
     }
 

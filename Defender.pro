@@ -8,7 +8,7 @@ QMAKE_CXXFLAGS += -std=c++14
 QMAKE_CXXFLAGS_RELEASE += -O3
 QMAKE_CXXFLAGS_DEBUG += -O0
 
-LIBS = -L/usr/lib/ -lSDL2 -lSDL2_image -lSDL2_ttf
+LIBS = -L/usr/lib/ -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
 
 SOURCES += \
     window.cpp \
@@ -38,7 +38,9 @@ SOURCES += \
     pauseroom.cpp \
     defenderutils.cpp \
     menuroom.cpp \
-    inputmanager.cpp
+    inputmanager.cpp \
+    audio.cpp \
+    audioregistry.cpp
 
 HEADERS += \
     window.h \
@@ -70,4 +72,6 @@ HEADERS += \
     gamecontrollermanager.h \
     pauseroom.h \
     menuroom.h \
-    inputmanager.h
+    inputmanager.h \
+    audioregistry.h \
+    audio.h

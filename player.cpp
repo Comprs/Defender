@@ -6,6 +6,7 @@
 #include "alienprojectile.h"
 #include "particle.h"
 #include "maingameroom.h"
+#include "audioregistry.h"
 
 Defender::Player::Player(Room& room, std::shared_ptr<Texture> texture) : Entity(room, texture) {}
 
@@ -200,6 +201,7 @@ void Defender::Player::onKill()
                                           -120 + particleDistribution(engine)) +
                                  velocity / 4,
                                  Vector2D(0, 240));
+        AudioRegistry::play("explosion.wav");
     }
     if (MainGameRoom* mainGameRoom = dynamic_cast<MainGameRoom*>(&room))
     {
