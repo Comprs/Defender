@@ -14,6 +14,7 @@ public:
     Abductor(Room& room, std::shared_ptr<Texture> texture);
     void interact(Entity& entity) override;
     void interact(Man& man) override;
+    void afterInteraction() override;
 
 protected:
     void update(const double time) override;

@@ -78,25 +78,6 @@ void Defender::MainGameRoom::draw()
     }
 }
 
-void Defender::MainGameRoom::updateEntity(const double time, Entity& entity)
-{
-    // Update the entities
-    Room::updateEntity(time, entity);
-    if (typeid(entity) == typeid(Player))
-    {
-        // A player exist therefore the player is alive
-        playerAlive = true;
-        playerPos = entity.getPosition();
-        // If the entity is the player, set the camera position such that they
-        // Will appear in the centre of the screen
-        cameraPos.x() = entity.getPosition().x() - windowWidth / 2
-                + TextureRegistry::getTexture("player.png")->getRect().w / 2;
-
-        // Set the radar camera position such that the player is again centred
-        radarPos.x() = entity.getPosition().x() / worldWidth * windowWidth - radarWidth / 2;
-    }
-}
-
 void Defender::MainGameRoom::update(const double time)
 {
     // Quickly reset if the player is dead
@@ -139,8 +120,6 @@ void Defender::MainGameRoom::update(const double time)
         }
     }
 
-    // Assume the player is dead
-    playerAlive = false;
     Room::update(time);
 }
 

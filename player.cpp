@@ -5,6 +5,7 @@
 #include "playerprojectile.h"
 #include "alienprojectile.h"
 #include "particle.h"
+#include "maingameroom.h"
 
 Defender::Player::Player(Room& room, std::shared_ptr<Texture> texture) : Entity(room, texture) {}
 
@@ -160,8 +161,18 @@ void Defender::Player::update(const double time)
                 TextureRegistry::getTexture("shot.png")->getRect().h) / 2;
 
         // Add the entity to the room
-        room.addEntity<PlayerProjectile>("shot.png", startPosition,
-                                          facingRight);
+        room.addEntity<PlayerProjectile>("shot.png", startPosition, facingRight);
+    }
+
+    if (MainGameRoom* mainGameRoom = dynamic_cast<MainGameRoom*>(&room))
+    {
+        mainGameRoom->playerAlive = true;
+        mainGameRoom->playerPos = position;
+
+        mainGameRoom->cameraPos.x() = position.x() - windowWidth / 2 +
+                texture->getRect().w / 2;
+
+        mainGameRoom->radarPos.x() = position.x() / worldWidth * windowWidth - radarWidth / 2;
     }
 }
 
@@ -189,6 +200,10 @@ void Defender::Player::onKill()
                                           -120 + particleDistribution(engine)) +
                                  velocity / 4,
                                  Vector2D(0, 240));
+    }
+    if (MainGameRoom* mainGameRoom = dynamic_cast<MainGameRoom*>(&room))
+    {
+        mainGameRoom->playerAlive = false;
     }
     Entity::onKill();
 }

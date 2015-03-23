@@ -15,9 +15,14 @@ Defender::Room::~Room()
 void Defender::Room::update(const double time)
 {
     // Update the entities
-    for (std::shared_ptr<Entity> e : entities)
+    for (std::shared_ptr<Entity> entity : entities)
     {
-        updateEntity(time, *e);
+        entity->update(time);
+    }
+
+    for (std::shared_ptr<Entity> entity : entities)
+    {
+        entity->afterInteraction();
     }
 
     // Remove dead entities
@@ -31,11 +36,6 @@ void Defender::Room::update(const double time)
         entities.push_back(std::move(entityQueue.front()));
         entityQueue.pop();
     }
-}
-
-void Defender::Room::updateEntity(const double time, Entity& entity)
-{
-    entity.update(time);
 }
 
 void Defender::Room::draw()

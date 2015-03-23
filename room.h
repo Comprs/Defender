@@ -47,8 +47,6 @@ protected:
     Game& game;
     std::vector<std::shared_ptr<Entity>> entities;
     std::queue<std::shared_ptr<Entity>> entityQueue;
-
-    virtual void updateEntity(const double time, Entity& entity);
 };
 }
 

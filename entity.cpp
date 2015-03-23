@@ -186,3 +186,5 @@ void Defender::Entity::interact(Player&) {}
 void Defender::Entity::interact(PlayerProjectile&) {}
 
 void Defender::Entity::onKill() {}
+
+void Defender::Entity::afterInteraction() {}

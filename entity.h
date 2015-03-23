@@ -49,6 +49,7 @@ public:
     virtual void interact(Player& player);
     virtual void interact(PlayerProjectile& playerProjectile);
     virtual void interactWithBomb();
+    virtual void afterInteraction();
 
 protected:
     std::shared_ptr<Texture> texture;

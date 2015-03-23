@@ -26,28 +26,6 @@ void Defender::Abductor::interact(Man& man)
 
 void Defender::Abductor::update(const double time)
 {
-    if (target != nullptr)
-    {
-        if (!target->isAbducted() && intersect(*target))
-        {
-            abducting = target;
-            abducting->abductor = this;
-            velocity = Vector2D(0, -abductingSpeed);
-        }
-        else
-        {
-            velocity = getSmallestVectorTo(getMiddle(),target->getMiddle()).normalised() *
-                    abductorSpeed;
-        }
-    }
-    else if (abducting == nullptr)
-    {
-        velocity = Vector2D();
-    }
-
-    target = nullptr;
-    distanceToTarget = 100000;
-
     Alien::update(time);
 
     if (abducting != nullptr)
@@ -71,4 +49,29 @@ void Defender::Abductor::onKill()
         abducting = nullptr;
     }
     Alien::onKill();
+}
+
+void Defender::Abductor::afterInteraction()
+{
+    if (target != nullptr)
+    {
+        if (!target->isAbducted() && intersect(*target))
+        {
+            abducting = target;
+            abducting->abductor = this;
+            velocity = Vector2D(0, -abductingSpeed);
+        }
+        else
+        {
+            velocity = getSmallestVectorTo(getMiddle(),target->getMiddle()).normalised() *
+                    abductorSpeed;
+        }
+    }
+    else if (abducting == nullptr)
+    {
+        velocity = Vector2D();
+    }
+
+    target = nullptr;
+    distanceToTarget = 100000;
 }

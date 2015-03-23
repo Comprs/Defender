@@ -9,6 +9,7 @@ namespace Defender
 {
 class MainGameRoom : public Room
 {
+    friend class Player;
 public:
     MainGameRoom(Game& game);
 
@@ -16,9 +17,6 @@ public:
     void draw() override;
     void incrementScore(int delta) override;
     Vector2D getPlayerPos();
-
-protected:
-    void updateEntity(const double time, Entity& entity) override;
 
 private:
     Vector2D cameraPos = Vector2D();

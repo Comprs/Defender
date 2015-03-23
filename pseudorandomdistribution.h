@@ -51,7 +51,7 @@ public:
     {
         double thisChance = gen_params.c() * internal_n;
         bool success = (g() - g.min()) < thisChance * (g.max() - g.min());
-        if (success) { internal_n = 1; }
+        if (success) { internal_n = 0; }
         else { internal_n += gen_params.d(); }
         return success;
     }

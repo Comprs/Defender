@@ -16,7 +16,6 @@ public:
 protected:
     const int numbSelections;
 
-    void updateEntity(const double time, std::shared_ptr<Entity> e);
     virtual void select(int selectionNumber) = 0;
 
 private:
