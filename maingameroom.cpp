@@ -123,10 +123,11 @@ void Defender::MainGameRoom::update(const double time)
         std::uniform_real_distribution<> horDis(0, worldWidth);
         std::uniform_real_distribution<> verDis(0, worldHeight);
         std::uniform_real_distribution<> accelerationVariance(-360, 480);
+        std::uniform_real_distribution<> velocityVariance(-200, 200);
         for (int i = 0; i < 1000; ++i)
         {
             addEntity<Particle>("explosion.png", Vector2D(horDis(engine), verDis(engine)),
-                                -1, Vector2D(0, -480),
+                                -1, Vector2D(velocityVariance(engine), -480),
                                 Vector2D(0, 480 + accelerationVariance(engine)));
             AudioRegistry::play("explosion.wav");
         }
