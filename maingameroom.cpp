@@ -11,6 +11,7 @@
 #include "mutant.h"
 #include "man.h"
 #include "alienprojectile.h"
+#include "particle.h"
 
 Defender::MainGameRoom::MainGameRoom(Game& game) : Room(game, worldWidth, worldHeight)
 {
@@ -117,6 +118,15 @@ void Defender::MainGameRoom::update(const double time)
         for (std::shared_ptr<Entity> entity: entities)
         {
             entity->interactWithBomb();
+        }
+        std::uniform_real_distribution<> horDis(0, worldWidth);
+        std::uniform_real_distribution<> verDis(0, worldHeight);
+        std::uniform_real_distribution<> accelerationVariance(-360, 480);
+        for (int i = 0; i < 1000; ++i)
+        {
+            addEntity<Particle>("explosion.png", Vector2D(horDis(engine), verDis(engine)),
+                                -1, Vector2D(0, -480),
+                                Vector2D(0, 480 + accelerationVariance(engine)));
         }
     }
 
