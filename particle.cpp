@@ -19,6 +19,5 @@ void Defender::Particle::interactAll() {}
 
 void Defender::Particle::bound()
 {
-    // Do not bound to the room;
-    return;
+    if (position.y() > worldHeight) { kill(); }
 }

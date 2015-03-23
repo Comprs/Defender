@@ -51,13 +51,13 @@ bool Defender::Man::isAbducted() const
 void Defender::Man::onKill()
 {
     room.incrementScore(manScoreDeduction);
-    std::uniform_real_distribution<double> particleDistribution(-7, 7);
+    std::uniform_real_distribution<double> particleDistribution(-15, 15);
     for (int i = 0; i < manParticleCount; ++i)
     {
         room.addEntity<Particle>("blood.png", getMiddle(), 5,
                                  Vector2D(particleDistribution(engine),
                                           particleDistribution(engine) * 2) +
-                                 velocity,
+                                 velocity + Vector2D(0, -50),
                                  Vector2D(0, 240));
     }
     room.addEntity<Man>("man.png");

@@ -42,7 +42,7 @@ const int fighterScore = 1;
 const int initialManCount = 20;
 const double manFallSpeed = abductorSpeed * 3/2;
 const int manScoreDeduction = -2;
-const int manParticleCount = 10;
+const int manParticleCount = 50;
 
 const double mutantSpeed = 1000;
 const int mutantScore = 2;
