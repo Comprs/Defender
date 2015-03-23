@@ -12,8 +12,7 @@ void Defender::TextureRegistry::attachRenderer(SDL_Renderer *newSdlRenderer)
 void Defender::TextureRegistry::addTexture(const std::string& textureName)
 {
     // Create and add a texture
-    textures[textureName] =
-            std::make_shared<Defender::Texture>(sdlRenderer, textureName);
+    textures[textureName] = std::make_shared<Texture>(sdlRenderer, textureName);
 }
 
 std::shared_ptr<Defender::Texture>
