@@ -166,7 +166,7 @@ void Defender::Player::update(const double time)
 
     if (MainGameRoom* mainGameRoom = dynamic_cast<MainGameRoom*>(&room))
     {
-        mainGameRoom->playerAlive = true;
+        mainGameRoom->playerAlive = !isDead();
         mainGameRoom->playerPos = position;
 
         mainGameRoom->cameraPos.x() = position.x() - windowWidth / 2 +
