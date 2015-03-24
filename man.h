@@ -23,6 +23,7 @@ protected:
 
 private:
     Abductor* abductor = nullptr;
+    pseudo_random_distribution turnDistribution;
 };
 }
 
