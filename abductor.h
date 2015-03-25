@@ -15,9 +15,10 @@ public:
     void interact(Entity& entity) override;
     void interact(Man& man) override;
     void afterInteraction() override;
+    void update(const double time) override;
+    void detachMan();
 
 protected:
-    void update(const double time) override;
     void onKill() override;
 
 private:

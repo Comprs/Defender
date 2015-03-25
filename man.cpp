@@ -94,8 +94,7 @@ void Defender::Man::onKill()
     // Detach itself from the abductor
     if (abductor != nullptr)
     {
-        abductor->abducting = nullptr;
-        abductor = nullptr;
+        abductor->detachMan();
     }
 
     Entity::onKill();

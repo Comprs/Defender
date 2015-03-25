@@ -58,13 +58,8 @@ void Defender::Abductor::onKill()
     // Modify the score
     room.incrementScore(1);
 
-    // If abducting
-    if (abducting != nullptr)
-    {
-        // Detach the abducted
-        abducting->abductor = nullptr;
-        abducting = nullptr;
-    }
+    // Attempt to detach the man
+    detachMan();
 
     Alien::onKill();
 }
@@ -102,4 +97,15 @@ void Defender::Abductor::afterInteraction()
     // Reset variable used to determain the next target
     target = nullptr;
     distanceToTarget = 100000;
+}
+
+void Defender::Abductor::detachMan()
+{
+    // If abducting
+    if (abducting != nullptr)
+    {
+        // Detach the abducted
+        abducting->abductor = nullptr;
+        abducting = nullptr;
+    }
 }
