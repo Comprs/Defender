@@ -42,6 +42,7 @@ void Defender::Entity::updatePosition(const double time)
 
 void Defender::Entity::bound()
 {
+    // Be bound in the x and y direction
     boundX();
     boundY();
 }
@@ -139,6 +140,7 @@ bool Defender::Entity::intersect(const Entity& e) const
 // Overload to check for intersection between itself and a SDL_Rect
 bool Defender::Entity::intersect(const SDL_Rect& r) const
 {
+    // Get the bounding box of this entity
     SDL_Rect r2 = getBoundingBox();
 
     return SDL_HasIntersection(&r, &r2);

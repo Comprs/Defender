@@ -11,6 +11,7 @@ Defender::PlayerProjectile:: PlayerProjectile(Room& room,
     this->facingRight = orientation;
     this->lifeTime = 0.2;
 
+    // Set the facing orientation based on the velocity
     if (this->facingRight) { this->velocity = Vector2D(shotSpeed, 0); }
     else { this->velocity = Vector2D(-shotSpeed, 0); }
 }

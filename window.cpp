@@ -7,26 +7,29 @@ Defender::Window::Window()
 {
     // Create the window based on constant values
     this->sdlWindow = SDL_CreateWindow("Defender",
-                                 SDL_WINDOWPOS_UNDEFINED,
-                                 SDL_WINDOWPOS_UNDEFINED,
-                                 windowWidth, windowHeight,
-                                 SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN);
+                                       SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                                       windowWidth, windowHeight,
+                                       SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP);
     if (this->sdlWindow == nullptr)
     {
         throw std::runtime_error(SDL_GetError());
     }
 
     // Create the renderer from the window
-    this->sdlRenderer = SDL_CreateRenderer(sdlWindow, -1,
-                                     SDL_RENDERER_ACCELERATED |
-                                     SDL_RENDERER_TARGETTEXTURE);
+    this->sdlRenderer = SDL_CreateRenderer(sdlWindow, -1, SDL_RENDERER_ACCELERATED |
+                                           SDL_RENDERER_TARGETTEXTURE);
     if (this->sdlRenderer == nullptr)
     {
         throw std::runtime_error(SDL_GetError());
     }
 
+    // Set the scaling method
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+
+    // Set the logical render size
     SDL_RenderSetLogicalSize(this->sdlRenderer, windowWidth, windowHeight);
+
+    // Hide the cursor
     SDL_ShowCursor(SDL_FALSE);
 }
 

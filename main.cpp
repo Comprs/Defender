@@ -28,8 +28,7 @@ int main()
     }
     catch (std::runtime_error e)
     {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
-                                 "A runtime error occured",
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "A runtime error occured",
                                  e.what(), nullptr);
         SDL_Quit();
         return EXIT_FAILURE;

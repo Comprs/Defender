@@ -11,9 +11,11 @@ void Defender::PauseRoom::select(int selectionNumber)
     switch (selectionNumber)
     {
     case 0:
+        // Close the room
         game.killTopRoom();
         return;
     case 1:
+        // Goto the main menu
         game.replaceNewRoom<MainMenu>();
         return;
     default:
@@ -25,11 +27,13 @@ void Defender::PauseRoom::select(int selectionNumber)
 
 void Defender::PauseRoom::update(const double time)
 {
+    // Close the menu
     if (GameControllerManager::wasPressed(SDL_CONTROLLER_BUTTON_START))
     {
         game.killTopRoom();
         return;
     }
+
     MenuRoom::update(time);
 }
 

@@ -19,5 +19,6 @@ void Defender::Particle::interactAll() {}
 
 void Defender::Particle::boundY()
 {
+    // Kill if the particle goes below the world
     if (position.y() > worldHeight) { kill(); }
 }

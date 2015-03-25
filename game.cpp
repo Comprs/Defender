@@ -9,9 +9,12 @@ Defender::Game::Game()
 {
     // Attach renderer to the texture registry retrived from the window
     TextureRegistry::attachRenderer(this->getRenderer());
+
+    // Make sure the window is clear
     this->clear();
     this->present();
 
+    // Load in the highscore
     std::ifstream file("highscore.dat");
     file >> this->highScore;
     file.close();
@@ -19,6 +22,7 @@ Defender::Game::Game()
 
 void Defender::Game::killTopRoom()
 {
+    // Pop the last item (room)
     rooms.pop_back();
 }
 
@@ -109,9 +113,12 @@ void Defender::Game::begin()
 
 void Defender::Game::stop()
 {
+    // Save the highscore to file
     std::ofstream file("highscore.dat", std::ios_base::out | std::ios_base::trunc);
     file << highScore;
     file.close();
+
+    // Set the window to close
     window.close();
 }
 
@@ -135,6 +142,6 @@ void Defender::Game::toggleFullscreen()
     else
     {
         // The window currently is windowed so switch to fullscreen mode
-        SDL_SetWindowFullscreen(window.sdlWindow, SDL_WINDOW_FULLSCREEN);
+        SDL_SetWindowFullscreen(window.sdlWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
     }
 }

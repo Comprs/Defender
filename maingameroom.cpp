@@ -71,9 +71,11 @@ void Defender::MainGameRoom::draw()
     Renderer("Audiowide-Regular.ttf", game.getRenderer(), "High Score: " +
              std::to_string(game.highScore)).setPosition(0, 40).commit();
 
+    // Render the bomb counter
     Renderer("Audiowide-Regular.ttf", game.getRenderer(), "Bombs: " +
              std::to_string(bombs)).setPosition(0, 80).commit();
 
+    // If the player isn't alive, render the reset hint
     if (!playerAlive)
     {
         Renderer("Audiowide-Regular.ttf", game.getRenderer(),
@@ -90,39 +92,53 @@ void Defender::MainGameRoom::update(const double time)
         return;
     }
 
+    // If the escape key or the start button are pressed, create a pause room
     if (ifOneWasPressed(SDL_SCANCODE_ESCAPE, SDL_CONTROLLER_BUTTON_START))
     {
-        // If the escaped is pressed, return to the main menu discarding the
-        // room
         game.pushNewRoom<PauseRoom>();
         return;
     }
 
+    // on random chance
     if (spawnDistribution(engine))
     {
         int spawnCount = 0;
+
+        // Spawn in the abductors
         spawnCount = std::lround(spawnAbductorDistribution(engine));
         for (int i = 0; i < spawnCount; ++i) { addEntity<Abductor>("alien1.png"); }
+
+        // Spawn in the Fighters
         spawnCount = std::lround(spawnFighterDistribution(engine));
         for (int i = 0; i < spawnCount; ++i) { addEntity<Fighter>("alien3.png"); }
+
+        // Spawn in the Interceptors
         spawnCount = std::lround(spawnFighterDistribution(engine));
         for (int i = 0; i < spawnCount; ++i) { addEntity<Interceptor>("alien4.png"); }
     }
 
+    // Add more bombs
     while (score >= nextBombScore)
     {
         ++bombs;
         nextBombScore += 20;
     }
 
+    // Detonate a bomb if the player has pressed one of the correct keys, the bomb counter
+    // is above 0 and the player is alive
     if (ifOneWasPressed(SDL_SCANCODE_SPACE, SDL_CONTROLLER_BUTTON_X,
                         SDL_CONTROLLER_BUTTON_LEFTSHOULDER) && bombs > 0 && playerAlive)
     {
+        // Decrement the counter
         --bombs;
+
+        // Get all of the entities to react to the bomb
         for (std::shared_ptr<Entity> entity: entities)
         {
             entity->interactWithBomb();
         }
+
+        // Create the particles
         std::uniform_real_distribution<> horDis(0, worldWidth);
         std::uniform_real_distribution<> verDis(0, worldHeight);
         std::uniform_real_distribution<> accelerationVariance(-360, 480);
@@ -132,8 +148,10 @@ void Defender::MainGameRoom::update(const double time)
             addEntity<Particle>("explosion.png", Vector2D(horDis(engine), verDis(engine)),
                                 -1, Vector2D(velocityVariance(engine), -480),
                                 Vector2D(0, 480 + accelerationVariance(engine)));
-            AudioRegistry::play("explosion.wav");
         }
+
+        // Play the sound effect
+        AudioRegistry::play("explosion.wav");
     }
 
     Room::update(time);

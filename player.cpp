@@ -100,6 +100,7 @@ void Defender::Player::update(const double time)
         }
     }
 
+    // Use the right x axis to turn the player
     if (rightXAxis != 0)
     {
         facingRight = rightXAxis > 0;
@@ -165,6 +166,7 @@ void Defender::Player::update(const double time)
         room.addEntity<PlayerProjectile>("shot.png", startPosition, facingRight);
     }
 
+    // Update the variables held by the game room about the player
     if (MainGameRoom* mainGameRoom = dynamic_cast<MainGameRoom*>(&room))
     {
         mainGameRoom->playerAlive = !isDead();
@@ -184,8 +186,10 @@ void Defender::Player::interact(Entity& entity)
 
 void Defender::Player::interact(AlienProjectile& alienProjectile)
 {
+    // If the player has collided with the alien projectile
     if (intersect(alienProjectile))
     {
+        // Kill them both
         alienProjectile.kill();
         kill();
     }
@@ -193,6 +197,7 @@ void Defender::Player::interact(AlienProjectile& alienProjectile)
 
 void Defender::Player::onKill()
 {
+    // Create the particles
     std::uniform_real_distribution<double> particleDistribution(-480, 480);
     for (int i = 0; i < playerParticleCount; ++i)
     {
@@ -203,9 +208,12 @@ void Defender::Player::onKill()
                                  Vector2D(0, 240));
         AudioRegistry::play("explosion.wav");
     }
+
+    // Set the variable held by the gameroom about the player
     if (MainGameRoom* mainGameRoom = dynamic_cast<MainGameRoom*>(&room))
     {
         mainGameRoom->playerAlive = false;
     }
+
     Entity::onKill();
 }

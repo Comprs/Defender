@@ -22,12 +22,15 @@ void Defender::MainMenu::select(int selectionNumber)
     switch (selectionNumber)
     {
     case 0:
+        // Goto the game room
         game.replaceNewRoom<MainGameRoom>();
         return;
     case 1:
+        // Toggle fullscreen
         game.toggleFullscreen();
         return;
     case 2:
+        // Quit the game
         game.stop();
         return;
     default:
