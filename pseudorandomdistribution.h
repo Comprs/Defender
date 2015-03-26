@@ -1,5 +1,5 @@
-#ifndef PSEUDORANDOMDISTRIBUTION
-#define PSEUDORANDOMDISTRIBUTION
+#ifndef PSEUDORANDOMDISTRIBUTION_H
+#define PSEUDORANDOMDISTRIBUTION_H
 
 #include <iostream>
 #include <limits>
@@ -99,5 +99,5 @@ operator >> (std::basic_istream<CharT, Traits>& is,
 }
 }
 
-#endif // PSEUDORANDOMDISTRIBUTION
+#endif // PSEUDORANDOMDISTRIBUTION_H
 

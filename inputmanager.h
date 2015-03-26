@@ -1,5 +1,5 @@
-#ifndef INPUTMANAGER
-#define INPUTMANAGER
+#ifndef INPUTMANAGER_H
+#define INPUTMANAGER_H
 
 #include "keyboardmanager.h"
 #include "gamecontrollermanager.h"
@@ -37,5 +37,5 @@ inline bool ifOneWasPressed(SDL_Scancode key, Args... args)
 }
 }
 
-#endif // INPUTMANAGER
+#endif // INPUTMANAGER_H
 

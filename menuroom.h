@@ -1,5 +1,5 @@
-#ifndef MENUROOM
-#define MENUROOM
+#ifndef MENUROOM_H
+#define MENUROOM_H
 
 #include "room.h"
 
@@ -24,5 +24,5 @@ private:
 };
 }
 
-#endif // MENUROOM
+#endif // MENUROOM_H
 

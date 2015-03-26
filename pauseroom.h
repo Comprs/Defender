@@ -1,8 +1,7 @@
-#ifndef PAUSEROOM
-#define PAUSEROOM
+#ifndef PAUSEROOM_H
+#define PAUSEROOM_H
 
 #include "menuroom.h"
-#include "defenderutils.h"
 
 namespace Defender
 {
@@ -19,5 +18,5 @@ protected:
 };
 }
 
-#endif // PAUSEROOM
+#endif // PAUSEROOM_H
 

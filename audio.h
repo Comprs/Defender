@@ -1,5 +1,5 @@
-#ifndef AUDIO
-#define AUDIO
+#ifndef AUDIO_H
+#define AUDIO_H
 
 #include <string>
 #include <SDL2/SDL_mixer.h>
@@ -25,5 +25,5 @@ private:
 };
 }
 
-#endif // AUDIO
+#endif // AUDIO_H
 

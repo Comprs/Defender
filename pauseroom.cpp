@@ -3,6 +3,7 @@
 #include "globals.h"
 #include "gamecontrollermanager.h"
 #include "mainmenu.h"
+#include "defenderutils.h"
 
 Defender::PauseRoom::PauseRoom(Game& game) : MenuRoom(game, 2, "Paused") {}
 

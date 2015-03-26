@@ -1,5 +1,5 @@
-#ifndef PARTICLE
-#define PARTICLE
+#ifndef PARTICLE_H
+#define PARTICLE_H
 
 #include "entity.h"
 
@@ -20,4 +20,4 @@ protected:
 };
 }
 
-#endif // PARTICLE
+#endif // PARTICLE_H

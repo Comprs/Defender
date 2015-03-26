@@ -1,5 +1,5 @@
-#ifndef FIGHTER
-#define FIGHTER
+#ifndef FIGHTER_H
+#define FIGHTER_H
 
 #include "alien.h"
 
@@ -20,5 +20,5 @@ protected:
 };
 }
 
-#endif // FIGHTER
+#endif // FIGHTER_H
 

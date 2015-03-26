@@ -1,5 +1,5 @@
-#ifndef AUDIOREGISTRY
-#define AUDIOREGISTRY
+#ifndef AUDIOREGISTRY_H
+#define AUDIOREGISTRY_H
 
 #include <string>
 #include <memory>
@@ -20,5 +20,5 @@ private:
 };
 }
 
-#endif // AUDIOREGISTRY
+#endif // AUDIOREGISTRY_H
 

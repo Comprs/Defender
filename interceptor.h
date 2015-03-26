@@ -1,5 +1,5 @@
-#ifndef INTERCEPTOR
-#define INTERCEPTOR
+#ifndef INTERCEPTOR_H
+#define INTERCEPTOR_H
 
 #include "alien.h"
 
@@ -25,5 +25,5 @@ private:
 };
 }
 
-#endif // INTERCEPTOR
+#endif // INTERCEPTOR_H
 
