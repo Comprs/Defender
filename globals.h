@@ -1,6 +1,8 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
+#include <random>
+
 namespace Defender {
 
 const int worldUnitWidth = 4;
@@ -49,6 +51,8 @@ const int mutantScore = 2;
 
 const int bombScore = 20;
 constexpr int firstBombScore = bombScore;
+
+static std::default_random_engine engine;
 }
 
 #endif // GLOBALS_H

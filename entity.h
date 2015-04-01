@@ -62,8 +62,6 @@ protected:
     bool facingRight = true;
     Room& room;
 
-    static std::default_random_engine engine;
-
     bool isSame(const std::shared_ptr<Entity> e) const;
     virtual void interactAll();
     virtual void updatePosition(const double time);

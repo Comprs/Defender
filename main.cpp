@@ -3,9 +3,14 @@
 #include "game.h"
 #include "mainmenu.h"
 #include "fontregistry.h"
+#include "globals.h"
 
 int main()
 {
+    // Seed the random engine so that the positions generated won't be the same
+    // each time the game is run
+    Defender::engine.seed(std::chrono::high_resolution_clock::now().time_since_epoch().count());
+
     SDL_Init(SDL_INIT_EVERYTHING);
     TTF_Init();
     Mix_Init(0);

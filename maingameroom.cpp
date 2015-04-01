@@ -1,7 +1,5 @@
 #include "maingameroom.h"
 
-#include <typeinfo>
-#include <chrono>
 #include "globals.h"
 #include "player.h"
 #include "pauseroom.h"
@@ -20,7 +18,6 @@ Defender::MainGameRoom::MainGameRoom(Game& game) : Room(game, worldWidth, worldH
     this->spawnDistribution = Defender::pseudo_random_distribution(0.0025);
     this->spawnFighterDistribution = std::normal_distribution<>(1, 0.5);
     this->spawnAbductorDistribution = std::normal_distribution<>(3, 1.5);
-    this->engine.seed(std::chrono::high_resolution_clock::now().time_since_epoch().count());
     // Add the entities
     addEntity<Player>("player.png");
     for (int i = 0; i < initialManCount; ++i) { addEntity<Man>("man.png"); }

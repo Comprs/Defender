@@ -23,7 +23,6 @@ private:
     Vector2D radarPos = Vector2D();
     Vector2D playerPos = Vector2D();
 
-    std::default_random_engine engine;
     pseudo_random_distribution spawnDistribution;
     std::normal_distribution<> spawnFighterDistribution;
     std::normal_distribution<> spawnAbductorDistribution;

@@ -10,7 +10,7 @@ Defender::Man::Man(Defender::Room& room, std::shared_ptr<Defender::Texture> text
     Entity(room, texture)
 {
     // Set the position to be a random horizontal position and at the bottom of the world
-    this->position = Vector2D(this->positionDistribution(this->engine), worldHeight -
+    this->position = Vector2D(this->positionDistribution(engine), worldHeight -
                               this->getBoundingBox().h);
 
     // Set the turn distribution
