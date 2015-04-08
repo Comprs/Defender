@@ -6,7 +6,6 @@
 
 namespace Defender
 {
-class Man;
 class Abductor : public Alien
 {
     friend class Man;
