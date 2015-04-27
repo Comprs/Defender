@@ -36,7 +36,8 @@ Defender::Texture::Texture(SDL_Renderer* sdlRenderer, const std::string& fileNam
     // Set the properties of the rect
     this->sdlRect.x = 0;
     this->sdlRect.y = 0;
-    SDL_QueryTexture(this->sdlTexture, nullptr, nullptr, &this->sdlRect.w, &this->sdlRect.h);
+    SDL_QueryTexture(this->sdlTexture, nullptr, nullptr,
+                     &this->sdlRect.w, &this->sdlRect.h);
 }
 
 // Create a texture out of a given SDL_Renderer and SDL_Texture
@@ -44,7 +45,8 @@ Defender::Texture::Texture(SDL_Renderer* sdlRenderer, SDL_Texture* sdlTexture) :
     sdlRenderer(sdlRenderer), sdlTexture(sdlTexture)
 {
     this->sdlRect = {0, 0, 0, 0};
-    SDL_QueryTexture(this->sdlTexture, nullptr, nullptr, &this->sdlRect.w, &this->sdlRect.h);
+    SDL_QueryTexture(this->sdlTexture, nullptr, nullptr,
+                     &this->sdlRect.w, &this->sdlRect.h);
 }
 
 Defender::Texture::~Texture()

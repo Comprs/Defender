@@ -3,8 +3,9 @@
 #include "textureregistry.h"
 #include "fontregistry.h"
 
-Defender::Renderer::Renderer(Defender::Texture& texture) : sdlRenderer(texture.sdlRenderer),
-    sdlTexture(texture.sdlTexture), srcRect(texture.sdlRect), destRect(texture.sdlRect),
+Defender::Renderer::Renderer(Defender::Texture& texture) :
+    sdlRenderer(texture.sdlRenderer), sdlTexture(texture.sdlTexture),
+    srcRect(texture.sdlRect), destRect(texture.sdlRect),
     angle(0), flip(SDL_FLIP_NONE)
 {
     this->centre = {this->destRect.x / 2, this->destRect.y / 2};
@@ -15,7 +16,8 @@ Defender::Renderer::Renderer(Defender::Texture& texture) : sdlRenderer(texture.s
 Defender::Renderer::Renderer(const std::string& textureName) :
     Renderer(*TextureRegistry::getTexture(textureName)) {}
 
-Defender::Renderer::Renderer(TTFFont& font, SDL_Renderer* sdlRenderer, const std::string& text) :
+Defender::Renderer::Renderer(TTFFont& font, SDL_Renderer* sdlRenderer,
+                             const std::string& text) :
     sdlRenderer(sdlRenderer), angle(0), flip(SDL_FLIP_NONE)
 {
     // Render the text
@@ -33,7 +35,8 @@ Defender::Renderer::Renderer(TTFFont& font, SDL_Renderer* sdlRenderer, const std
 
     // Set the size of the source rectangle
     this->srcRect = {0, 0, 0, 0};
-    SDL_QueryTexture(this->sdlTexture, nullptr, nullptr, &this->srcRect.w, &this->srcRect.h);
+    SDL_QueryTexture(this->sdlTexture, nullptr, nullptr,
+		     &this->srcRect.w, &this->srcRect.h);
 
     this->destRect = this->srcRect;
     this->centre = {this->destRect.x / 2, this->destRect.y / 2};

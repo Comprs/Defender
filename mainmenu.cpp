@@ -47,10 +47,12 @@ void Defender::MainMenu::draw()
             .addOffset(unitWidth, 0).addOffset(unitWidth * 2, 0).commit();
 
     // Draw the text
-    Renderer("Audiowide-Regular.ttf", game.getRenderer(), "Play").setPosition(40, 40).commit();
-    Renderer("Audiowide-Regular.ttf", game.getRenderer(), "Toggle Fullscreen").setPosition(40, 80)
-            .commit();
-    Renderer("Audiowide-Regular.ttf", game.getRenderer(), "Quit").setPosition(40, 120).commit();
+    Renderer("Audiowide-Regular.ttf", game.getRenderer(), "Play")
+            .setPosition(40, 40).commit();
+    Renderer("Audiowide-Regular.ttf", game.getRenderer(), "Toggle Fullscreen")
+            .setPosition(40, 80) .commit();
+    Renderer("Audiowide-Regular.ttf", game.getRenderer(), "Quit")
+            .setPosition(40, 120).commit();
 
     MenuRoom::draw();
 }

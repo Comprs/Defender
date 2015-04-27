@@ -34,7 +34,8 @@ void Defender::MenuRoom::update(const double)
 
 void Defender::MenuRoom::draw()
 {
-    Renderer("Audiowide-Regular.ttf", game.getRenderer(), menuTitle).setPosition(40, 0).commit();
-    Renderer("Audiowide-Regular.ttf", game.getRenderer(), ">").setPosition(10, 40 * (selection + 1))
-            .commit();
+    Renderer("Audiowide-Regular.ttf", game.getRenderer(), menuTitle)
+            .setPosition(40, 0).commit();
+    Renderer("Audiowide-Regular.ttf", game.getRenderer(), ">")
+            .setPosition(10, 40 * (selection + 1)) .commit();
 }

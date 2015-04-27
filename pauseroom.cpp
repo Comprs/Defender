@@ -40,8 +40,10 @@ void Defender::PauseRoom::update(const double time)
 
 void Defender::PauseRoom::draw()
 {
-    Renderer("Audiowide-Regular.ttf", game.getRenderer(), "Resume").setPosition(40, 40).commit();
-    Renderer("Audiowide-Regular.ttf", game.getRenderer(), "Quit").setPosition(40, 80).commit();
+    Renderer("Audiowide-Regular.ttf", game.getRenderer(), "Resume")
+            .setPosition(40, 40).commit();
+    Renderer("Audiowide-Regular.ttf", game.getRenderer(), "Quit")
+            .setPosition(40, 80).commit();
 
     MenuRoom::draw();
 }

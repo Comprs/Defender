@@ -31,7 +31,8 @@ void Defender::Interceptor::interact(Player& player)
     }
 
     Vector2D vectorTo = getSmallestVectorTo(getMiddle(), player.getMiddle());
-    if (vectorTo.magnitude() <= alienProjectileFireRange * 1.5 && shotDistribution(engine))
+    if (vectorTo.magnitude() <= alienProjectileFireRange * 1.5 &&
+            shotDistribution(engine))
     {
         Vector2D relativeVelocity = vectorTo.normalised();
         Vector2D newVelocity = Vector2D(player.getVelocity().x(), 0) +

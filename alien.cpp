@@ -7,13 +7,15 @@
 #include "maingameroom.h"
 #include "defenderutils.h"
 
-Defender::Alien::Alien(Room& room, std::shared_ptr<Texture> texture) : Entity(room, texture)
+Defender::Alien::Alien(Room& room, std::shared_ptr<Texture> texture) :
+    Entity(room, texture)
 {
     // Get the horizontal position of the player
     double playerPosition = static_cast<MainGameRoom&>(this->room).getPlayerPos().x();
     // Set up a normal distribution so that the initial position is least likely to spawn
     // near the player
-    std::normal_distribution<> positionDistribution(playerPosition + worldWidth / 2, worldWidth / 5);
+    std::normal_distribution<> positionDistribution(playerPosition + worldWidth / 2,
+                                                    worldWidth / 5);
     // Set the intial position so that the alien spawns at the top of the screen and with
     // the conditions the previous statment was to address
     this->position = Vector2D(positionDistribution(engine), 0);

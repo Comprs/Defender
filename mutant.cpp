@@ -17,7 +17,8 @@ void Defender::Mutant::interact(Entity& entity)
 void Defender::Mutant::interact(Player& player)
 {
     // Move towards the player
-    velocity = getSmallestVectorTo(getMiddle(), player.getMiddle()).normalised() * mutantSpeed;
+    velocity = getSmallestVectorTo(getMiddle(), player.getMiddle()).normalised() *
+            mutantSpeed;
     Alien::interact(player);
 }
 

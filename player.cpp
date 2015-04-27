@@ -8,7 +8,8 @@
 #include "maingameroom.h"
 #include "audioregistry.h"
 
-Defender::Player::Player(Room& room, std::shared_ptr<Texture> texture) : Entity(room, texture) {}
+Defender::Player::Player(Room& room, std::shared_ptr<Texture> texture) :
+    Entity(room, texture) {}
 
 void Defender::Player::update(const double time)
 {
@@ -175,7 +176,8 @@ void Defender::Player::update(const double time)
         mainGameRoom->cameraPos.x() = position.x() - windowWidth / 2 +
                 texture->getRect().w / 2;
 
-        mainGameRoom->radarPos.x() = position.x() / worldWidth * windowWidth - radarWidth / 2;
+        mainGameRoom->radarPos.x() = position.x() / worldWidth * windowWidth -
+                                     radarWidth / 2;
     }
 }
 
