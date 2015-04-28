@@ -15,6 +15,7 @@ public:
     static void attachRenderer(SDL_Renderer* newSdlRenderer);
     static void addTexture(const std::string& textureName);
     static std::shared_ptr<Texture> getTexture(const std::string& textureName);
+    static void unload();
 
 private:
     static std::unordered_map<std::string, std::shared_ptr<Texture>> textures;

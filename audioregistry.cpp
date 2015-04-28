@@ -19,3 +19,8 @@ void Defender::AudioRegistry::play(const std::string& audioName)
     // Play the audio
     Mix_PlayChannel(-1, audio.at(audioName)->mixChunk, 0);
 }
+
+void Defender::AudioRegistry::unload()
+{
+    audio.erase(audio.begin(), audio.end());
+}

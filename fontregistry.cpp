@@ -21,3 +21,8 @@ Defender::FontRegistry::getFont(const std::string& fontName)
     // Return the named font
     return fonts.at(fontName);
 }
+
+void Defender::FontRegistry::unload()
+{
+    fonts.erase(fonts.begin(), fonts.end());
+}

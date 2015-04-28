@@ -26,3 +26,8 @@ Defender::TextureRegistry::getTexture(const std::string& textureName)
     // Return the texture
     return textures.at(textureName);
 }
+
+void Defender::TextureRegistry::unload()
+{
+    textures.erase(textures.begin(), textures.end());
+}

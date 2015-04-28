@@ -3,7 +3,19 @@
 #include "game.h"
 #include "mainmenu.h"
 #include "fontregistry.h"
+#include "textureregistry.h"
+#include "audioregistry.h"
 #include "globals.h"
+
+void quit()
+{
+    Defender::TextureRegistry::unload();
+    Defender::AudioRegistry::unload();
+    Defender::FontRegistry::unload();
+    TTF_Quit();
+    Mix_Quit();
+    SDL_Quit();
+}
 
 int main()
 {
@@ -36,11 +48,11 @@ int main()
     {
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "A runtime error occured",
                                  e.what(), nullptr);
-        SDL_Quit();
+        quit();
         return EXIT_FAILURE;
     }
 
-    SDL_Quit();
+    quit();
 
     return EXIT_SUCCESS;
 }
