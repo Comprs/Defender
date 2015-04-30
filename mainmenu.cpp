@@ -54,5 +54,14 @@ void Defender::MainMenu::draw()
     Renderer("Audiowide-Regular.ttf", game.getRenderer(), "Quit")
             .setPosition(40, 120).commit();
 
+    // In game help
+    Renderer("Audiowide-Regular.ttf", game.getRenderer(),
+             "W, A, S and D or left analogue stick to move about")
+            .setPosition(40, 200).commit();
+    Renderer("Audiowide-Regular.ttf", game.getRenderer(),
+             "Enter or right shoulder to fire").setPosition(40, 240).commit();
+    Renderer("Audiowide-Regular.ttf", game.getRenderer(),
+             "Prevent the civilians from being abducted").setPosition(40, 280).commit();
+
     MenuRoom::draw();
 }
