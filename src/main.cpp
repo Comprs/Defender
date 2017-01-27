@@ -17,7 +17,11 @@ void quit()
     SDL_Quit();
 }
 
-int main()
+#ifdef main
+int SDL_main(int, const char**)
+#else
+int main(int, const char**)
+#endif
 {
     // Seed the random engine so that the positions generated won't be the same
     // each time the game is run
